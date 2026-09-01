@@ -679,6 +679,323 @@
             display: block;
         }
 
+        /* Fix Input Text & Placeholder Color inside White Pill */
+        .card-input-white-pill input.main-card-input,
+        .card-input-white-pill .login-input,
+        input.main-card-input {
+            color: #1e1b4b !important;
+            -webkit-text-fill-color: #1e1b4b !important;
+            font-weight: 800 !important;
+        }
+
+        .card-input-white-pill input.main-card-input::placeholder,
+        .card-input-white-pill .login-input::placeholder,
+        input.main-card-input::placeholder {
+            color: #7e22ce !important;
+            -webkit-text-fill-color: #7e22ce !important;
+            opacity: 0.85 !important;
+            font-weight: 700 !important;
+        }
+
+        /* Fix News Ticker Container (White Background) & Marquee Text (Dark Purple) */
+        .ticker-container {
+            background: #ffffff !important;
+            border: 1.5px solid rgba(168, 85, 247, 0.5) !important;
+            border-radius: 14px !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.9) !important;
+        }
+
+        .ticker-content-track .marquee,
+        .marquee {
+            color: #4c1d95 !important;
+            -webkit-text-fill-color: #4c1d95 !important;
+            font-weight: 800 !important;
+            font-size: 0.9rem !important;
+            text-shadow: none !important;
+        }
+
+        /* ==========================================================================
+           UNIFIED DEEP VIOLET NEON GLASS DESIGN FOR ALL MODALS & STATUS SCREEN
+           ========================================================================== */
+        
+        /* 1. Modal Sheet Base (Exact Visual Integration with Main Login Screen) */
+        .modal-sheet-card {
+            position: relative !important;
+            overflow: hidden !important;
+            background: linear-gradient(145deg, rgba(28, 11, 54, 0.96) 0%, rgba(13, 4, 28, 0.98) 100%) !important;
+            border: 1.5px solid rgba(168, 85, 247, 0.45) !important;
+            border-radius: 20px !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 30px rgba(147, 51, 234, 0.25), inset 0 1px 1.5px rgba(255, 255, 255, 0.2) !important;
+        }
+
+        /* Top Glowing Neon Violet-Gold Accent Line */
+        .modal-sheet-card::before {
+            content: '' !important;
+            position: absolute !important;
+            top: 0 !important;
+            right: 0 !important;
+            left: 0 !important;
+            height: 3.5px !important;
+            background: linear-gradient(90deg, #c084fc 0%, #D4AF37 50%, #a855f7 100%) !important;
+            z-index: 10 !important;
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.7) !important;
+        }
+
+        /* 2. Unified Modal Header */
+        .modal-header {
+            border-bottom: 1px solid rgba(168, 85, 247, 0.3) !important;
+            padding-bottom: 12px !important;
+            margin-bottom: 14px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+        }
+
+        .modal-header .title {
+            font-size: 1.15rem !important;
+            font-weight: 800 !important;
+            color: #ffffff !important;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+        }
+
+        .modal-title-icon {
+            width: 20px !important;
+            height: 20px !important;
+            fill: #c084fc !important;
+            filter: drop-shadow(0 0 6px rgba(168, 85, 247, 0.5)) !important;
+        }
+
+        .modal-close-btn {
+            background: rgba(255, 255, 255, 0.08) !important;
+            border: 1px solid rgba(168, 85, 247, 0.4) !important;
+            color: #ffffff !important;
+            border-radius: 20px !important;
+            padding: 6px 14px !important;
+            font-size: 0.82rem !important;
+            font-weight: 700 !important;
+            transition: all 0.2s ease !important;
+            cursor: pointer !important;
+        }
+
+        .modal-close-btn:hover {
+            background: rgba(168, 85, 247, 0.3) !important;
+            border-color: #c084fc !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 12px rgba(168, 85, 247, 0.4) !important;
+        }
+
+        /* 3. Unified Glass Tables for Pricing (#price) & Sell Points (#sell-point) */
+        .modal-sheet-card table {
+            width: 100% !important;
+            border-collapse: separate !important;
+            border-spacing: 0 8px !important;
+            margin: 10px 0 !important;
+        }
+
+        .modal-sheet-card thead th {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.35) 0%, rgba(76, 29, 149, 0.4) 100%) !important;
+            color: #FCD34D !important;
+            font-size: 0.88rem !important;
+            font-weight: 800 !important;
+            padding: 10px 14px !important;
+            text-align: right !important;
+            border-radius: 10px !important;
+            border: 1px solid rgba(168, 85, 247, 0.4) !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+        }
+
+        .modal-sheet-card tbody tr {
+            background: rgba(255, 255, 255, 0.04) !important;
+            border: 1px solid rgba(168, 85, 247, 0.25) !important;
+            border-radius: 12px !important;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        .modal-sheet-card tbody tr:hover {
+            background: rgba(124, 58, 237, 0.32) !important;
+            border-color: #c084fc !important;
+            transform: scale(1.01) !important;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3) !important;
+        }
+
+        .modal-sheet-card tbody td {
+            padding: 12px 14px !important;
+            font-size: 0.92rem !important;
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            border: none !important;
+        }
+
+        .modal-sheet-card tbody td:first-child {
+            border-radius: 0 12px 12px 0 !important;
+            color: #FCD34D !important;
+            font-weight: 900 !important;
+            font-size: 1rem !important;
+        }
+
+        .modal-sheet-card tbody td:last-child {
+            border-radius: 12px 0 0 12px !important;
+        }
+
+        /* Support Contact Pill inside Modals */
+        .fab-support {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 8px !important;
+            width: 100% !important;
+            padding: 10px 16px !important;
+            margin-top: 10px !important;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.15) 100%) !important;
+            border: 1px solid rgba(52, 211, 153, 0.5) !important;
+            border-radius: 12px !important;
+            color: #34d399 !important;
+            font-weight: 800 !important;
+            font-size: 0.88rem !important;
+            text-decoration: none !important;
+            transition: all 0.2s ease !important;
+        }
+
+        .fab-support:hover {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.32) 0%, rgba(5, 150, 105, 0.25) 100%) !important;
+            border-color: #34d399 !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3) !important;
+        }
+
+        .fab-support svg {
+            width: 18px !important;
+            height: 18px !important;
+            fill: #34d399 !important;
+        }
+
+        /* 4. Offers & Loan Window (#loan) */
+        .loan-body {
+            background: rgba(255, 255, 255, 0.04) !important;
+            border: 1px solid rgba(168, 85, 247, 0.35) !important;
+            border-radius: 16px !important;
+            padding: 18px !important;
+            font-size: 0.95rem !important;
+            line-height: 1.8 !important;
+            color: #ffffff !important;
+            margin-bottom: 14px !important;
+            backdrop-filter: blur(12px) !important;
+        }
+
+        .loan-highlight-badge {
+            display: inline-block !important;
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.35) 0%, rgba(76, 29, 149, 0.3) 100%) !important;
+            border: 1px solid rgba(168, 85, 247, 0.5) !important;
+            color: #FCD34D !important;
+            padding: 6px 14px !important;
+            border-radius: 10px !important;
+            font-weight: 800 !important;
+            font-size: 0.9rem !important;
+            margin: 6px 0 !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        /* 5. Status Dashboard Screen (#status - صفحة تم تسجيل دخولك بنجاح) */
+        #status .modal-sheet-card {
+            background: linear-gradient(145deg, rgba(28, 11, 54, 0.97) 0%, rgba(13, 4, 28, 0.99) 100%) !important;
+            border: 1.5px solid rgba(168, 85, 247, 0.45) !important;
+            border-radius: 20px !important;
+            padding: 20px 18px !important;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 35px rgba(147, 51, 234, 0.25) !important;
+        }
+
+        #status .status-header-card {
+            background: linear-gradient(135deg, rgba(76, 29, 149, 0.55) 0%, rgba(124, 58, 237, 0.25) 100%) !important;
+            border: 1px solid rgba(168, 85, 247, 0.5) !important;
+            border-radius: 16px !important;
+            padding: 18px 16px !important;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        #status .statusdiv {
+            background: rgba(255, 255, 255, 0.04) !important;
+            border: 1px solid rgba(168, 85, 247, 0.3) !important;
+            border-radius: 16px !important;
+            padding: 16px !important;
+            margin-top: 12px !important;
+        }
+
+        .status-select-trigger {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.3) 0%, rgba(76, 29, 149, 0.2) 100%) !important;
+            border: 1px solid rgba(168, 85, 247, 0.5) !important;
+            border-radius: 12px !important;
+            padding: 12px 14px !important;
+            color: #ffffff !important;
+            font-weight: 800 !important;
+            font-size: 0.9rem !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            width: 100% !important;
+            cursor: pointer !important;
+            transition: all 0.2s ease !important;
+        }
+
+        .status-select-trigger:hover {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.4) 0%, rgba(124, 58, 237, 0.3) 100%) !important;
+            border-color: #c084fc !important;
+            transform: translateY(-1px) !important;
+        }
+
+        .status-grid-metrics .metric-card-glass {
+            background: rgba(255, 255, 255, 0.04) !important;
+            border: 1px solid rgba(168, 85, 247, 0.3) !important;
+            border-radius: 14px !important;
+            padding: 12px !important;
+            transition: all 0.2s ease !important;
+        }
+
+        .status-grid-metrics .metric-card-glass:hover {
+            border-color: #c084fc !important;
+            background: rgba(147, 51, 234, 0.3) !important;
+        }
+
+        /* 6. QR Code Scanner Window (#qr-scanner-modal) */
+        .modal-sheet-card.qr-scanner-sheet {
+            max-width: 440px !important;
+            background: linear-gradient(145deg, rgba(28, 11, 54, 0.98) 0%, rgba(13, 4, 28, 0.99) 100%) !important;
+            border: 1.5px solid rgba(168, 85, 247, 0.5) !important;
+        }
+
+        .qr-viewport-container {
+            border: 2px solid rgba(168, 85, 247, 0.5) !important;
+            border-radius: 18px !important;
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.9), 0 8px 24px rgba(147, 51, 234, 0.3) !important;
+        }
+
+        .qr-tool-btn {
+            background: rgba(255, 255, 255, 0.08) !important;
+            border: 1px solid rgba(168, 85, 247, 0.4) !important;
+            border-radius: 12px !important;
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            transition: all 0.2s ease !important;
+        }
+
+        .qr-tool-btn:hover {
+            background: rgba(168, 85, 247, 0.3) !important;
+            border-color: #c084fc !important;
+        }
+
+        .qr-status-badge {
+            background: rgba(147, 51, 234, 0.25) !important;
+            border: 1px solid rgba(168, 85, 247, 0.45) !important;
+            color: #FCD34D !important;
+            border-radius: 20px !important;
+            padding: 6px 16px !important;
+            font-weight: 700 !important;
+        }
+
         /* Loyalty bar */
         .muhammadi-loyalty-bar {
             width: 100%;
@@ -1944,8 +2261,10 @@
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th scope="col">الفئة</th>
+                                            <th scope="col">الفئة / السعر</th>
                                             <th scope="col">الوقت</th>
+                                            <th scope="col">التحميل</th>
+                                            <th scope="col">الصلاحية</th>
                                         </tr>
                                     </thead>
                                     <tbody id="profiles"></tbody>
@@ -1984,6 +2303,11 @@
                         <div class="sell-point-div">
                             <div class="wrapper">
                                 <table>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">الفرع / النقطة المعتمدة</th>
+                                        </tr>
+                                    </thead>
                                     <tbody class="sell-point" id="sell-points"></tbody>
                                 </table>
                                 <button class="button app-submit modal-cancel-btn" type="button">
@@ -2826,6 +3150,7 @@
 
             window.ModalScrollLock = {
                 lockCount: 0,
+                savedScrollY: 0,
 
                 isAnyModalOpen: function () {
                     var appModal = document.querySelector('.app.active:not(#status)');
@@ -2836,6 +3161,12 @@
                 },
 
                 lock: function () {
+                    if (this.lockCount === 0 || !document.body.classList.contains('modal-scroll-locked')) {
+                        var currY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+                        if (currY > 0) {
+                            this.savedScrollY = currY;
+                        }
+                    }
                     this.lockCount++;
                     document.documentElement.classList.add('modal-scroll-locked');
                     document.body.classList.add('modal-scroll-locked');
@@ -2856,6 +3187,19 @@
                         document.body.classList.remove('modal-scroll-locked');
                         document.body.style.overflow = '';
                         document.documentElement.style.overflow = '';
+
+                        var restoreY = this.savedScrollY || 0;
+                        if (restoreY > 0) {
+                            requestAnimationFrame(function() {
+                                try {
+                                    window.scrollTo({ top: restoreY, left: 0, behavior: 'instant' });
+                                } catch (e) {
+                                    window.scrollTo(0, restoreY);
+                                }
+                                if (document.documentElement) document.documentElement.scrollTop = restoreY;
+                                if (document.body) document.body.scrollTop = restoreY;
+                            });
+                        }
                     }
                 },
 

@@ -479,7 +479,7 @@ button.loyalty-btn:active {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #881337 0%, #be123c 45%, #0284c7 100%);
+  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 45%, #0284c7 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -525,7 +525,7 @@ button.loyalty-btn:active {
 .redirect-progress-bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #881337 0%, #e11d48 30%, #d4af37 60%, #38bdf8 100%);
+  background: linear-gradient(90deg, #a855f7 0%, #e11d48 30%, #d4af37 60%, #38bdf8 100%);
   background-size: 250% 100%;
   border-radius: 999px;
   box-shadow: 0 0 14px rgba(56, 189, 248, 0.85);
@@ -543,7 +543,7 @@ button.loyalty-btn:active {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  background: linear-gradient(135deg, rgba(136, 19, 55, 0.35) 0%, rgba(14, 165, 233, 0.2) 100%);
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.35) 0%, rgba(14, 165, 233, 0.2) 100%);
   border: 1px solid rgba(212, 175, 55, 0.35);
   padding: 6px 14px;
   border-radius: 999px;
@@ -564,7 +564,7 @@ button.loyalty-btn:active {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: linear-gradient(135deg, #881337 0%, #be123c 40%, #0284c7 100%);
+  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 40%, #0284c7 100%);
   border: 1px solid rgba(212, 175, 55, 0.5);
   color: #ffffff !important;
   font-weight: 800;
