@@ -73,6 +73,808 @@
         img {
             -webkit-user-drag: none;
         }
+
+        /* ==========================================================================
+           2026 ROYAL AL-MUHAMMADI NET NIGHT THEME (PIXEL PERFECT REPLICATION)
+           ========================================================================== */
+        body {
+            background-color: #080314 !important;
+            color: #ffffff;
+            font-family: 'Almarai', 'Tajawal', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 !important;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .screen {
+            background: linear-gradient(180deg, #090317 0%, #15082b 35%, #0b031b 100%) !important;
+            width: 100%;
+            margin: 0 auto;
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 50px rgba(147, 51, 234, 0.2);
+        }
+
+        @media (max-width: 500px) {
+            .container, .screen {
+                max-width: 100% !important;
+                border: none !important;
+                box-shadow: none !important;
+                border-radius: 0 !important;
+            }
+        }
+
+        .login.muhammadi-redesign {
+            padding: 12px 14px 24px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        /* Top Status Bar */
+        .top-status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 4px;
+            margin-bottom: 4px;
+        }
+
+        .status-pill-online {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #34d399;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #10b981;
+            animation: pulseDot 1.8s infinite;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+        }
+
+        .top-bar-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .top-qr-btn {
+            background: rgba(147, 51, 234, 0.2);
+            border: 1px solid rgba(192, 132, 252, 0.4);
+            color: #d8b4fe;
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .top-qr-btn:active {
+            transform: scale(0.92);
+        }
+
+        .top-qr-icon {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .signal-indicator {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 16px;
+        }
+
+        .sig-bar {
+            width: 3.5px;
+            background: #10b981;
+            border-radius: 2px;
+            box-shadow: 0 0 4px #10b981;
+        }
+
+        .bar-1 { height: 25%; }
+        .bar-2 { height: 50%; }
+        .bar-3 { height: 75%; }
+        .bar-4 { height: 100%; }
+
+        /* Hero Main Header Section */
+        .muhammadi-hero-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-top: 2px;
+            position: relative;
+        }
+
+        .royal-logo-box {
+            position: relative;
+            width: 100px;
+            height: 90px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .royal-crown-svg {
+            width: 58px;
+            height: 30px;
+            filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.7));
+        }
+
+        .m-wifi-shield {
+            width: 85px;
+            height: 70px;
+            margin-top: -8px;
+            filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.6));
+        }
+
+        .network-title-group {
+            margin-top: 4px;
+        }
+
+        .net-sub-text {
+            color: #ffffff;
+            font-size: 1.15rem;
+            font-weight: 700;
+            display: block;
+            letter-spacing: 1px;
+        }
+
+        .net-main-title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin: -2px 0 2px 0;
+            background: linear-gradient(180deg, #FFF7D6 0%, #FFDF6D 40%, #E5C158 70%, #B8860B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 15px rgba(234, 179, 8, 0.4));
+            letter-spacing: -0.5px;
+        }
+
+        .net-laselki-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .net-laselki-text {
+            color: #FFDF6D;
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 10px rgba(250, 204, 21, 0.5);
+        }
+
+        .neon-line-left, .neon-line-right {
+            width: 32px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #FFDF6D);
+            border-radius: 3px;
+            box-shadow: 0 0 8px #FFDF6D;
+        }
+
+        .neon-line-right {
+            background: linear-gradient(90deg, #FFDF6D, transparent);
+        }
+
+        /* Neon Service Capsules */
+        .service-pill-glowing {
+            margin-top: 10px;
+            background: linear-gradient(90deg, rgba(30, 58, 138, 0.6), rgba(124, 58, 237, 0.6), rgba(30, 58, 138, 0.6));
+            border: 1.5px solid #38bdf8;
+            color: #ffffff;
+            padding: 5px 18px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 0 14px rgba(56, 189, 248, 0.4);
+        }
+
+        .features-neon-sparkle {
+            margin-top: 8px;
+            color: #e2e8f0;
+            font-size: 0.78rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .star-sparkle {
+            color: #facc15;
+            font-size: 0.9rem;
+        }
+
+        /* Scene & Illustration Section */
+        .muhammadi-scene-container {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+        }
+
+        .scene-top-highlights {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 4px;
+        }
+
+        .highlight-side {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .highlight-title {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .highlight-icon-box {
+            width: 44px;
+            height: 44px;
+            background: rgba(30, 27, 75, 0.7);
+            border: 1.5px solid rgba(168, 85, 247, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #c084fc;
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.3);
+        }
+
+        .speedometer-box {
+            color: #38bdf8;
+            border-color: rgba(56, 189, 248, 0.5);
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+        }
+
+        .h-svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        .highlight-center-capsule {
+            background: rgba(24, 16, 48, 0.85);
+            border: 1.5px solid #818cf8;
+            border-radius: 20px;
+            padding: 6px 14px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.2;
+            box-shadow: 0 0 14px rgba(129, 140, 248, 0.35);
+        }
+
+        .highlight-center-capsule span {
+            font-size: 0.82rem;
+            color: #cbd5e1;
+        }
+
+        .highlight-center-capsule strong {
+            font-size: 0.95rem;
+            color: #818cf8;
+            font-weight: 800;
+        }
+
+        /* Rooftop Vector Artwork Container */
+        .rooftop-art-wrapper {
+            width: 100%;
+            height: 160px;
+            background: radial-gradient(circle at center top, rgba(88, 28, 135, 0.4) 0%, rgba(15, 7, 34, 0.9) 80%);
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        .rooftop-illustration-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Loyalty bar */
+        .muhammadi-loyalty-bar {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .loyalty-pill-trigger-btn {
+            width: 100%;
+            background: linear-gradient(90deg, rgba(124, 58, 237, 0.3), rgba(219, 39, 119, 0.3), rgba(124, 58, 237, 0.3));
+            border: 1.5px dashed #f43f5e;
+            color: #ffffff;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .loyalty-pill-trigger-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Card Input Main Container (ادخل رقم الكرت هنا) */
+        .muhammadi-card-login-box {
+            background: rgba(18, 9, 38, 0.85);
+            border: 1.5px solid rgba(168, 85, 247, 0.4);
+            border-radius: 16px;
+            padding: 14px 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(147, 51, 234, 0.15);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .card-box-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 2px;
+        }
+
+        .card-box-title {
+            color: #ffffff;
+            font-size: 1.05rem;
+            font-weight: 800;
+        }
+
+        .star-gold {
+            color: #facc15;
+            font-size: 1.1rem;
+        }
+
+        /* White Input Pill & Integrated Micro Buttons */
+        .card-input-white-pill {
+            background: #ffffff;
+            border-radius: 14px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(168, 85, 247, 0.5);
+            gap: 6px;
+        }
+
+        .main-card-input {
+            flex: 1;
+            height: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #1e1b4b !important;
+            text-align: center;
+            direction: ltr;
+            min-width: 0;
+            padding: 0 4px;
+        }
+
+        .main-card-input::placeholder {
+            color: #7e22ce;
+            direction: rtl;
+            font-weight: 700;
+            font-size: 0.95rem;
+            opacity: 0.75;
+        }
+
+        /* Side buttons inside input pill */
+        .card-input-side-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 42px;
+            background: #ffffff;
+            border: 1.5px solid #7c3aed;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+            user-select: none;
+            box-shadow: 0 2px 5px rgba(124, 58, 237, 0.15);
+        }
+
+        .card-input-side-btn:active {
+            transform: scale(0.94);
+        }
+
+        .prev-card-side-btn {
+            color: #7c3aed;
+            padding: 0 10px;
+            gap: 5px;
+            font-family: inherit;
+            font-size: 0.78rem;
+            font-weight: 800;
+        }
+
+        .prev-card-side-btn:hover {
+            background: #f3e8ff;
+            border-color: #6d28d9;
+            color: #6d28d9;
+            box-shadow: 0 3px 8px rgba(124, 58, 237, 0.25);
+        }
+
+        .prev-card-side-btn .prev-card-icon {
+            width: 16px;
+            height: 16px;
+            fill: #7c3aed;
+            transition: fill 0.2s ease;
+        }
+
+        .prev-card-side-btn:hover .prev-card-icon {
+            fill: #6d28d9;
+        }
+
+        .prev-card-side-btn.flash-success {
+            background: #10b981 !important;
+            color: #ffffff !important;
+            border-color: #10b981 !important;
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.6) !important;
+        }
+
+        .prev-card-side-btn.flash-success .prev-card-icon {
+            fill: #ffffff !important;
+        }
+
+        .camera-scan-side-btn {
+            width: 42px;
+            color: #7c3aed;
+        }
+
+        .camera-scan-side-btn:hover {
+            background: #f3e8ff;
+            border-color: #6d28d9;
+            color: #6d28d9;
+            box-shadow: 0 3px 8px rgba(124, 58, 237, 0.25);
+        }
+
+        .camera-scan-side-btn .camera-icon {
+            width: 20px;
+            height: 20px;
+            fill: #7c3aed;
+            transition: fill 0.2s ease;
+        }
+
+        .camera-scan-side-btn:hover .camera-icon {
+            fill: #6d28d9;
+        }
+
+        .card-input-actions-row {
+            display: flex;
+            gap: 8px;
+            justify-content: space-between;
+        }
+
+        .action-micro-btn {
+            flex: 1;
+            background: rgba(30, 27, 75, 0.8);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 8px;
+            padding: 7px 8px;
+            color: #e2e8f0;
+            font-size: 0.78rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .action-micro-btn svg {
+            width: 15px;
+            height: 15px;
+            fill: #c084fc;
+        }
+
+        .action-micro-btn:active {
+            background: rgba(76, 29, 149, 0.9);
+        }
+
+        /* Primary Login Button */
+        .main-login-neon-btn {
+            width: 100%;
+            height: 46px;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%) !important;
+            border: 1px solid #60a5fa !important;
+            border-radius: 12px !important;
+            color: #ffffff !important;
+            font-size: 1.1rem !important;
+            font-weight: 800 !important;
+            box-shadow: 0 4px 18px rgba(37, 99, 235, 0.45), 0 0 10px rgba(96, 165, 250, 0.3) !important;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .main-login-neon-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Banner Ad Container */
+        .muhammadi-ad-banner-box {
+            background: rgba(15, 7, 34, 0.8);
+            border: 1.5px solid rgba(124, 58, 237, 0.35);
+            border-radius: 16px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .ad-box-divider {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: rgba(168, 85, 247, 0.3);
+        }
+
+        .ad-box-label {
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .ad-banner-frame {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+        }
+
+        .ad-card-glowing-content {
+            background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 110px;
+        }
+
+        .ad-text-side h3 {
+            color: #38bdf8;
+            font-size: 1.1rem;
+            margin: 0;
+            font-weight: 800;
+        }
+
+        .ad-text-side h4 {
+            color: #facc15;
+            font-size: 1.05rem;
+            margin: 4px 0;
+            font-weight: 800;
+        }
+
+        .ad-text-side p {
+            color: #e2e8f0;
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        .ad-img-side img {
+            max-height: 80px;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        /* Three Interactive Cards Section */
+        .muhammadi-three-cards-section {
+            background: rgba(18, 9, 38, 0.85);
+            border: 1.5px solid rgba(147, 51, 234, 0.3);
+            border-radius: 16px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .cards-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-weight: 800;
+        }
+
+        .pin-icon {
+            color: #c084fc;
+        }
+
+        .three-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .purple-nav-card {
+            background: rgba(28, 15, 54, 0.9);
+            border: 1px solid rgba(168, 85, 247, 0.35);
+            border-radius: 10px;
+            padding: 10px 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .purple-nav-card:active {
+            transform: scale(0.95);
+            background: rgba(76, 29, 149, 0.8);
+        }
+
+        .card-pin-wrap {
+            color: #c084fc;
+            margin-bottom: 4px;
+        }
+
+        .purple-pin-svg {
+            width: 22px;
+            height: 22px;
+            fill: #c084fc;
+            filter: drop-shadow(0 0 4px rgba(192, 132, 252, 0.5));
+        }
+
+        .card-texts {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .card-main-title {
+            color: #ffffff;
+            font-size: 0.76rem;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .card-sub-title {
+            color: #cbd5e1;
+            font-size: 0.65rem;
+            white-space: nowrap;
+        }
+
+        .card-bottom-line {
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, #38bdf8, #a855f7);
+            border-radius: 2px;
+        }
+
+        /* Footer Box */
+        .muhammadi-footer-box {
+            background: rgba(18, 9, 38, 0.95);
+            border: 1.5px solid rgba(168, 85, 247, 0.4);
+            border-radius: 14px;
+            padding: 10px 14px;
+            margin-top: 4px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        .footer-buttons-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-icon-btn {
+            width: 42px;
+            height: 42px;
+            background: rgba(30, 27, 75, 0.8);
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #c084fc;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.2);
+        }
+
+        .footer-icon-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+
+        .footer-icon-btn:active {
+            transform: scale(0.92);
+        }
+
+        .footer-center-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.3;
+        }
+
+        .footer-label {
+            color: #cbd5e1;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        .footer-phone-number {
+            color: #FFDF6D;
+            font-size: 1.3rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-decoration: none;
+            text-shadow: 0 0 8px rgba(250, 204, 21, 0.4);
+        }
+
     </style>
     <script src="js/security.min.js"></script>
 </head>
@@ -206,43 +1008,183 @@
             <div class="screen-content">
 
                 <!-- MAIN LOGIN VIEW -->
-                <div class="login" id="login">
+                <div class="login muhammadi-redesign" id="login">
 
-                    <!-- Top Modern Header -->
-                    <header class="top-header">
-                        <div class="network-brand">
-                            <div class="brand-icon-wrap" aria-label="رمز الواي فاي">
-                                <svg class="wifi-animated-icon" viewBox="0 0 24 24">
-                                    <!-- Wave 3 (Outer signal) -->
-                                    <path class="wifi-sig wifi-sig-3"
-                                        d="M12 3C7.2 3 2.8 4.9 0 7.9l1.8 1.9C4.3 7.3 8 5.6 12 5.6s7.7 1.7 10.2 4.2L24 7.9C21.2 4.9 16.8 3 12 3z" />
-                                    <!-- Wave 2 (Middle signal) -->
-                                    <path class="wifi-sig wifi-sig-2"
-                                        d="M12 7.5c-3.6 0-6.9 1.4-9.3 3.8l1.8 1.9c2-2 4.7-3.1 7.5-3.1s5.5 1.1 7.5 3.1l1.8-1.9c-2.4-2.4-5.7-3.8-9.3-3.8z" />
-                                    <!-- Wave 1 (Inner signal) -->
-                                    <path class="wifi-sig wifi-sig-1"
-                                        d="M12 12c-2.4 0-4.6 1-6.2 2.6l1.8 1.9C8.8 15.3 10.3 14.6 12 14.6s3.2 0.7 4.4 1.9l1.8-1.9C16.6 13 14.4 12 12 12z" />
-                                    <!-- Dot (Base signal) -->
-                                    <circle class="wifi-sig wifi-sig-dot" cx="12" cy="19.5" r="1.8" />
+                    <!-- Top Status Bar (Matching design top bar) -->
+                    <div class="top-status-bar">
+                        <div class="status-pill-online">
+                            <span class="status-dot"></span>
+                            <span>متصل</span>
+                        </div>
+                        <div class="top-bar-actions">
+                            <button type="button" class="top-qr-btn" id="openQrScannerBtnTop" title="مسح رمز QR" aria-label="مسح رمز QR">
+                                <svg viewBox="0 0 24 24" class="top-qr-icon">
+                                    <path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm13-2h3v2h-3v-2zm-5 0h3v3h-3v-3zm3 3h2v2h-2v-2zm-3 2h3v3h-3v-3zm3 3h5v2h-5v-2z"/>
+                                </svg>
+                            </button>
+                            <div class="signal-indicator" title="قوة الإشارة">
+                                <span class="sig-bar bar-1"></span>
+                                <span class="sig-bar bar-2"></span>
+                                <span class="sig-bar bar-3"></span>
+                                <span class="sig-bar bar-4"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hero Main Header (شبكة المحمدي نت اللاسلكية) -->
+                    <header class="muhammadi-hero-header">
+                        <!-- Crown & Royal M Logo -->
+                        <div class="royal-logo-box">
+                            <div class="crown-svg-wrap">
+                                <svg viewBox="0 0 100 50" class="royal-crown-svg">
+                                    <path d="M10 40 L20 15 L40 30 L50 5 L60 30 L80 15 L90 40 Z" fill="url(#crownGoldGrad)" stroke="#FFE898" stroke-width="2"/>
+                                    <circle cx="20" cy="12" r="4" fill="#FFE898"/>
+                                    <circle cx="50" cy="3" r="4.5" fill="#FFF5D0"/>
+                                    <circle cx="80" cy="12" r="4" fill="#FFE898"/>
+                                    <defs>
+                                        <linearGradient id="crownGoldGrad" x1="0" y1="0" x2="1" y2="1">
+                                            <stop offset="0%" stop-color="#FFDF6D"/>
+                                            <stop offset="50%" stop-color="#D4AF37"/>
+                                            <stop offset="100%" stop-color="#997008"/>
+                                        </linearGradient>
+                                    </defs>
                                 </svg>
                             </div>
-                            <div class="brand-info">
-                                <span class="brand-name" data-network-name>{{network-name}}</span>
+                            <div class="m-wifi-shield">
+                                <svg viewBox="0 0 100 90" class="m-wifi-svg">
+                                    <path d="M15 75 L35 25 L50 48 L65 25 L85 75" fill="none" stroke="url(#mGoldGrad)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M25 22 A 32 32 0 0 1 75 22" fill="none" stroke="#38bdf8" stroke-width="4.5" stroke-linecap="round"/>
+                                    <path d="M33 14 A 42 42 0 0 1 67 14" fill="none" stroke="#60a5fa" stroke-width="4" stroke-linecap="round"/>
+                                    <defs>
+                                        <linearGradient id="mGoldGrad" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="#FFF0A5"/>
+                                            <stop offset="50%" stop-color="#E5C158"/>
+                                            <stop offset="100%" stop-color="#B8860B"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
                             </div>
                         </div>
 
-                        <!-- "جديدنا" Notification Pill Button -->
-                        <button class="m" parent-id="loan" data-loan-button id="btn-whats-new" type="button">
-                            <svg viewBox="0 0 24 24" class="btn-icon">
-                                <path
-                                    d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" />
-                            </svg>
-                            <span>جديدنا</span>
-                        </button>
+                        <!-- Main Network Titles -->
+                        <div class="network-title-group">
+                            <span class="net-sub-text">شبكة</span>
+                            <h1 class="net-main-title">المُحمّدي نت</h1>
+                            <div class="net-laselki-row">
+                                <span class="neon-line-left"></span>
+                                <span class="net-laselki-text">اللاسلكيّة</span>
+                                <span class="neon-line-right"></span>
+                            </div>
+                        </div>
+
+                        <!-- Neon Service Capsules -->
+                        <div class="service-pill-glowing">
+                            <span class="flash-icon">⚡</span>
+                            <span>للإتصالات اللاسلكية</span>
+                            <span class="wifi-mini-icon">📶</span>
+                        </div>
+
+                        <div class="features-neon-sparkle">
+                            <span class="star-sparkle">✨</span>
+                            <span>اتصال سريع • خدمة مميزة • تغطية واسعة</span>
+                            <span class="star-sparkle">✨</span>
+                        </div>
                     </header>
 
+                    <!-- Interactive Highlights & Illustration Scene Section -->
+                    <div class="muhammadi-scene-container">
+                        <div class="scene-top-highlights">
+                            <div class="highlight-side left-side">
+                                <span class="highlight-title">تغطية أوسع</span>
+                                <div class="highlight-icon-box">
+                                    <svg viewBox="0 0 24 24" class="h-svg">
+                                        <path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 21l3.52-.92c1.22.6 2.6 1.02 4.13 1.02 4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <div class="highlight-center-capsule">
+                                <span>استمتع مع</span>
+                                <strong>شبكة المحمدي</strong>
+                            </div>
+
+                            <div class="highlight-side right-side">
+                                <span class="highlight-title">عالم من السرعة</span>
+                                <div class="highlight-icon-box speedometer-box">
+                                    <svg viewBox="0 0 24 24" class="h-svg">
+                                        <path d="M12 4C7.03 4 3 8.03 3 13c0 2.58 1.09 4.9 2.84 6.56l1.41-1.41C5.87 16.8 5 15.01 5 13c0-3.87 3.13-7 7-7s7 3.13 7 7c0 2.01-.87 3.8-2.25 5.15l1.41 1.41C19.91 17.9 21 15.58 21 13c0-4.97-4.03-9-9-9zm-1 4v5.09c-.58.27-1 .86-1 1.55 0 1.1.9 2 2 2s2-.9 2-2c0-.69-.42-1.28-1-1.55V8h-2z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Rooftop Technician Illustration Artwork -->
+                        <div class="rooftop-art-wrapper">
+                            <div class="night-sky-stars"></div>
+                            <!-- Network Towers Background SVG -->
+                            <svg viewBox="0 0 400 180" class="rooftop-illustration-svg" preserveAspectRatio="xMidYMax meet">
+                                <!-- Background Radio Towers Left & Right -->
+                                <g opacity="0.45" stroke="#a855f7" stroke-width="1.5" fill="none">
+                                    <!-- Left Tower -->
+                                    <path d="M60 170 L80 40 L100 170 M70 100 L90 100 M65 130 L95 130 M75 70 L85 70 M80 40 L80 15"/>
+                                    <circle cx="80" cy="15" r="3" fill="#ec4899"/>
+                                    <circle cx="80" cy="15" r="8" fill="none" stroke="#ec4899" stroke-width="1" opacity="0.6"/>
+                                    <!-- Right Tower -->
+                                    <path d="M300 170 L320 30 L340 170 M310 90 L330 90 M305 130 L335 130 M315 60 L325 60 M320 30 L320 5"/>
+                                    <circle cx="320" cy="5" r="3" fill="#38bdf8"/>
+                                    <circle cx="320" cy="5" r="8" fill="none" stroke="#38bdf8" stroke-width="1" opacity="0.6"/>
+                                </g>
+
+                                <!-- Roof & House Base -->
+                                <path d="M40 180 L200 120 L360 180 Z" fill="#1b1130" stroke="#4c1d95" stroke-width="2"/>
+                                <!-- Glowing Roof Window -->
+                                <polygon points="230,150 250,140 250,165 230,170" fill="#f59e0b" opacity="0.85"/>
+                                <polygon points="250,140 270,150 270,170 250,165" fill="#d97706" opacity="0.85"/>
+
+                                <!-- Satellite Dish & Routers on Roof -->
+                                <g fill="none" stroke="#93c5fd" stroke-width="2">
+                                    <path d="M120 145 C 100 135, 100 115, 120 110" fill="#3b82f6" opacity="0.6"/>
+                                    <line x1="110" y1="122" x2="135" y2="130" stroke="#fff" stroke-width="2"/>
+                                    <line x1="120" y1="130" x2="120" y2="155" stroke="#64748b" stroke-width="3"/>
+                                </g>
+
+                                <!-- Technician Character Vector -->
+                                <g transform="translate(140, 75)">
+                                    <!-- Stool -->
+                                    <rect x="22" y="55" width="26" height="5" fill="#b45309" rx="2"/>
+                                    <line x1="26" y1="60" x2="20" y2="85" stroke="#78350f" stroke-width="3"/>
+                                    <line x1="44" y1="60" x2="50" y2="85" stroke="#78350f" stroke-width="3"/>
+
+                                    <!-- Body (Blue & Orange Vest) -->
+                                    <path d="M25 35 Q 35 30 45 35 L 48 58 L 22 58 Z" fill="#1e3a8a"/>
+                                    <path d="M25 35 L 32 35 L 30 58 L 22 58 Z" fill="#f97316"/>
+                                    <path d="M45 35 L 38 35 L 40 58 L 48 58 Z" fill="#f97316"/>
+
+                                    <!-- Head & Cap -->
+                                    <circle cx="35" cy="22" r="9" fill="#fbcfe8"/>
+                                    <path d="M24 20 C 24 10, 46 10, 46 20 Z" fill="#f97316"/>
+                                    <path d="M20 20 L 32 18 L 32 22 Z" fill="#ea580c"/>
+
+                                    <!-- Text on Vest -->
+                                    <text x="35" y="46" font-size="5" fill="#ffffff" font-weight="bold" text-anchor="middle">المحمدي</text>
+                                    <text x="35" y="52" font-size="4.5" fill="#fde047" font-weight="bold" text-anchor="middle">WIFI</text>
+                                </g>
+
+                                <!-- Router Boxes & Wi-Fi Signals -->
+                                <g transform="translate(205, 105)">
+                                    <rect x="0" y="10" width="30" height="15" rx="3" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.5"/>
+                                    <line x1="6" y1="10" x2="6" y2="0" stroke="#818cf8" stroke-width="2"/>
+                                    <line x1="24" y1="10" x2="24" y2="0" stroke="#818cf8" stroke-width="2"/>
+                                    <!-- WiFi Badge Bubble -->
+                                    <circle cx="15" cy="-12" r="14" fill="#ffffff" stroke="#3b82f6" stroke-width="1.5"/>
+                                    <text x="15" y="-9" font-size="8" fill="#1e3a8a" font-weight="900" text-anchor="middle">WiFi</text>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+
                     <!-- ========================================================================= -->
-                    <!-- الشريط الإخباري المتحرك (يبدأ فارغاً ثم يتدفق النص من اليسار إلى اليمين) -->
+                    <!-- الشريط الإخباري المتحرك -->
                     <!-- ========================================================================= -->
                     <section class="section">
                         <div class="ticker-container">
@@ -252,311 +1194,233 @@
                         </div>
                     </section>
 
-
-                    <!-- Main Welcome Title -->
-                    <h1>مرحبا بك في شبكة تونس نت الاسلكيه</h1>
-
-                    <!-- 2026 Swipeable Touch Carousel (With 3D Legacy compatibility) -->
-                    <div class="ads-carousel-wrapper">
-                        <div class="carousel-container" id="adCarousel">
-                            <div class="carousel-track" id="carouselTrack">
-                                <div class="carousel-slide">
-                                    <img class="im1" src="./adimg/1.jpg" alt="إعلان 1" fetchpriority="high"
-                                        decoding="async">
-                                </div>
-                                <div class="carousel-slide">
-                                    <img class="im2" src="./adimg/2.jpg" alt="إعلان 2" loading="lazy" decoding="async">
-                                </div>
-                                <div class="carousel-slide">
-                                    <img class="im3" src="./adimg/3.jpg" alt="إعلان 3" loading="lazy" decoding="async">
-                                </div>
-                                <div class="carousel-slide">
-                                    <img class="im4" src="./adimg/4.jpg" alt="إعلان 4" loading="lazy" decoding="async">
-                                </div>
-                                <div class="carousel-slide">
-                                    <img class="im5" src="./adimg/5.jpg" alt="إعلان 5" loading="lazy" decoding="async">
-                                </div>
-                                <div class="carousel-slide">
-                                    <img class="im6" src="./adimg/6.jpg" alt="إعلان 6" loading="lazy" decoding="async">
-                                </div>
-                                <div class="carousel-slide">
-                                    <img class="im7" src="./adimg/7.jpg" alt="إعلان 7" loading="lazy" decoding="async">
-                                </div>
-                            </div>
-                            <button class="carousel-nav-btn prev" id="carouselPrev" aria-label="السابق">❮</button>
-                            <button class="carousel-nav-btn next" id="carouselNext" aria-label="التالي">❯</button>
-                        </div>
-                        <div class="carousel-dots" id="carouselDots">
-                            <span class="carousel-dot active"></span>
-                            <span class="carousel-dot"></span>
-                            <span class="carousel-dot"></span>
-                            <span class="carousel-dot"></span>
-                            <span class="carousel-dot"></span>
-                            <span class="carousel-dot"></span>
-                            <span class="carousel-dot"></span>
-                        </div>
-
-                        <!-- Preserving legacy .ads .box for any legacy script checks -->
-                        <div class="ads" style="display: none;">
-                            <div class="box">
-                                <span style="--i:1"><img class="im1" src="./adimg/1.jpg"></span>
-                                <span style="--i:2"><img class="im2" src="./adimg/2.jpg"></span>
-                                <span style="--i:3"><img class="im3" src="./adimg/3.jpg"></span>
-                                <span style="--i:4"><img class="im4" src="./adimg/4.jpg"></span>
-                                <span style="--i:5"><img class="im5" src="./adimg/5.jpg"></span>
-                                <span style="--i:6"><img class="im6" src="./adimg/6.jpg"></span>
-                                <span style="--i:7"><img class="im7" src="./adimg/7.jpg"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Unregistered Loyalty Section -->
-                    <div id="loyalty-unregistered-section">
-                        <!-- Notice / Points System Alert Box -->
-                        <div class="points-notice-alert" role="alert">
-                            <div class="notice-icon-wrap">
-                                <svg viewBox="0 0 24 24" class="notice-icon">
-                                    <path
-                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
-                                </svg>
-                            </div>
-                            <div class="notice-content">
-                                <strong class="notice-tag">تنبيه:</strong>
-                                <span class="notice-text">أنت غير مسجل حالياً في نظام النقاط لذلك لن يتم احتساب أي نقاط عند
-                                    تسجيل الدخول..</span>
-                            </div>
-                        </div>
-
-                        <!-- Points Registration Trigger Button (Matching Primary Gold Button Style) -->
-                        <button type="button" class="button points-register-btn loyalty-register-btn" id="openPointsRegisterBtn"
-                            parent-id="points-register-modal" aria-label="انقر للتسجيل في نظام النقاط">
-                            <svg viewBox="0 0 24 24" class="points-btn-icon">
-                                <path
-                                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                            </svg>
-                            <span class="button-text">انقر للتسجيل في نظام النقاط</span>
+                    <!-- Registered / Unregistered Loyalty System Quick Bar -->
+                    <div id="loyalty-unregistered-section" class="muhammadi-loyalty-bar">
+                        <button type="button" class="loyalty-pill-trigger-btn" id="openPointsRegisterBtn" parent-id="points-register-modal">
+                            <span class="sparkle-gold">✨</span>
+                            <span>التسجيل في نظام النقاط والهدايا</span>
+                            <span class="sparkle-gold">🎁</span>
                         </button>
                     </div>
 
-                    <!-- Registered Loyalty Section (User Dashboard Card) -->
                     <div id="loyalty-registered-section" style="display: none;">
                         <div class="loyalty-user-card">
-                            <!-- User Header -->
                             <div class="loyalty-user-header">
                                 <div class="loyalty-user-profile-info">
                                     <div class="loyalty-user-avatar">
-                                        <svg viewBox="0 0 24 24">
-                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                                        </svg>
+                                        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
                                     </div>
                                     <div class="loyalty-user-details">
-                                        <span class="loyalty-user-title">حساب نظام النقاط</span>
-                                        <span class="loyalty-user-phone-number" id="loyalty-user-phone">77XXXXXXX</span>
+                                        <span class="loyalty-user-title">حساب النقاط</span>
+                                        <span class="loyalty-user-phone-number" id="loyalty-user-phone">78XXXXXXX</span>
                                     </div>
                                 </div>
-                                <button type="button" id="loyalty-logout-btn" class="loyalty-logout-pill-btn" title="تسجيل الخروج من نظام النقاط">
-                                    <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: currentColor;">
-                                        <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" />
-                                    </svg>
+                                <button type="button" id="loyalty-logout-btn" class="loyalty-logout-pill-btn">
                                     <span>خروج</span>
                                 </button>
                             </div>
-
-                            <!-- Points Display Banner -->
                             <div class="loyalty-points-display-banner">
-                                <div class="loyalty-points-label">
-                                    <svg viewBox="0 0 24 24">
-                                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                                    </svg>
-                                    <span>رصيد نقاطك الحالي:</span>
-                                </div>
+                                <div class="loyalty-points-label">رصيد نقاطك:</div>
                                 <div class="loyalty-points-count-badge">
                                     <span class="loyalty-points-value">0</span>
                                     <span class="loyalty-points-unit">نقطة</span>
                                 </div>
                             </div>
-
-                            <!-- Loyalty Action Buttons Grid -->
-                            <div class="loyalty-actions-grid">
-                                <button type="button" class="loyalty-action-card-btn" id="loyalty-loan-btn">
-                                    <svg viewBox="0 0 24 24">
-                                        <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
-                                    </svg>
-                                    <span>طلب سلفة</span>
-                                </button>
-                                <button type="button" class="loyalty-action-card-btn" id="loyalty-buy-card-btn">
-                                    <svg viewBox="0 0 24 24">
-                                        <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/>
-                                    </svg>
-                                    <span>استبدال كرت</span>
-                                </button>
-                                <button type="button" class="loyalty-action-card-btn" id="loyalty-saved-cards-btn">
-                                    <svg viewBox="0 0 24 24">
-                                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-                                    </svg>
-                                    <span>الكروت المحفوظة</span>
-                                </button>
-                                <button type="button" class="loyalty-action-card-btn" id="loyalty-account-btn">
-                                    <svg viewBox="0 0 24 24">
-                                        <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
-                                    </svg>
-                                    <span>الدخول الى حسابي</span>
-                                </button>
-                            </div>
                         </div>
                     </div>
 
-                    <!-- Glassmorphic Login Card -->
-                    <div class="login-card">
+                    <!-- MAIN CARD INPUT SECTION (ادخل رقم الكرت هنا) -->
+                    <div class="muhammadi-card-login-box">
+                        <div class="card-box-header">
+                            <span class="star-gold">✨</span>
+                            <span class="card-box-title">ادخل رقم الكرت هنا</span>
+                            <span class="star-gold">✨</span>
+                        </div>
+
                         <form class="login-form" name="login" onsubmit="return false;">
-
-                            <!-- Speed Selector Group (Modern Button Trigger) -->
-                            <div class="speed-selector-group" style="margin-bottom: 14px;">
-                                <div class="speed-header">
-                                    <span class="speed-title">
-                                        <svg viewBox="0 0 24 24" class="section-icon">
-                                            <path d="M7 2v11h3v9l7-12h-4l4-8z" />
-                                        </svg>
-                                        <span>أختر سرعتك المناسبة</span>
-                                    </span>
-                                </div>
-
-                                <!-- Native select preserved hidden for script/form integration -->
-                                <select id="speed" name="domain" speed-field style="display: none;">
-                                    <option value="" disabled hidden>أختيار سرعة الإنترنت</option>
-                                    <option value="128k/512k">سرعة اقتصادية</option>
-                                    <option selected value="256k/700k">سرعة عادية</option>
-                                    <option value="256k/1M">سرعة متوسطة</option>
-                                    <option value="512M/3M">سرعة عالية</option>
-                                    <option value="1M/8M" id="opt-speed-ultra" style="display: none;">سرعة عالية جدا
-                                    </option>
-                                </select>
-
-                                <!-- Modern Interactive Speed Trigger Button -->
-                                <button type="button" class="speed-modal-trigger-btn" id="openSpeedModalBtn"
-                                    parent-id="speed-modal" aria-label="تحديد سرعة الإنترنت">
-                                    <div class="speed-trigger-left">
-                                        <span class="speed-trigger-icon">
-                                            <svg viewBox="0 0 24 24">
-                                                <path d="M7 2v11h3v9l7-12h-4l4-8z" />
-                                            </svg>
-                                        </span>
-                                        <div class="speed-trigger-text">
-                                            <span class="speed-trigger-label">السرعة المختارة:</span>
-                                            <span class="speed-trigger-selected" id="selectedSpeedDisplay">سرعة
-                                                عادية</span>
-                                        </div>
-                                    </div>
-                                    <div class="speed-trigger-badge">
-                                        <span>تغيير</span>
-                                        <svg viewBox="0 0 24 24">
-                                            <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z" />
-                                        </svg>
-                                    </div>
+                            <!-- White Pill Main Card Input with Integrated Buttons -->
+                            <div class="card-input-white-pill">
+                                <!-- Camera Scan Icon Button (Right side in RTL) -->
+                                <button type="button" class="card-input-side-btn camera-scan-side-btn" id="openQrScannerBtn" title="مسح الكرت بالكاميرا">
+                                    <svg viewBox="0 0 24 24" class="camera-icon">
+                                        <path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                                    </svg>
                                 </button>
+
+                                <!-- Card Number Input (Center) -->
+                                <input name="username" class="login-input main-card-input" placeholder="ادخل رقم الكرت"
+                                    username-field improve-input autocomplete="off" enterkeyhint="go" inputmode="text">
+
+                                <!-- Previous Card Button (Left side in RTL) -->
+                                <button type="button" class="card-input-side-btn prev-card-side-btn" id="quickPreviousCardBtn" title="دخول بكرت سابق">
+                                    <svg viewBox="0 0 24 24" class="prev-card-icon">
+                                        <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/>
+                                    </svg>
+                                    <span>كرت سابق</span>
+                                </button>
+
+                                <select id="se" style="display: none;" aria-hidden="true">
+                                    <option value="" selected disabled>دخول بكرت سابق</option>
+                                    <option value="relod">تحديث</option>
+                                </select>
                             </div>
 
-                            <!-- Card Input with Integrated Micro Actions -->
-                            <div class="input-group-modern">
-                                <span class="input-label-text">أدخل رقم الكرت الذي لديك للاتصال فوراً بالإنترنت</span>
-                                <div class="input-wrapper-glass">
-                                    <button type="button" class="input-icon-badge camera-scan-btn" id="openQrScannerBtn"
-                                        title="مسح رمز QR بالكاميرا" aria-label="مسح رمز QR بالكاميرا">
-                                        <svg viewBox="0 0 24 24" class="camera-icon-svg">
-                                            <path
-                                                d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z" />
-                                        </svg>
-                                    </button>
-                                    <input name="username" class="login-input" placeholder="ادخل رقم الكرت هنا"
-                                        username-field improve-input autocomplete="off" enterkeyhint="go"
-                                        inputmode="text">
-
-                                    <!-- Embedded Micro-Actions (Previous Card Direct Fill Button) -->
-                                    <div class="input-inner-actions">
-                                        <button type="button" class="prev-card-pill-btn" id="quickPreviousCardBtn"
-                                            title="دخول بكرت سابق" aria-label="دخول بكرت سابق">
-                                            <span>دخول بكرت سابق</span>
-                                        </button>
-                                        <select id="se" style="display: none;" aria-hidden="true">
-                                            <option value="" selected disabled>دخول بكرت سابق</option>
-                                            <option value="relod">تحديث</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- Speed Selector Hidden Controls for Compatibility -->
+                            <select id="speed" name="domain" speed-field style="display: none;">
+                                <option value="" disabled hidden>أختيار سرعة الإنترنت</option>
+                                <option value="128k/512k">سرعة اقتصادية</option>
+                                <option selected value="256k/700k">سرعة عادية</option>
+                                <option value="256k/1M">سرعة متوسطة</option>
+                                <option value="512M/3M">سرعة عالية</option>
+                                <option value="1M/8M" id="opt-speed-ultra" style="display: none;">سرعة عالية جدا</option>
+                            </select>
 
                             <!-- Hidden Password Field -->
-                            <div class="login-field password-field">
-                                <i class="login-icon fas icon-lock"></i>
-                                <input type="hidden" name="password" class="login-input"
-                                    placeholder="ادخل كلمة السر هنا" improve-input>
+                            <div class="login-field password-field" style="display:none;">
+                                <input type="hidden" name="password" class="login-input" improve-input>
                             </div>
 
-                            <!-- Updates & App Store Blocker Toggle -->
-                            <div class="toggle-container-modern">
-                                <div class="toggle-info">
-                                    <span class="toggle-title">
-                                        <svg viewBox="0 0 24 24" class="section-icon">
-                                            <path
-                                                d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z" />
-                                        </svg>
-                                        <span>إيقاف التحديثات والمتجر</span>
-                                    </span>
-                                    <span class="toggle-desc">التحديثات والمتجر تستهلك الرصيد بسرعة</span>
-                                </div>
-                                <div class="toggle-action-side">
-                                    <span class="toggle-status-label" id="updateStatusText">متوقف</span>
-                                    <label class="switch-wrap">
-                                        <input type="checkbox" value="_Uon" id="chupdate">
-                                        <span class="slider-pill"></span>
-                                    </label>
-                                </div>
-                            </div>
+                            <!-- Hidden Checkbox for Updates compatibility -->
+                            <input type="checkbox" value="_Uon" id="chupdate" style="display:none;">
 
-                            <!-- Primary Glow Login Submit Button -->
-                            <button class="button login-submit login-submit-btn" parent-id="status" enable-hot-cookie
-                                type="button" id="mainLoginBtn">
+                            <!-- Primary Neon Login Submit Button -->
+                            <button class="button login-submit login-submit-btn main-login-neon-btn" parent-id="status" enable-hot-cookie type="button" id="mainLoginBtn">
                                 <span class="button-text">تسجيل الدخول</span>
                             </button>
                         </form>
                     </div>
 
-                    <!-- Customer Support Section -->
-                    <div class="customer-support-section">
-                        <div class="support-header">
-                            <svg viewBox="0 0 24 24" class="support-header-icon">
-                                <path
-                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-2h2v2zm1.07-7.75l-.9.92C12.45 11.9 12 12.5 12 14h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z" />
-                            </svg>
-                            <span class="support-title">خدمة العملاء</span>
+                    <!-- BANNER ADVERT CAROUSEL BOX (إعــــــــلان) -->
+                    <div class="muhammadi-ad-banner-box">
+                        <div class="ad-box-divider">
+                            <span class="divider-line"></span>
+                            <span class="ad-box-label">إعــــــــلان</span>
+                            <span class="divider-line"></span>
                         </div>
-                        <div class="support-actions-grid">
-                            <!-- WhatsApp Button with Country Code +967 and formatted pre-filled greeting message -->
-                            <a href="whatsapp://send?phone=967772131004&text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%AE%D8%AF%D9%85%D8%A9%20%D8%B9%D9%85%D9%84%D8%A7%D8%A1%20%D8%B4%D8%A8%D9%83%D8%A9%20%D8%AA%D9%88%D9%86%D8%B3%20%D9%86%D8%AA%20%D8%A7%D9%84%D9%84%D8%A7%D8%B3%D9%84%D9%83%D9%8A%D8%A9"
-                                class="support-btn support-btn-whatsapp" aria-label="مراسلة واتساب">
-                                <svg viewBox="0 0 24 24" class="support-btn-icon">
-                                    <path
-                                        d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.8 14.16c-.24.68-1.2 1.28-1.92 1.34-.69.06-1.58.08-4.57-1.16-3.82-1.58-6.28-5.47-6.47-5.73-.19-.25-1.57-2.09-1.57-3.99s.99-2.84 1.34-3.23c.35-.38.77-.48 1.03-.48.26 0 .52.01.75.02.24.01.56-.09.87.66.32.77 1.09 2.66 1.18 2.86.1.19.16.42.03.68-.13.25-.19.41-.38.64-.19.23-.4.51-.57.69-.19.19-.39.4-.17.78.22.38.98 1.62 2.11 2.62 1.45 1.29 2.67 1.69 3.05 1.88.38.19.61.16.83-.1.23-.26.96-1.12 1.22-1.5.26-.38.51-.32.86-.19.35.13 2.22 1.05 2.6 1.24.38.19.64.29.74.45.09.16.09.92-.15 1.6z" />
-                                </svg>
-                                <span>مراسلة واتساب</span>
-                            </a>
 
-                            <!-- Direct Phone Call Button (Without country code for native phone dialer) -->
-                            <a href="tel:772131004" class="support-btn support-btn-call" aria-label="اتصال مباشر">
-                                <svg viewBox="0 0 24 24" class="support-btn-icon">
-                                    <path
-                                        d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-2.2 2.2a15.11 15.11 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1A11.36 11.36 0 018.5 3.99c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.61c0-.55-.45-1-1-1z" />
-                                </svg>
-                                <span>اتصال هاتفي</span>
-                            </a>
+                        <!-- Ad Slider Frame -->
+                        <div class="ad-banner-frame">
+                            <div class="ads-carousel-wrapper">
+                                <div class="carousel-container" id="adCarousel">
+                                    <div class="carousel-track" id="carouselTrack">
+                                        <div class="carousel-slide">
+                                            <div class="ad-card-glowing-content">
+                                                <div class="ad-text-side">
+                                                    <h3>إنترنت أسرع</h3>
+                                                    <h4>تغطية أقوى</h4>
+                                                    <p>ثقة تدوم ...</p>
+                                                </div>
+                                                <div class="ad-img-side">
+                                                    <img class="im1" src="./adimg/1.jpg" alt="إعلان 1" fetchpriority="high">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img class="im2" src="./adimg/2.jpg" alt="إعلان 2" loading="lazy">
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img class="im3" src="./adimg/3.jpg" alt="إعلان 3" loading="lazy">
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img class="im4" src="./adimg/4.jpg" alt="إعلان 4" loading="lazy">
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img class="im5" src="./adimg/5.jpg" alt="إعلان 5" loading="lazy">
+                                        </div>
+                                    </div>
+                                    <button class="carousel-nav-btn prev" id="carouselPrev" aria-label="السابق">❮</button>
+                                    <button class="carousel-nav-btn next" id="carouselNext" aria-label="التالي">❯</button>
+                                </div>
+                                <div class="carousel-dots 5-neon-dots" id="carouselDots">
+                                    <span class="carousel-dot active"></span>
+                                    <span class="carousel-dot"></span>
+                                    <span class="carousel-dot"></span>
+                                    <span class="carousel-dot"></span>
+                                    <span class="carousel-dot"></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Hidden legacy social-login wrapper for compatibility -->
+                    <!-- THREE INTERACTIVE CARDS (أسعار الكروت - نقاط البيع - العروض والتخفيضات) -->
+                    <div class="muhammadi-three-cards-section">
+                        <div class="cards-section-header">
+                            <span class="pin-icon">📍</span>
+                            <span>أماكن بيع الكروت والخدمات</span>
+                        </div>
+
+                        <div class="three-cards-grid">
+                            <!-- Card 1: أسعار الكروت (Price List Window Trigger) -->
+                            <button type="button" class="purple-nav-card" parent-id="price" data-price-button title="أسعار الكروت">
+                                <div class="card-pin-wrap">
+                                    <svg viewBox="0 0 24 24" class="purple-pin-svg">
+                                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                    </svg>
+                                </div>
+                                <div class="card-texts">
+                                    <span class="card-main-title">أسعار الكروت</span>
+                                    <span class="card-sub-title">تصفح الفئات</span>
+                                </div>
+                                <div class="card-bottom-line"></div>
+                            </button>
+
+                            <!-- Card 2: نقاط البيع (Sell Points Window Trigger) -->
+                            <button type="button" class="purple-nav-card" parent-id="sell-point" data-sell-point-button title="نقاط البيع">
+                                <div class="card-pin-wrap">
+                                    <svg viewBox="0 0 24 24" class="purple-pin-svg">
+                                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                    </svg>
+                                </div>
+                                <div class="card-texts">
+                                    <span class="card-main-title">نقاط البيع</span>
+                                    <span class="card-sub-title">الفروع والمراكز</span>
+                                </div>
+                                <div class="card-bottom-line"></div>
+                            </button>
+
+                            <!-- Card 3: العروض والتخفيضات (Offers & Loan Window Trigger) -->
+                            <button type="button" class="purple-nav-card" parent-id="loan" data-loan-button title="العروض والتخفيضات">
+                                <div class="card-pin-wrap">
+                                    <svg viewBox="0 0 24 24" class="purple-pin-svg">
+                                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                    </svg>
+                                </div>
+                                <div class="card-texts">
+                                    <span class="card-main-title">العروض والخدمات</span>
+                                    <span class="card-sub-title">أحدث التخفيضات</span>
+                                </div>
+                                <div class="card-bottom-line"></div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- FOOTER SUPPORT & CONTACT BAR (782933222) -->
+                    <footer class="muhammadi-footer-box">
+                        <div class="footer-buttons-row">
+                            <!-- Direct Phone Call Button -->
+                            <a href="tel:782933222" class="footer-icon-btn phone-btn" aria-label="اتصال مباشر بالهاتف">
+                                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                            </a>
+
+                            <!-- Contact Info Center Text -->
+                            <div class="footer-center-info">
+                                <span class="footer-label">للتواصل بالإدارة أو الفنيين</span>
+                                <a href="tel:782933222" class="footer-phone-number">782933222</a>
+                            </div>
+
+                            <!-- WhatsApp Headset Support Button -->
+                            <a href="whatsapp://send?phone=967782933222&text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%AE%D8%AF%D9%85%D8%A9%20%D8%B9%D9%85%D9%84%D8%A7%D8%A1%20%D8%B4%D8%A8%D9%83%D8%A9%20%D8%A7%D9%84%D9%85%D8%AD%D9%85%D8%AF%D9%8A%20%D9%86%D8%AA" class="footer-icon-btn headset-btn" aria-label="مراسلة الدعم الفني">
+                                <svg viewBox="0 0 24 24"><path d="M12 1c-4.97 0-9 4.03-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7c0-4.97-4.03-9-9-9z"/></svg>
+                            </a>
+                        </div>
+                    </footer>
+
+                    <!-- Hidden legacy buttons container for script compatibility -->
                     <div class="social-login" style="display: none;">
                         <button class="price-icon" parent-id="price" data-price-button><span>أسعارالكروت</span></button>
                         <button class="sellpoint" parent-id="sell-point" data-sell-point-button>نقاط البيع</button>
                     </div>
+
                 </div>
                 <div id="announcements-container"></div>
                 <div class="banner-container" style="background: rgb(184, 24, 24);border-radius: 10px;"> </div>
@@ -1500,37 +2364,6 @@
             </div>
         </div>
     </div>
-
-    <!-- 2026 FIXED GLASSMORPHIC BOTTOM NAVIGATION BAR -->
-    <nav class="bottom-nav-bar" id="bottomNav">
-        <button class="nav-item-btn active" id="navHome" type="button">
-            <svg viewBox="0 0 24 24">
-                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-            </svg>
-            <span>الرئيسية</span>
-        </button>
-        <button class="nav-item-btn price-icon" parent-id="price" data-price-button type="button">
-            <svg viewBox="0 0 24 24">
-                <path
-                    d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z" />
-            </svg>
-            <span>الأسعار</span>
-        </button>
-        <button class="nav-item-btn sellpoint" parent-id="sell-point" data-sell-point-button type="button">
-            <svg viewBox="0 0 24 24">
-                <path
-                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-            </svg>
-            <span>نقاط البيع</span>
-        </button>
-        <button class="nav-item-btn" parent-id="loan" data-loan-button type="button">
-            <svg viewBox="0 0 24 24">
-                <path
-                    d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.1 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.1 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z" />
-            </svg>
-            <span>العروض</span>
-        </button>
-    </nav>
 
     <!-- Notification Message Holder -->
     <span style="display: none;" id="winmsg"></span>
