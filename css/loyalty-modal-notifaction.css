@@ -4,11 +4,11 @@
 :root {
   /* Primary Colors */
   --loyalty-primary-color: #a855f7;
-  --loyalty-primary-dark: #4c0519;
+  --loyalty-primary-dark: #1e1b4b;
   --loyalty-accent-color: #D4AF37;         /* اللون الأساسي الفاتح */
   --loyalty-text-success: #FFFFFF;           /* نص أبيض */
   /* Highlight Colors */
-  --loyalty-highlight-bg-start: rgba(80, 20, 25, 0.45);     /* بداية تدرج الصندوق المميز */
+  --loyalty-highlight-bg-start: rgba(30, 18, 65, 0.65);     /* بداية تدرج الصندوق المميز */
   --loyalty-highlight-bg-end: rgba(168, 85, 247, 0.35);       /* نهاية تدرج الصندوق المميز */
   
   /* Accent Colors */
@@ -16,9 +16,9 @@
   --loyalty-accent-dark: #B8860B;            /* لون التمييز الداكن */
   
   /* Background Colors */
-  --loyalty-bg-white: #501419;               /* خلفية عنابية */
-  --loyalty-bg-gray: #30060e;                /* خلفية عنابية داكنة */
-  --loyalty-overlay-bg: rgba(18, 2, 6, 0.75); /* خلفية الأوفرلاي */
+  --loyalty-bg-white: #1e1b4b;               /* خلفية بنفسجية كحلية */
+  --loyalty-bg-gray: #080314;                /* خلفية داكنة */
+  --loyalty-overlay-bg: rgba(8, 3, 20, 0.85); /* خلفية الأوفرلاي */
   
   /* Text Colors */
   --loyalty-text-dark: #FFFFFF;              /* نص داكن */

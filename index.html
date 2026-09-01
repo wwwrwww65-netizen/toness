@@ -1822,10 +1822,10 @@
                             <!-- Hidden Speed Select for MikroTik Form Compatibility -->
                             <select id="speed" name="domain" speed-field style="display: none;">
                                 <option value="" disabled hidden>أختيار سرعة الإنترنت</option>
-                                <option value="128k/512k">سرعة اقتصادية</option>
-                                <option selected value="256k/700k">سرعة عادية</option>
-                                <option value="256k/1M">سرعة متوسطة</option>
-                                <option value="512M/3M">سرعة عالية</option>
+                                <option value="256k/1M">سرعة أقتصادية</option>
+                                <option selected value="512k/2M">سرعة عادية</option>
+                                <option value="512k/4M">سرعة متوسطة</option>
+                                <option value="1M/6M">سرعة عالية</option>
                                 <option value="1M/8M" id="opt-speed-ultra" style="display: none;">سرعة عالية جدا</option>
                             </select>
 
@@ -1998,27 +1998,27 @@
 
                         <div class="speed-cards-list" id="speedModalList">
                             <!-- Speed Option 1 -->
-                            <div class="speed-card-option" data-speed="128k/512k" data-speed-title="سرعة اقتصادية">
+                            <div class="speed-card-option" data-speed="256k/1M" data-speed-title="سرعة أقتصادية">
                                 <div class="speed-card-indicator">
                                     <div class="speed-radio-dot"></div>
                                 </div>
                                 <div class="speed-card-info">
-                                    <span class="speed-card-name">سرعة اقتصادية</span>
+                                    <span class="speed-card-name">سرعة أقتصادية</span>
                                 </div>
                             </div>
 
                             <!-- Speed Option 2 (Default / Active) -->
-                            <div class="speed-card-option active" data-speed="256k/700k" data-speed-title="سرعة عادية">
+                            <div class="speed-card-option active" data-speed="512k/2M" data-speed-title="سرعة عادية">
                                 <div class="speed-card-indicator">
                                     <div class="speed-radio-dot"></div>
                                 </div>
                                 <div class="speed-card-info">
-                                    <span class="speed-card-name">سرعة عادية (الموصى بها)</span>
+                                    <span class="speed-card-name">سرعة عادية</span>
                                 </div>
                             </div>
 
                             <!-- Speed Option 3 -->
-                            <div class="speed-card-option" data-speed="256k/1M" data-speed-title="سرعة متوسطة">
+                            <div class="speed-card-option" data-speed="512k/4M" data-speed-title="سرعة متوسطة">
                                 <div class="speed-card-indicator">
                                     <div class="speed-radio-dot"></div>
                                 </div>
@@ -2028,7 +2028,7 @@
                             </div>
 
                             <!-- Speed Option 4 -->
-                            <div class="speed-card-option" data-speed="512M/3M" data-speed-title="سرعة عالية">
+                            <div class="speed-card-option" data-speed="1M/6M" data-speed-title="سرعة عالية">
                                 <div class="speed-card-indicator">
                                     <div class="speed-radio-dot"></div>
                                 </div>
@@ -2434,28 +2434,28 @@
 
                         <div class="speed-cards-list" id="statusSpeedModalList">
                             <!-- Speed Option 1 -->
-                            <div class="speed-card-option" data-status-speed="128k/512k"
-                                data-speed-title="سرعة اقتصادية">
+                            <div class="speed-card-option" data-status-speed="256k/1M"
+                                data-speed-title="سرعة أقتصادية">
                                 <div class="speed-card-indicator">
                                     <div class="speed-radio-dot"></div>
                                 </div>
                                 <div class="speed-card-info">
-                                    <span class="speed-card-name">سرعة اقتصادية</span>
+                                    <span class="speed-card-name">سرعة أقتصادية</span>
                                 </div>
                             </div>
 
                             <!-- Speed Option 2 -->
-                            <div class="speed-card-option" data-status-speed="256k/700k" data-speed-title="سرعة عادية">
+                            <div class="speed-card-option" data-status-speed="512k/2M" data-speed-title="سرعة عادية">
                                 <div class="speed-card-indicator">
                                     <div class="speed-radio-dot"></div>
                                 </div>
                                 <div class="speed-card-info">
-                                    <span class="speed-card-name">سرعة عادية (الموصى بها)</span>
+                                    <span class="speed-card-name">سرعة عادية</span>
                                 </div>
                             </div>
 
                             <!-- Speed Option 3 -->
-                            <div class="speed-card-option" data-status-speed="256k/1M" data-speed-title="سرعة متوسطة">
+                            <div class="speed-card-option" data-status-speed="512k/4M" data-speed-title="سرعة متوسطة">
                                 <div class="speed-card-indicator">
                                     <div class="speed-radio-dot"></div>
                                 </div>
@@ -2465,7 +2465,7 @@
                             </div>
 
                             <!-- Speed Option 4 -->
-                            <div class="speed-card-option" data-status-speed="512M/3M" data-speed-title="سرعة عالية">
+                            <div class="speed-card-option" data-status-speed="1M/6M" data-speed-title="سرعة عالية">
                                 <div class="speed-card-indicator">
                                     <div class="speed-radio-dot"></div>
                                 </div>
@@ -2649,21 +2649,6 @@
                             </a>
                         </div>
 
-                        <!-- User Requested App Download Links -->
-                        <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
-                            <a class="stream-card-link" href="https://play.google.com/store/apps/details?id=com.glasswire.android" target="_blank" style="justify-content: center;">
-                                <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: currentColor; margin-left: 6px;">
-                                    <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
-                                </svg>
-                                <span style="font-size: 0.78rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">تنزيل تطبيق كشف التطبيقات التي تستهلك النت</span>
-                            </a>
-                            <a class="stream-card-link" href="https://play.google.com/store/apps/details?id=com.alokhtoboot.plus" target="_blank" style="justify-content: center;">
-                                <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: currentColor; margin-left: 6px;">
-                                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                                </svg>
-                                <span style="font-size: 0.78rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">تنزيل تطبيق الاستراحة الاخطبوط</span>
-                            </a>
-                        </div>
 
                         <!-- Speed Change Card with White Background & Maroon Text -->
                         <div class="statusdiv">
