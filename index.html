@@ -513,47 +513,57 @@
             background: #0f051d;
         }
 
-        /* Welcome Popup Modal (إشعار الترحيب المنبثق عند فتح الصفحة) */
+        /* Welcome Popup Notification Modal */
         .welcome-popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(11, 3, 20, 0.78);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            z-index: 999999;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            height: 100dvh !important;
+            background: rgba(0, 0, 0, 0.65) !important;
+            backdrop-filter: blur(4px) !important;
+            -webkit-backdrop-filter: blur(4px) !important;
+            z-index: 2147483647 !important;
             display: none;
             align-items: center;
             justify-content: center;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.35s ease, visibility 0.35s ease;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
             padding: 16px;
+            box-sizing: border-box !important;
+            margin: 0 !important;
+            pointer-events: auto !important;
         }
 
         .welcome-popup-overlay.show {
-            opacity: 1;
-            visibility: visible;
+            display: flex !important;
+            opacity: 1 !important;
+            visibility: visible !important;
         }
 
         .welcome-popup-dialog {
-            background: linear-gradient(145deg, rgba(28, 11, 54, 0.98), rgba(13, 4, 28, 0.98));
-            border: 2px solid rgba(56, 189, 248, 0.65);
-            border-radius: 24px;
-            padding: 26px 20px 20px;
-            width: 100%;
-            max-width: 380px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 0 40px rgba(124, 58, 237, 0.75), 0 0 25px rgba(56, 189, 248, 0.45), inset 0 0 20px rgba(168, 85, 247, 0.25);
-            transform: scale(0.82) translateY(20px);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: linear-gradient(145deg, rgba(28, 11, 54, 0.98), rgba(13, 4, 28, 0.98)) !important;
+            border: 2px solid rgba(56, 189, 248, 0.65) !important;
+            border-radius: 24px !important;
+            padding: 26px 20px 20px !important;
+            width: 90% !important;
+            max-width: 360px !important;
+            text-align: center !important;
+            position: relative !important;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.75), 0 0 25px rgba(124, 58, 237, 0.6) !important;
+            transform: scale(0.9) !important;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+            margin: auto !important;
+            z-index: 2147483647 !important;
+            pointer-events: auto !important;
         }
 
         .welcome-popup-overlay.show .welcome-popup-dialog {
-            transform: scale(1) translateY(0);
+            transform: scale(1) !important;
         }
 
         .welcome-popup-close-btn {
@@ -2568,115 +2578,6 @@
     <!-- Notification Message Holder -->
     <span style="display: none;" id="winmsg"></span>
 
-    <!-- Welcome Popup Notification Modal (إشعار الترحيب المنبثق عند فتح الصفحة) -->
-    <div class="welcome-popup-overlay" id="welcome-popup-modal" role="dialog" aria-modal="true" aria-labelledby="welcome-popup-title-el">
-        <div class="welcome-popup-dialog">
-            <button type="button" class="welcome-popup-close-btn" id="welcomePopupCloseBtn" title="إغلاق الإشعار" aria-label="إغلاق الإشعار">✕</button>
-            <div class="welcome-popup-icon-wrapper">
-                <svg viewBox="0 0 24 24" class="welcome-popup-icon-svg">
-                    <path d="M12 3C6.95 3 2.38 5.05 0 8.41L1.44 9.9C3.47 6.94 7.47 5 12 5c4.53 0 8.53 1.94 10.56 4.9L24 8.41C21.62 5.05 17.05 3 12 3zm0 4c-3.73 0-7.04 1.54-9.4 4l1.45 1.45C5.7 10.82 8.65 9.5 12 9.5c3.35 0 6.3 1.32 8.35 3.35L21.8 11.4C19.44 8.94 16.13 7 12 7zm0 4c-2.4 0-4.57 1-6.14 2.6L12 21l6.14-7.4A8.52 8.52 0 0 0 12 11z" />
-                </svg>
-            </div>
-            <h2 class="welcome-popup-title" id="welcome-popup-title-el">مرحبا بك في شبكه المُحمدي اللاسلكية</h2>
-            <div class="welcome-popup-subtitle-badge" id="welcome-popup-subtitle-el">
-                <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: currentColor;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                <span>المهندس محمد فهيم اليافعي</span>
-            </div>
-            <div class="welcome-popup-timer-bar-wrap">
-                <div class="welcome-popup-timer-bar-fill" id="welcomePopupTimerFill"></div>
-            </div>
-        </div>
-    </div>
-    <script>
-        (function() {
-            var welcomePopupTimer = null;
-            var isClosed = false;
-
-            window.initWelcomePopup = function(configObj) {
-                var modal = document.getElementById('welcome-popup-modal');
-                var titleEl = document.getElementById('welcome-popup-title-el');
-                var subtitleEl = document.getElementById('welcome-popup-subtitle-el');
-                var closeBtn = document.getElementById('welcomePopupCloseBtn');
-                var timerFill = document.getElementById('welcomePopupTimerFill');
-
-                if (!modal) return;
-
-                var cfg = configObj || (typeof hotspotConfig !== 'undefined' ? hotspotConfig : (typeof hotOption !== 'undefined' ? hotOption : null));
-
-                var isEnabled = cfg ? (cfg['welcome-popup-enabled'] !== false) : true;
-                if (!isEnabled) {
-                    modal.style.display = 'none';
-                    modal.classList.remove('show');
-                    return;
-                }
-
-                var titleText = (cfg && cfg['welcome-popup-title']) || 'مرحبا بك في شبكه المُحمدي اللاسلكية';
-                var subtitleText = (cfg && cfg['welcome-popup-subtitle']) || 'المهندس محمد فهيم اليافعي';
-                var durationSec = (cfg && parseInt(cfg['welcome-popup-duration'])) || 6;
-
-                if (titleEl) titleEl.textContent = titleText;
-                if (subtitleEl) {
-                    subtitleEl.innerHTML = `
-                        <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: currentColor;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <span>${subtitleText}</span>
-                    `;
-                }
-
-                window.closeWelcomePopup = function() {
-                    if (isClosed) return;
-                    isClosed = true;
-                    if (welcomePopupTimer) clearTimeout(welcomePopupTimer);
-                    modal.classList.remove('show');
-                    setTimeout(function() {
-                        modal.style.display = 'none';
-                    }, 350);
-                };
-
-                if (closeBtn) {
-                    closeBtn.onclick = function(e) {
-                        e.stopPropagation();
-                        window.closeWelcomePopup();
-                    };
-                }
-
-                modal.onclick = function(e) {
-                    if (e.target === modal) {
-                        window.closeWelcomePopup();
-                    }
-                };
-
-                if (!modal.classList.contains('show') && modal.style.display !== 'flex' && !isClosed) {
-                    modal.style.display = 'flex';
-                    modal.offsetHeight; // force reflow
-                    setTimeout(function() {
-                        modal.classList.add('show');
-                    }, 20);
-
-                    if (timerFill) {
-                        timerFill.style.transition = 'none';
-                        timerFill.style.width = '100%';
-                        setTimeout(function() {
-                            timerFill.style.transition = 'width ' + durationSec + 's linear';
-                            timerFill.style.width = '0%';
-                        }, 50);
-                    }
-
-                    if (welcomePopupTimer) clearTimeout(welcomePopupTimer);
-                    welcomePopupTimer = setTimeout(function() {
-                        window.closeWelcomePopup();
-                    }, durationSec * 1000);
-                }
-            };
-
-            // Trigger immediately upon DOM parsing
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', function() { window.initWelcomePopup(); });
-            } else {
-                window.initWelcomePopup();
-            }
-        })();
-    </script>
-
     <!-- Hotspot System Scripts -->
     <script src="js/jsqr.min.js"></script>
     <script src="js/init.min.js"></script>
@@ -3175,6 +3076,14 @@
                     if (configObj['news-extra-badge']) {
                         const el = document.getElementById('loan-news-extra-badge');
                         if (el) el.textContent = configObj['news-extra-badge'];
+                    }
+
+                    // Apply Marquee Ticker (Quran verse / News) dynamically
+                    if (configObj['news-line']) {
+                        const marquees = document.querySelectorAll('.marquee, [data-news-line]');
+                        marquees.forEach(function(m) {
+                            m.textContent = configObj['news-line'];
+                        });
                     }
 
                     // Trigger Welcome Popup with dynamic config from config.js
@@ -4603,6 +4512,120 @@
     </script>
     <script src="js/loyalty-system/loyalty-integration.js"></script>
 
+    <!-- Welcome Popup Notification Modal (إشعار الترحيب المنبثق في منتصف الشاشة والجوال) -->
+    <div class="welcome-popup-overlay" id="welcome-popup-modal" role="dialog" aria-modal="true" aria-labelledby="welcome-popup-title-el">
+        <div class="welcome-popup-dialog">
+            <button type="button" class="welcome-popup-close-btn" id="welcomePopupCloseBtn" title="إغلاق الإشعار" aria-label="إغلاق الإشعار">✕</button>
+            <div class="welcome-popup-icon-wrapper">
+                <svg viewBox="0 0 24 24" class="welcome-popup-icon-svg">
+                    <path d="M12 3C6.95 3 2.38 5.05 0 8.41L1.44 9.9C3.47 6.94 7.47 5 12 5c4.53 0 8.53 1.94 10.56 4.9L24 8.41C21.62 5.05 17.05 3 12 3zm0 4c-3.73 0-7.04 1.54-9.4 4l1.45 1.45C5.7 10.82 8.65 9.5 12 9.5c3.35 0 6.3 1.32 8.35 3.35L21.8 11.4C19.44 8.94 16.13 7 12 7zm0 4c-2.4 0-4.57 1-6.14 2.6L12 21l6.14-7.4A8.52 8.52 0 0 0 12 11z" />
+                </svg>
+            </div>
+            <h2 class="welcome-popup-title" id="welcome-popup-title-el">مرحبا بك في شبكه المُحمدي اللاسلكية</h2>
+            <div class="welcome-popup-subtitle-badge" id="welcome-popup-subtitle-el">
+                <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: currentColor;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <span>المهندس محمد فهيم اليافعي</span>
+            </div>
+            <div class="welcome-popup-timer-bar-wrap">
+                <div class="welcome-popup-timer-bar-fill" id="welcomePopupTimerFill"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function() {
+            var welcomePopupTimer = null;
+
+            window.initWelcomePopup = function(configObj) {
+                var modal = document.getElementById('welcome-popup-modal');
+                var titleEl = document.getElementById('welcome-popup-title-el');
+                var subtitleEl = document.getElementById('welcome-popup-subtitle-el');
+                var closeBtn = document.getElementById('welcomePopupCloseBtn');
+                var timerFill = document.getElementById('welcomePopupTimerFill');
+
+                if (!modal) return;
+
+                var cfg = configObj || (typeof hotspotConfig !== 'undefined' ? hotspotConfig : (typeof hotOption !== 'undefined' ? hotOption : null));
+
+                var isEnabled = cfg ? (cfg['welcome-popup-enabled'] !== false) : true;
+                if (!isEnabled) {
+                    if (welcomePopupTimer) clearTimeout(welcomePopupTimer);
+                    modal.style.display = 'none';
+                    modal.classList.remove('show');
+                    return;
+                }
+
+                var titleText = (cfg && cfg['welcome-popup-title']) || 'مرحبا بك في شبكه المُحمدي اللاسلكية';
+                var subtitleText = (cfg && cfg['welcome-popup-subtitle']) || 'المهندس محمد فهيم اليافعي';
+                var durationSec = (cfg && parseInt(cfg['welcome-popup-duration'])) || 6;
+                if (isNaN(durationSec) || durationSec < 1) durationSec = 6;
+
+                if (titleEl) titleEl.textContent = titleText;
+                if (subtitleEl) {
+                    subtitleEl.innerHTML = `
+                        <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: currentColor;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <span>${subtitleText}</span>
+                    `;
+                }
+
+                window.closeWelcomePopup = function() {
+                    if (welcomePopupTimer) {
+                        clearTimeout(welcomePopupTimer);
+                        welcomePopupTimer = null;
+                    }
+                    modal.classList.remove('show');
+                    setTimeout(function() {
+                        if (!modal.classList.contains('show')) {
+                            modal.style.display = 'none';
+                        }
+                    }, 350);
+                };
+
+                if (closeBtn) {
+                    closeBtn.onclick = function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        window.closeWelcomePopup();
+                    };
+                }
+
+                modal.onclick = function(e) {
+                    if (e.target === modal) {
+                        window.closeWelcomePopup();
+                    }
+                };
+
+                // Display flex and add show class
+                modal.style.display = 'flex';
+                void modal.offsetWidth; // force reflow
+                modal.classList.add('show');
+
+                // Reset and animate progress timer bar
+                if (timerFill) {
+                    timerFill.style.transition = 'none';
+                    timerFill.style.width = '100%';
+                    void timerFill.offsetWidth; // force reflow
+                    setTimeout(function() {
+                        if (modal.classList.contains('show')) {
+                            timerFill.style.transition = 'width ' + durationSec + 's linear';
+                            timerFill.style.width = '0%';
+                        }
+                    }, 50);
+                }
+
+                if (welcomePopupTimer) clearTimeout(welcomePopupTimer);
+                welcomePopupTimer = setTimeout(function() {
+                    window.closeWelcomePopup();
+                }, durationSec * 1000);
+            };
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() { window.initWelcomePopup(); });
+            } else {
+                window.initWelcomePopup();
+            }
+            window.addEventListener('load', function() { window.initWelcomePopup(); });
+        })();
+    </script>
     <script src="js/notifications-system/notifications-integration.js"></script>
 </body>
 
