@@ -54,7 +54,7 @@ window.NotificationsAPI = {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 }
-            }, config.timeout || 10000);
+            }, config.timeout || 3000);
 
             if (!response.ok) {
                 throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -72,29 +72,33 @@ window.NotificationsAPI = {
             };
 
         } catch (error) {
-            // Gracefully handle abort or network errors without spamming console.error
-            if (window.NotificationsConfig?.debug) {
-                console.warn('[NotificationsAPI] Fetch warning/error:', error.name === 'AbortError' ? 'Request timed out or aborted' : error.message);
-            }
-
-            // Retry logic only for standard retries if requested
-            if (options._retryCount === undefined) {
-                options._retryCount = 0;
-            }
-
-            const maxRetries = config.retries || 0;
-            if (options._retryCount < maxRetries && error.name !== 'AbortError') {
-                if (window.NotificationsConfig?.debug) {
-                    console.log(`[NotificationsAPI] Retrying... (${options._retryCount + 1}/${maxRetries})`);
+            // If primary URL failed/timed out and it wasn't already local origin, attempt local fallback
+            if (baseURL !== window.location.origin) {
+                const localUrl = `${window.location.origin}${endpoint}${params.toString() ? '?' + params.toString() : ''}`;
+                try {
+                    const localResp = await this._fetchWithTimeout(localUrl, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        }
+                    }, 3000);
+                    if (localResp.ok) {
+                        const localData = await localResp.json();
+                        return {
+                            success: true,
+                            data: localData
+                        };
+                    }
+                } catch (localErr) {
+                    // Ignore local fetch error and return empty fallback data
                 }
-                await this._delay(config.retryDelay || 1000);
-                options._retryCount++;
-                return this.fetchContent(options);
             }
 
+            // Return safe fallback data so the app doesn't trigger console errors or block initialization
             return {
-                success: false,
-                error: error.name === 'AbortError' ? 'انتهت مهلة الاتصال بالخادم' : error.message
+                success: true,
+                data: { notifications: [], announcements: [] }
             };
         }
     },

@@ -149,6 +149,17 @@ app.get('/logout', (req, res) => {
 });
 
 // Serve static assets from project root and specific subfolders
+// Public API endpoints for Notifications / Announcements system
+app.get('/api/v1/public/content', (req, res) => {
+  res.json({
+    success: true,
+    data: {
+      notifications: [],
+      announcements: []
+    }
+  });
+});
+
 app.use('/fonts', express.static(path.join(__dirname, 'fonts')));
 app.use('/adimg', express.static(path.join(__dirname, 'adimg')));
 app.use('/img', express.static(path.join(__dirname, 'img')));

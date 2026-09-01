@@ -23,7 +23,7 @@ window.NotificationsManager = {
             const result = await window.NotificationsAPI.fetchContent();
 
             if (!result.success) {
-                console.error('[NotificationsManager] Failed to fetch content:', result.error);
+                console.warn('[NotificationsManager] Failed to fetch content:', result.error);
                 return;
             }
 

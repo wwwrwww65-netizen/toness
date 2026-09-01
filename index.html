@@ -424,7 +424,7 @@
                                 <!-- Native select preserved hidden for script/form integration -->
                                 <select id="speed" name="domain" speed-field style="display: none;">
                                     <option value="" disabled hidden>أختيار سرعة الإنترنت</option>
-                                    <option value="128k/512k">سرعة أقتصادية</option>
+                                    <option value="128k/512k">سرعة اقتصادية</option>
                                     <option selected value="256k/700k">سرعة عادية</option>
                                     <option value="256k/1M">سرعة متوسطة</option>
                                     <option value="512M/3M">سرعة عالية</option>
@@ -2068,19 +2068,34 @@
 
                 // Synchronize trigger text and active speed card when sspeed updates from MikroTik
                 if (sspeedSpan) {
+                    const normalizeAr = s => (s || '').replace(/[أإآ]/g, 'ا').trim();
                     const syncSpeedFromMikrotik = () => {
                         const txt = (sspeedSpan.innerText || sspeedSpan.textContent || '').trim();
                         if (txt && txt !== 'سرعة الكرت') {
                             if (statusSpeedTriggerText) {
                                 statusSpeedTriggerText.textContent = txt;
                             }
+                            const cleanTxt = normalizeAr(txt);
+                            let matchedCard = null;
                             statusSpeedCards.forEach(card => {
-                                const cardTitle = card.getAttribute('data-speed-title') || '';
-                                if (cardTitle && (txt.includes(cardTitle) || cardTitle.includes(txt))) {
-                                    card.classList.add('active');
-                                } else {
-                                    card.classList.remove('active');
+                                const cardTitle = normalizeAr(card.getAttribute('data-speed-title'));
+                                const speedVal = (card.getAttribute('data-status-speed') || '').trim();
+                                if (cardTitle && (cardTitle === cleanTxt || speedVal === txt || speedVal === cleanTxt)) {
+                                    matchedCard = card;
                                 }
+                            });
+                            if (!matchedCard) {
+                                let longestMatchLen = 0;
+                                statusSpeedCards.forEach(card => {
+                                    const cardTitle = normalizeAr(card.getAttribute('data-speed-title'));
+                                    if (cardTitle && cleanTxt.includes(cardTitle) && cardTitle.length > longestMatchLen) {
+                                        longestMatchLen = cardTitle.length;
+                                        matchedCard = card;
+                                    }
+                                });
+                            }
+                            statusSpeedCards.forEach(card => {
+                                card.classList.toggle('active', card === matchedCard);
                             });
                         }
                     };
