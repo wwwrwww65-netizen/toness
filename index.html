@@ -1770,6 +1770,21 @@
 
                     <!-- MAIN CARD INPUT SECTION (ادخل رقم الكرت هنا) -->
                     <div class="muhammadi-card-login-box">
+                        <!-- 1. SPEED SELECTOR TRIGGER BUTTON (ABOVE CARD BOX TITLE HEADER) -->
+                        <div class="login-speed-selector-wrap" style="margin: 0 0 12px 0;">
+                            <button type="button" class="status-select-trigger login-speed-trigger" parent-id="speed-modal" id="loginSpeedTrigger" title="أختر سرعة الإنترنت">
+                                <div class="status-trigger-content">
+                                    <svg viewBox="0 0 24 24" class="status-trigger-icon">
+                                        <path d="M7 2v11h3v9l7-12h-4l4-8z" />
+                                    </svg>
+                                    <span id="selectedSpeedDisplay">أختر سرعة الإنترنت (تلقائي)</span>
+                                </div>
+                                <svg viewBox="0 0 24 24" class="status-trigger-chevron">
+                                    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
+                                </svg>
+                            </button>
+                        </div>
+
                         <div class="card-box-header">
                             <svg viewBox="0 0 24 24" class="svg-star-icon"><path d="M12 2l2.4 7.2h7.6l-6 4.8 2.4 7.2-6-4.8-6 4.8 2.4-7.2-6-4.8h7.6z"/></svg>
                             <span class="card-box-title">ادخل رقم الكرت هنا</span>
@@ -1804,7 +1819,7 @@
                                 </select>
                             </div>
 
-                            <!-- Speed Selector Hidden Controls for Compatibility -->
+                            <!-- Hidden Speed Select for MikroTik Form Compatibility -->
                             <select id="speed" name="domain" speed-field style="display: none;">
                                 <option value="" disabled hidden>أختيار سرعة الإنترنت</option>
                                 <option value="128k/512k">سرعة اقتصادية</option>
@@ -1819,8 +1834,25 @@
                                 <input type="hidden" name="password" class="login-input" improve-input>
                             </div>
 
-                            <!-- Hidden Checkbox for Updates compatibility -->
-                            <input type="checkbox" value="_Uon" id="chupdate" style="display:none;">
+                            <!-- 2. UPDATES & APP STORE BLOCKER TOGGLE -->
+                            <div class="toggle-container-modern" style="margin: 6px 0 12px 0;">
+                                <div class="toggle-info">
+                                    <span class="toggle-title">
+                                        <svg viewBox="0 0 24 24" class="section-icon">
+                                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z" />
+                                        </svg>
+                                        <span>إيقاف التحديثات والمتجر</span>
+                                    </span>
+                                    <span class="toggle-desc">التحديثات والمتجر تستهلك الرصيد بسرعة</span>
+                                </div>
+                                <div class="toggle-action-side">
+                                    <span class="toggle-status-label" id="updateStatusText">متوقف</span>
+                                    <label class="switch-wrap">
+                                        <input type="checkbox" value="_Uon" id="chupdate">
+                                        <span class="slider-pill"></span>
+                                    </label>
+                                </div>
+                            </div>
 
                             <!-- Primary Neon Login Submit Button -->
                             <button class="button login-submit login-submit-btn main-login-neon-btn" parent-id="status" enable-hot-cookie type="button" id="mainLoginBtn">
@@ -3256,10 +3288,10 @@
                 const modal = typeof modalId === 'string' ? document.getElementById(modalId) : modalId;
                 if (!modal) return;
 
-                // Close any other open modals
-                document.querySelectorAll('.app.active').forEach(function(m) {
+                // Close any other open modals immediately
+                document.querySelectorAll('.app.active, .app.closing').forEach(function(m) {
                     if (m !== modal && m.id !== 'status') {
-                        m.classList.remove('active');
+                        m.classList.remove('active', 'closing');
                         m.style.display = 'none';
                     }
                 });
@@ -3270,7 +3302,8 @@
                     loginEl.classList.add('inactive');
                 }
 
-                modal.style.display = 'block';
+                modal.classList.remove('closing');
+                modal.style.display = 'flex';
                 // Trigger reflow for CSS transition
                 void modal.offsetWidth;
                 modal.classList.add('active');
@@ -3281,9 +3314,6 @@
                 } else {
                     document.body.style.overflow = 'hidden';
                 }
-
-                // Camera is started by the button handler before openAppModal is called.
-                // Do NOT call startCamera() here to avoid a second duplicate request.
             }
 
             function closeAppModal(modalOrId) {
@@ -3295,28 +3325,24 @@
                     target = modalOrId;
                 }
 
-                if (target) {
-                    target.classList.remove('active');
-                    setTimeout(() => {
-                        if (!target.classList.contains('active')) {
-                            target.style.display = 'none';
+                const closeSingleModal = function(m) {
+                    if (!m) return;
+                    m.classList.add('closing');
+                    setTimeout(function() {
+                        m.classList.remove('active', 'closing');
+                        m.style.display = 'none';
+                        if (m.id === 'qr-scanner-modal' && typeof window.stopCamera === 'function') {
+                            window.stopCamera();
                         }
                     }, 180);
-                    if (target.id === 'qr-scanner-modal' && typeof window.stopCamera === 'function') {
-                        window.stopCamera();
-                    }
+                };
+
+                if (target) {
+                    closeSingleModal(target);
                 } else {
-                    document.querySelectorAll('.app.active').forEach(m => {
+                    document.querySelectorAll('.app.active').forEach(function(m) {
                         if (m.id !== 'status') {
-                            m.classList.remove('active');
-                            setTimeout(() => {
-                                if (!m.classList.contains('active')) {
-                                    m.style.display = 'none';
-                                }
-                            }, 180);
-                            if (m.id === 'qr-scanner-modal' && typeof window.stopCamera === 'function') {
-                                window.stopCamera();
-                            }
+                            closeSingleModal(m);
                         }
                     });
                 }

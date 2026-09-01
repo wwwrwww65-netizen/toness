@@ -476,7 +476,8 @@ button#btn-whats-new .btn-icon {
 /* High Brightness News / Ticker Bar (White Background with Maroon Text) */
 .section {
   width: 100%;
-  margin-bottom: 10px;
+  margin-top: 14px;
+  margin-bottom: 12px;
 }
 
 .ticker-container {
@@ -2223,8 +2224,16 @@ body.modal-scroll-locked {
   display: flex !important;
   align-items: center !important; /* تظهر في منتصف الصفحة عمودياً */
   justify-content: center !important; /* تظهر في منتصف الصفحة أفقياً */
-  animation: fadeInBackdrop 0.25s ease forwards;
+  animation: fadeInBackdrop 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   overscroll-behavior: contain !important;
+}
+
+.app.closing {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  animation: fadeOutBackdrop 0.18s cubic-bezier(0.7, 0, 0.84, 0) forwards !important;
+  pointer-events: none !important;
 }
 
 .loyalty-modal.active,
@@ -2237,6 +2246,33 @@ body.modal-scroll-locked {
 @keyframes fadeInBackdrop {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+@keyframes fadeOutBackdrop {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.app.active .modal-sheet-card,
+.app.active .points-modal-content,
+.app.active .wrapper {
+  animation: modalScaleIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.app.closing .modal-sheet-card,
+.app.closing .points-modal-content,
+.app.closing .wrapper {
+  animation: modalScaleOut 0.18s cubic-bezier(0.7, 0, 0.84, 0) forwards !important;
+}
+
+@keyframes modalScaleIn {
+  from { opacity: 0; transform: scale(0.95) translateY(6px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes modalScaleOut {
+  from { opacity: 1; transform: scale(1) translateY(0); }
+  to { opacity: 0; transform: scale(0.96) translateY(6px); }
 }
 
 .app .wrapper,
@@ -2804,31 +2840,33 @@ body:has(#status.active) #login {
   gap: 6px;
 }
 
-/* 2026 WHITE TRIGGER BUTTON WITH MAROON TEXT */
+/* 2026 MODERN SPEED TRIGGER BUTTON WITH WHITE TEXT */
 .status-select-trigger {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #FFFFFF !important;
-  border: 1.5px solid rgba(212, 175, 55, 0.6) !important;
+  background: rgba(30, 4, 12, 0.5) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.75) !important;
   border-radius: var(--radius-md) !important;
   padding: 12px 14px !important;
-  color: #700B2B !important;
+  color: #FFFFFF !important;
   font-family: var(--font-main) !important;
-  font-size: 0.92rem !important;
+  font-size: 0.94rem !important;
   font-weight: 800 !important;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.9) inset;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   transition: var(--transition-smooth);
   text-align: right;
 }
 
 .status-select-trigger:hover {
-  background: #FFFFFF !important;
-  border-color: var(--accent-gold) !important;
+  background: rgba(50, 8, 20, 0.7) !important;
+  border-color: #FFFFFF !important;
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25), 0 0 12px rgba(212, 175, 55, 0.4);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35), 0 0 14px rgba(255, 255, 255, 0.25);
 }
 
 .status-select-trigger:active {
@@ -2839,21 +2877,30 @@ body:has(#status.active) #login {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #700B2B !important;
+  color: #FFFFFF !important;
   font-weight: 800;
+}
+
+.status-trigger-content span,
+#selectedSpeedDisplay,
+#statusSpeedTriggerText {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 .status-trigger-icon {
   width: 18px;
   height: 18px;
-  fill: #c084fc !important;
+  fill: #ffd700 !important;
   flex-shrink: 0;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
 }
 
 .status-trigger-chevron {
   width: 18px;
   height: 18px;
-  fill: #c084fc !important;
+  fill: #FFFFFF !important;
   transition: transform 0.25s ease;
   flex-shrink: 0;
 }
