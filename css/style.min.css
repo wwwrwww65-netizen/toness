@@ -3081,21 +3081,21 @@ body:has(#status.active) #login {
    FLOATING PARTICLES / ICONS BACKGROUND (CRYSTAL THROUGH CONTAINERS)
    ========================================================================== */
 
-/* إعدادات الحاوية لتبقى في الخلفية الشاملة وتمر تحت جميع الحاويات والبطاقات */
+/* إعدادات الحاوية لتبقى عائمة وسلسة وتصعد من أسفل الصفحة لأعلاها */
 .floating-icons {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1; /* يمر من تحت جميع الحاويات والبطاقات الشفافة */
+    width: 100vw;
+    height: 100vh;
+    z-index: 2; /* تظهر بوضوح فوق الخلفية وتتحرك بسلاسة */
     overflow: hidden;
     margin: 0;
     padding: 0;
-    pointer-events: none; /* لكي لا تعيق النقر واللمس */
+    pointer-events: none; /* لكي لا تعيق النقر واللمس نهائياً */
 }
 
-/* إعدادات الأيقونات العائمة (لون أبيض نقي شفاف بدون توهج) */
+/* إعدادات الأيقونات العائمة (لون أبيض شفاف مع إضاءة خفيفة) */
 .floating-icons li {
     position: absolute;
     display: flex;
@@ -3111,52 +3111,51 @@ body:has(#status.active) #login {
 .floating-icons li svg {
     width: 26px;
     height: 26px;
-    fill: #ffffff;
-    /* إزالة أي توهج أو ظلال لتكون نقية وهادئة */
-    filter: none !important;
+    fill: currentColor;
+    filter: drop-shadow(0 0 6px rgba(168, 85, 247, 0.4));
 }
 
 /* توزيع الأيقونات في أماكن مختلفة وبسرعات وأحجام مختلفة بلون أبيض شفاف وناعم */
-.floating-icons li:nth-child(1)  { left: 4%;  animation-duration: 13s; animation-delay: 0s;   color: rgba(255, 255, 255, 0.28); }
+.floating-icons li:nth-child(1)  { left: 4%;  animation-duration: 13s; animation-delay: 0s;   color: rgba(255, 255, 255, 0.35); }
 .floating-icons li:nth-child(1) svg { width: 28px; height: 28px; }
 
-.floating-icons li:nth-child(2)  { left: 12%; animation-duration: 18s; animation-delay: 2.5s; color: rgba(255, 255, 255, 0.22); }
+.floating-icons li:nth-child(2)  { left: 12%; animation-duration: 18s; animation-delay: 2.5s; color: rgba(255, 255, 255, 0.30); }
 .floating-icons li:nth-child(2) svg { width: 22px; height: 22px; }
 
-.floating-icons li:nth-child(3)  { left: 20%; animation-duration: 15s; animation-delay: 1s;   color: rgba(255, 255, 255, 0.32); }
+.floating-icons li:nth-child(3)  { left: 20%; animation-duration: 15s; animation-delay: 1s;   color: rgba(255, 255, 255, 0.40); }
 .floating-icons li:nth-child(3) svg { width: 26px; height: 26px; }
 
-.floating-icons li:nth-child(4)  { left: 28%; animation-duration: 21s; animation-delay: 4.5s; color: rgba(255, 255, 255, 0.24); }
+.floating-icons li:nth-child(4)  { left: 28%; animation-duration: 21s; animation-delay: 4.5s; color: rgba(255, 255, 255, 0.30); }
 .floating-icons li:nth-child(4) svg { width: 24px; height: 24px; }
 
-.floating-icons li:nth-child(5)  { left: 37%; animation-duration: 16s; animation-delay: 2s;   color: rgba(255, 255, 255, 0.30); }
+.floating-icons li:nth-child(5)  { left: 37%; animation-duration: 16s; animation-delay: 2s;   color: rgba(255, 255, 255, 0.38); }
 .floating-icons li:nth-child(5) svg { width: 28px; height: 28px; }
 
-.floating-icons li:nth-child(6)  { left: 46%; animation-duration: 23s; animation-delay: 5.5s; color: rgba(255, 255, 255, 0.22); }
+.floating-icons li:nth-child(6)  { left: 46%; animation-duration: 23s; animation-delay: 5.5s; color: rgba(255, 255, 255, 0.28); }
 .floating-icons li:nth-child(6) svg { width: 32px; height: 32px; }
 
-.floating-icons li:nth-child(7)  { left: 55%; animation-duration: 14s; animation-delay: 0.5s; color: rgba(255, 255, 255, 0.34); }
+.floating-icons li:nth-child(7)  { left: 55%; animation-duration: 14s; animation-delay: 0.5s; color: rgba(255, 255, 255, 0.42); }
 .floating-icons li:nth-child(7) svg { width: 26px; height: 26px; }
 
-.floating-icons li:nth-child(8)  { left: 64%; animation-duration: 19s; animation-delay: 3.5s; color: rgba(255, 255, 255, 0.25); }
+.floating-icons li:nth-child(8)  { left: 64%; animation-duration: 19s; animation-delay: 3.5s; color: rgba(255, 255, 255, 0.32); }
 .floating-icons li:nth-child(8) svg { width: 28px; height: 28px; }
 
-.floating-icons li:nth-child(9)  { left: 73%; animation-duration: 13s; animation-delay: 1.8s; color: rgba(255, 255, 255, 0.32); }
+.floating-icons li:nth-child(9)  { left: 73%; animation-duration: 13s; animation-delay: 1.8s; color: rgba(255, 255, 255, 0.40); }
 .floating-icons li:nth-child(9) svg { width: 24px; height: 24px; }
 
-.floating-icons li:nth-child(10) { left: 82%; animation-duration: 17s; animation-delay: 1.2s; color: rgba(255, 255, 255, 0.26); }
+.floating-icons li:nth-child(10) { left: 82%; animation-duration: 17s; animation-delay: 1.2s; color: rgba(255, 255, 255, 0.32); }
 .floating-icons li:nth-child(10) svg { width: 28px; height: 28px; }
 
-.floating-icons li:nth-child(11) { left: 91%; animation-duration: 20s; animation-delay: 6s;   color: rgba(255, 255, 255, 0.24); }
+.floating-icons li:nth-child(11) { left: 91%; animation-duration: 20s; animation-delay: 6s;   color: rgba(255, 255, 255, 0.30); }
 .floating-icons li:nth-child(11) svg { width: 24px; height: 24px; }
 
-.floating-icons li:nth-child(12) { left: 16%; animation-duration: 16s; animation-delay: 7s;   color: rgba(255, 255, 255, 0.30); }
+.floating-icons li:nth-child(12) { left: 16%; animation-duration: 16s; animation-delay: 7s;   color: rgba(255, 255, 255, 0.38); }
 .floating-icons li:nth-child(12) svg { width: 30px; height: 30px; }
 
-.floating-icons li:nth-child(13) { left: 50%; animation-duration: 18s; animation-delay: 8s;   color: rgba(255, 255, 255, 0.22); }
+.floating-icons li:nth-child(13) { left: 50%; animation-duration: 18s; animation-delay: 8s;   color: rgba(255, 255, 255, 0.28); }
 .floating-icons li:nth-child(13) svg { width: 24px; height: 24px; }
 
-.floating-icons li:nth-child(14) { left: 87%; animation-duration: 15s; animation-delay: 5s;   color: rgba(255, 255, 255, 0.28); }
+.floating-icons li:nth-child(14) { left: 87%; animation-duration: 15s; animation-delay: 5s;   color: rgba(255, 255, 255, 0.35); }
 .floating-icons li:nth-child(14) svg { width: 30px; height: 30px; }
 
 /* هندسة الحركة المتواصلة من أسفل الشاشة وحتى القمة بنعومة وشفافية متقنة */

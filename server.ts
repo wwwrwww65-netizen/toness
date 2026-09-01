@@ -160,6 +160,27 @@ app.get('/api/v1/public/content', (req, res) => {
   });
 });
 
+// Dynamic ad images directory endpoint
+app.get('/api/adimg', (req, res) => {
+  try {
+    const fs = require('fs');
+    const adDirPath = path.join(__dirname, 'adimg');
+    if (!fs.existsSync(adDirPath)) {
+      return res.json({ images: [] });
+    }
+    const files = fs.readdirSync(adDirPath)
+      .filter((f: string) => /\.(jpg|jpeg|png|webp|gif)$/i.test(f))
+      .sort((a: string, b: string) => {
+        const numA = parseInt(a) || 0;
+        const numB = parseInt(b) || 0;
+        return numA - numB;
+      });
+    res.json({ images: files });
+  } catch (err) {
+    res.json({ images: [] });
+  }
+});
+
 app.use('/fonts', express.static(path.join(__dirname, 'fonts')));
 app.use('/adimg', express.static(path.join(__dirname, 'adimg')));
 app.use('/img', express.static(path.join(__dirname, 'img')));

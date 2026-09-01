@@ -189,24 +189,76 @@
             fill: currentColor;
         }
 
-        .signal-indicator {
-            display: flex;
-            align-items: flex-end;
-            gap: 3px;
-            height: 16px;
+        .top-wifi-indicator {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.35);
+            padding: 4px;
         }
 
-        .sig-bar {
-            width: 3.5px;
-            background: #10b981;
-            border-radius: 2px;
-            box-shadow: 0 0 4px #10b981;
+        .top-wifi-svg {
+            width: 20px;
+            height: 20px;
+            overflow: visible;
         }
 
-        .bar-1 { height: 25%; }
-        .bar-2 { height: 50%; }
-        .bar-3 { height: 75%; }
-        .bar-4 { height: 100%; }
+        .top-wifi-svg .wifi-dot {
+            fill: #34d399;
+            filter: drop-shadow(0 0 5px #34d399);
+            transform-origin: center;
+            animation: wifiPulse 1.8s infinite ease-in-out;
+        }
+
+        .top-wifi-svg .wifi-wave {
+            fill: none;
+            stroke: #10b981;
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.8));
+            animation: wifiWave 1.8s infinite ease-in-out;
+        }
+
+        .top-wifi-svg .wave-1 {
+            animation-delay: 0.2s;
+        }
+
+        .top-wifi-svg .wave-2 {
+            animation-delay: 0.4s;
+        }
+
+        .top-wifi-svg .wave-3 {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes wifiWave {
+            0%, 100% {
+                opacity: 0.25;
+                stroke: #059669;
+                filter: drop-shadow(0 0 1px rgba(16, 185, 129, 0.2));
+            }
+            50% {
+                opacity: 1;
+                stroke: #34d399;
+                filter: drop-shadow(0 0 7px #34d399);
+            }
+        }
+
+        @keyframes wifiPulse {
+            0%, 100% {
+                opacity: 0.6;
+                filter: drop-shadow(0 0 2px #10b981);
+            }
+            50% {
+                opacity: 1;
+                filter: drop-shadow(0 0 8px #34d399);
+            }
+        }
 
         /* Hero Main Header Section */
         .muhammadi-hero-header {
@@ -254,7 +306,7 @@
         }
 
         .net-main-title {
-            font-size: 2.2rem;
+            font-size: 2.25rem;
             font-weight: 900;
             margin: -2px 0 2px 0;
             background: linear-gradient(180deg, #FFF7D6 0%, #FFDF6D 40%, #E5C158 70%, #B8860B 100%);
@@ -294,17 +346,17 @@
         /* Neon Service Capsules */
         .service-pill-glowing {
             margin-top: 10px;
-            background: linear-gradient(90deg, rgba(30, 58, 138, 0.6), rgba(124, 58, 237, 0.6), rgba(30, 58, 138, 0.6));
+            background: linear-gradient(90deg, rgba(30, 58, 138, 0.7), rgba(124, 58, 237, 0.7), rgba(30, 58, 138, 0.7));
             border: 1.5px solid #38bdf8;
             color: #ffffff;
             padding: 5px 18px;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             font-weight: 700;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            box-shadow: 0 0 14px rgba(56, 189, 248, 0.4);
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.5);
         }
 
         .features-neon-sparkle {
@@ -317,17 +369,48 @@
             gap: 6px;
         }
 
-        .star-sparkle {
-            color: #facc15;
-            font-size: 0.9rem;
+        .svg-neon-icon {
+            width: 16px;
+            height: 16px;
+            fill: #38bdf8;
+            filter: drop-shadow(0 0 4px #38bdf8);
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .svg-star-icon {
+            width: 14px;
+            height: 14px;
+            fill: #facc15;
+            filter: drop-shadow(0 0 4px #facc15);
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .svg-gift-icon {
+            width: 18px;
+            height: 18px;
+            fill: #f59e0b;
+            filter: drop-shadow(0 0 4px #f59e0b);
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .svg-pin-icon {
+            width: 20px;
+            height: 20px;
+            fill: #c084fc;
+            filter: drop-shadow(0 0 4px #c084fc);
+            display: inline-block;
+            vertical-align: middle;
         }
 
         /* Scene & Illustration Section */
         .muhammadi-scene-container {
-            margin-top: 10px;
+            margin-top: 4px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
             position: relative;
         }
 
@@ -335,7 +418,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 4px;
+            padding: 2px 4px;
         }
 
         .highlight-side {
@@ -343,79 +426,247 @@
             flex-direction: column;
             align-items: center;
             gap: 4px;
+            text-align: center;
         }
 
         .highlight-title {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 900;
-            color: #ffffff;
+            line-height: 1.2;
             text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
+        .highlight-title.title-gold {
+            color: #facc15;
+        }
+
+        .highlight-title.title-white {
+            color: #ffffff;
+        }
+
         .highlight-icon-box {
-            width: 44px;
-            height: 44px;
-            background: rgba(30, 27, 75, 0.7);
-            border: 1.5px solid rgba(168, 85, 247, 0.5);
+            width: 48px;
+            height: 48px;
+            background: rgba(20, 15, 45, 0.85);
+            border: 1.5px solid rgba(168, 85, 247, 0.6);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #c084fc;
-            box-shadow: 0 0 12px rgba(168, 85, 247, 0.3);
+            box-shadow: 0 0 14px rgba(168, 85, 247, 0.35);
         }
 
         .speedometer-box {
             color: #38bdf8;
-            border-color: rgba(56, 189, 248, 0.5);
-            box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+            border-color: rgba(56, 189, 248, 0.6);
+            box-shadow: 0 0 14px rgba(56, 189, 248, 0.35);
         }
 
         .h-svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
+            width: 30px;
+            height: 30px;
         }
 
         .highlight-center-capsule {
-            background: rgba(24, 16, 48, 0.85);
-            border: 1.5px solid #818cf8;
-            border-radius: 20px;
-            padding: 6px 14px;
-            text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            line-height: 1.2;
-            box-shadow: 0 0 14px rgba(129, 140, 248, 0.35);
+            justify-content: center;
+            gap: 3px;
+            text-align: center;
+            padding: 0 4px;
         }
 
         .highlight-center-capsule span {
-            font-size: 0.82rem;
-            color: #cbd5e1;
-        }
-
-        .highlight-center-capsule strong {
-            font-size: 0.95rem;
-            color: #818cf8;
+            font-size: 1.05rem;
+            color: #ffffff;
             font-weight: 800;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.9), 0 0 10px rgba(255,255,255,0.4);
+            letter-spacing: 0.5px;
         }
 
-        /* Rooftop Vector Artwork Container */
+        .highlight-center-capsule .glow-pill-btn {
+            background: linear-gradient(135deg, rgba(20, 15, 50, 0.95), rgba(45, 20, 80, 0.95));
+            border: 2px solid #38bdf8;
+            border-radius: 25px;
+            padding: 6px 22px;
+            color: #FFDF6D;
+            font-size: 1.15rem;
+            font-weight: 900;
+            box-shadow: 0 0 18px rgba(56, 189, 248, 0.6), inset 0 0 12px rgba(168, 85, 247, 0.5);
+            letter-spacing: 0.8px;
+            text-shadow: 0 0 8px rgba(250, 204, 21, 0.6);
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        /* Rooftop Artwork Container */
         .rooftop-art-wrapper {
             width: 100%;
-            height: 160px;
-            background: radial-gradient(circle at center top, rgba(88, 28, 135, 0.4) 0%, rgba(15, 7, 34, 0.9) 80%);
+            height: 180px;
             border-radius: 16px;
             overflow: hidden;
             position: relative;
-            border: 1px solid rgba(147, 51, 234, 0.3);
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+            border: 1.5px solid rgba(168, 85, 247, 0.5);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(0, 0, 0, 0.8);
+            background: #0f051d;
         }
 
-        .rooftop-illustration-svg {
+        /* Welcome Popup Modal (إشعار الترحيب المنبثق عند فتح الصفحة) */
+        .welcome-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(11, 3, 20, 0.78);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 999999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
+            padding: 16px;
+        }
+
+        .welcome-popup-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .welcome-popup-dialog {
+            background: linear-gradient(145deg, rgba(28, 11, 54, 0.98), rgba(13, 4, 28, 0.98));
+            border: 2px solid rgba(56, 189, 248, 0.65);
+            border-radius: 24px;
+            padding: 26px 20px 20px;
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 0 40px rgba(124, 58, 237, 0.75), 0 0 25px rgba(56, 189, 248, 0.45), inset 0 0 20px rgba(168, 85, 247, 0.25);
+            transform: scale(0.82) translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .welcome-popup-overlay.show .welcome-popup-dialog {
+            transform: scale(1) translateY(0);
+        }
+
+        .welcome-popup-close-btn {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            color: #f1f5f9;
+            font-size: 1.1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            outline: none;
+            z-index: 2;
+        }
+
+        .welcome-popup-close-btn:hover,
+        .welcome-popup-close-btn:active {
+            background: rgba(239, 68, 68, 0.9);
+            border-color: #ef4444;
+            color: #ffffff;
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 0 14px rgba(239, 68, 68, 0.7);
+        }
+
+        .welcome-popup-icon-wrapper {
+            width: 58px;
+            height: 58px;
+            margin: 0 auto 14px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(168, 85, 247, 0.3));
+            border: 2px solid #38bdf8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+            animation: popupIconPulse 2s infinite ease-in-out;
+        }
+
+        @keyframes popupIconPulse {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(168, 85, 247, 0.75);
+                transform: scale(1.06);
+            }
+        }
+
+        .welcome-popup-icon-svg {
+            width: 30px;
+            height: 30px;
+            fill: #38bdf8;
+            filter: drop-shadow(0 0 6px #38bdf8);
+        }
+
+        .welcome-popup-title {
+            font-size: 1.15rem;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 10px;
+            line-height: 1.45;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 0 12px rgba(255, 255, 255, 0.3);
+        }
+
+        .welcome-popup-subtitle-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: linear-gradient(90deg, rgba(56, 189, 248, 0.18), rgba(168, 85, 247, 0.25));
+            border: 1.5px solid rgba(56, 189, 248, 0.45);
+            border-radius: 20px;
+            padding: 6px 16px;
+            color: #38bdf8;
+            font-size: 0.95rem;
+            font-weight: 800;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+        }
+
+        .welcome-popup-timer-bar-wrap {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 2px;
+            margin-top: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .welcome-popup-timer-bar-fill {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, #10b981, #38bdf8, #facc15);
+            box-shadow: 0 0 10px #38bdf8;
+            transform-origin: right center;
+        }
+
+        .rooftop-art-img {
             width: 100%;
             height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            display: block;
         }
 
         /* Loyalty bar */
@@ -1022,11 +1273,13 @@
                                     <path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm13-2h3v2h-3v-2zm-5 0h3v3h-3v-3zm3 3h2v2h-2v-2zm-3 2h3v3h-3v-3zm3 3h5v2h-5v-2z"/>
                                 </svg>
                             </button>
-                            <div class="signal-indicator" title="قوة الإشارة">
-                                <span class="sig-bar bar-1"></span>
-                                <span class="sig-bar bar-2"></span>
-                                <span class="sig-bar bar-3"></span>
-                                <span class="sig-bar bar-4"></span>
+                            <div class="top-wifi-indicator" title="شبكة الواي فاي متصلة">
+                                <svg viewBox="0 0 24 24" class="top-wifi-svg">
+                                    <circle cx="12" cy="18" r="1.8" class="wifi-dot" />
+                                    <path d="M8.5 14.5a5 5 0 0 1 7 0" class="wifi-wave wave-1" />
+                                    <path d="M5.5 11.5a9 9 0 0 1 13 0" class="wifi-wave wave-2" />
+                                    <path d="M2.5 8.5a13 13 0 0 1 19 0" class="wifi-wave wave-3" />
+                                </svg>
                             </div>
                         </div>
                     </div>
@@ -1079,40 +1332,58 @@
 
                         <!-- Neon Service Capsules -->
                         <div class="service-pill-glowing">
-                            <span class="flash-icon">⚡</span>
+                            <svg viewBox="0 0 24 24" class="svg-neon-icon"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
                             <span>للإتصالات اللاسلكية</span>
-                            <span class="wifi-mini-icon">📶</span>
+                            <svg viewBox="0 0 24 24" class="svg-neon-icon"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 21l3.52-.92c1.22.6 2.6 1.02 4.13 1.02 4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
                         </div>
 
                         <div class="features-neon-sparkle">
-                            <span class="star-sparkle">✨</span>
+                            <svg viewBox="0 0 24 24" class="svg-star-icon"><path d="M12 2l2.4 7.2h7.6l-6 4.8 2.4 7.2-6-4.8-6 4.8 2.4-7.2-6-4.8h7.6z"/></svg>
                             <span>اتصال سريع • خدمة مميزة • تغطية واسعة</span>
-                            <span class="star-sparkle">✨</span>
+                            <svg viewBox="0 0 24 24" class="svg-star-icon"><path d="M12 2l2.4 7.2h7.6l-6 4.8 2.4 7.2-6-4.8-6 4.8 2.4-7.2-6-4.8h7.6z"/></svg>
                         </div>
                     </header>
 
                     <!-- Interactive Highlights & Illustration Scene Section -->
                     <div class="muhammadi-scene-container">
                         <div class="scene-top-highlights">
+                            <!-- Left: تغطية أوسع -->
                             <div class="highlight-side left-side">
-                                <span class="highlight-title">تغطية أوسع</span>
+                                <span class="highlight-title title-gold">تغطية<br>أوسع</span>
                                 <div class="highlight-icon-box">
-                                    <svg viewBox="0 0 24 24" class="h-svg">
-                                        <path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 21l3.52-.92c1.22.6 2.6 1.02 4.13 1.02 4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/>
+                                    <svg viewBox="0 0 36 36" class="h-svg">
+                                        <!-- Satellite Dish & Antenna Waves -->
+                                        <path d="M10 24 A 12 12 0 0 1 24 10" fill="none" stroke="#a855f7" stroke-width="2.5" stroke-linecap="round"/>
+                                        <path d="M14 27 A 8 8 0 0 1 27 14" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+                                        <path d="M18 30 A 4 4 0 0 1 30 18" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round"/>
+                                        <path d="M6 28 C 4 20, 12 12, 20 10 L 22 14 C 16 16, 10 22, 10 26 Z" fill="#38bdf8"/>
+                                        <line x1="12" y1="20" x2="19" y2="13" stroke="#ffffff" stroke-width="2"/>
                                     </svg>
                                 </div>
                             </div>
 
+                            <!-- Center: استمتع مع شبكة المحمدي -->
                             <div class="highlight-center-capsule">
                                 <span>استمتع مع</span>
-                                <strong>شبكة المحمدي</strong>
+                                <div class="glow-pill-btn">شبكة المحمدي</div>
                             </div>
 
+                            <!-- Right: عالم من السرعة -->
                             <div class="highlight-side right-side">
-                                <span class="highlight-title">عالم من السرعة</span>
+                                <span class="highlight-title title-white">عالم من<br>السرعة</span>
                                 <div class="highlight-icon-box speedometer-box">
-                                    <svg viewBox="0 0 24 24" class="h-svg">
-                                        <path d="M12 4C7.03 4 3 8.03 3 13c0 2.58 1.09 4.9 2.84 6.56l1.41-1.41C5.87 16.8 5 15.01 5 13c0-3.87 3.13-7 7-7s7 3.13 7 7c0 2.01-.87 3.8-2.25 5.15l1.41 1.41C19.91 17.9 21 15.58 21 13c0-4.97-4.03-9-9-9zm-1 4v5.09c-.58.27-1 .86-1 1.55 0 1.1.9 2 2 2s2-.9 2-2c0-.69-.42-1.28-1-1.55V8h-2z"/>
+                                    <svg viewBox="0 0 36 36" class="h-svg">
+                                        <!-- Colorful Speedometer Dial Arc -->
+                                        <path d="M 6 25 A 14 14 0 0 1 30 25" fill="none" stroke="#1e293b" stroke-width="4.5" stroke-linecap="round"/>
+                                        <!-- Red Arc (Fast zone) -->
+                                        <path d="M 6 25 A 14 14 0 0 1 12 13" fill="none" stroke="#ef4444" stroke-width="4" stroke-linecap="round"/>
+                                        <!-- Yellow Arc (Mid zone) -->
+                                        <path d="M 12 13 A 14 14 0 0 1 24 13" fill="none" stroke="#eab308" stroke-width="4" stroke-linecap="round"/>
+                                        <!-- Blue Arc (Start zone) -->
+                                        <path d="M 24 13 A 14 14 0 0 1 30 25" fill="none" stroke="#06b6d4" stroke-width="4" stroke-linecap="round"/>
+                                        <!-- Needle Pointer pointing high speed -->
+                                        <line x1="18" y1="25" x2="10" y2="15" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                                        <circle cx="18" cy="25" r="3" fill="#facc15"/>
                                     </svg>
                                 </div>
                             </div>
@@ -1120,66 +1391,7 @@
 
                         <!-- Rooftop Technician Illustration Artwork -->
                         <div class="rooftop-art-wrapper">
-                            <div class="night-sky-stars"></div>
-                            <!-- Network Towers Background SVG -->
-                            <svg viewBox="0 0 400 180" class="rooftop-illustration-svg" preserveAspectRatio="xMidYMax meet">
-                                <!-- Background Radio Towers Left & Right -->
-                                <g opacity="0.45" stroke="#a855f7" stroke-width="1.5" fill="none">
-                                    <!-- Left Tower -->
-                                    <path d="M60 170 L80 40 L100 170 M70 100 L90 100 M65 130 L95 130 M75 70 L85 70 M80 40 L80 15"/>
-                                    <circle cx="80" cy="15" r="3" fill="#ec4899"/>
-                                    <circle cx="80" cy="15" r="8" fill="none" stroke="#ec4899" stroke-width="1" opacity="0.6"/>
-                                    <!-- Right Tower -->
-                                    <path d="M300 170 L320 30 L340 170 M310 90 L330 90 M305 130 L335 130 M315 60 L325 60 M320 30 L320 5"/>
-                                    <circle cx="320" cy="5" r="3" fill="#38bdf8"/>
-                                    <circle cx="320" cy="5" r="8" fill="none" stroke="#38bdf8" stroke-width="1" opacity="0.6"/>
-                                </g>
-
-                                <!-- Roof & House Base -->
-                                <path d="M40 180 L200 120 L360 180 Z" fill="#1b1130" stroke="#4c1d95" stroke-width="2"/>
-                                <!-- Glowing Roof Window -->
-                                <polygon points="230,150 250,140 250,165 230,170" fill="#f59e0b" opacity="0.85"/>
-                                <polygon points="250,140 270,150 270,170 250,165" fill="#d97706" opacity="0.85"/>
-
-                                <!-- Satellite Dish & Routers on Roof -->
-                                <g fill="none" stroke="#93c5fd" stroke-width="2">
-                                    <path d="M120 145 C 100 135, 100 115, 120 110" fill="#3b82f6" opacity="0.6"/>
-                                    <line x1="110" y1="122" x2="135" y2="130" stroke="#fff" stroke-width="2"/>
-                                    <line x1="120" y1="130" x2="120" y2="155" stroke="#64748b" stroke-width="3"/>
-                                </g>
-
-                                <!-- Technician Character Vector -->
-                                <g transform="translate(140, 75)">
-                                    <!-- Stool -->
-                                    <rect x="22" y="55" width="26" height="5" fill="#b45309" rx="2"/>
-                                    <line x1="26" y1="60" x2="20" y2="85" stroke="#78350f" stroke-width="3"/>
-                                    <line x1="44" y1="60" x2="50" y2="85" stroke="#78350f" stroke-width="3"/>
-
-                                    <!-- Body (Blue & Orange Vest) -->
-                                    <path d="M25 35 Q 35 30 45 35 L 48 58 L 22 58 Z" fill="#1e3a8a"/>
-                                    <path d="M25 35 L 32 35 L 30 58 L 22 58 Z" fill="#f97316"/>
-                                    <path d="M45 35 L 38 35 L 40 58 L 48 58 Z" fill="#f97316"/>
-
-                                    <!-- Head & Cap -->
-                                    <circle cx="35" cy="22" r="9" fill="#fbcfe8"/>
-                                    <path d="M24 20 C 24 10, 46 10, 46 20 Z" fill="#f97316"/>
-                                    <path d="M20 20 L 32 18 L 32 22 Z" fill="#ea580c"/>
-
-                                    <!-- Text on Vest -->
-                                    <text x="35" y="46" font-size="5" fill="#ffffff" font-weight="bold" text-anchor="middle">المحمدي</text>
-                                    <text x="35" y="52" font-size="4.5" fill="#fde047" font-weight="bold" text-anchor="middle">WIFI</text>
-                                </g>
-
-                                <!-- Router Boxes & Wi-Fi Signals -->
-                                <g transform="translate(205, 105)">
-                                    <rect x="0" y="10" width="30" height="15" rx="3" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.5"/>
-                                    <line x1="6" y1="10" x2="6" y2="0" stroke="#818cf8" stroke-width="2"/>
-                                    <line x1="24" y1="10" x2="24" y2="0" stroke="#818cf8" stroke-width="2"/>
-                                    <!-- WiFi Badge Bubble -->
-                                    <circle cx="15" cy="-12" r="14" fill="#ffffff" stroke="#3b82f6" stroke-width="1.5"/>
-                                    <text x="15" y="-9" font-size="8" fill="#1e3a8a" font-weight="900" text-anchor="middle">WiFi</text>
-                                </g>
-                            </svg>
+                            <img src="img/rooftop_wifi_technician.jpg" alt="فني شبكة المحمدي على السطح" class="rooftop-art-img" />
                         </div>
                     </div>
 
@@ -1197,9 +1409,9 @@
                     <!-- Registered / Unregistered Loyalty System Quick Bar -->
                     <div id="loyalty-unregistered-section" class="muhammadi-loyalty-bar">
                         <button type="button" class="loyalty-pill-trigger-btn" id="openPointsRegisterBtn" parent-id="points-register-modal">
-                            <span class="sparkle-gold">✨</span>
+                            <svg viewBox="0 0 24 24" class="svg-star-icon"><path d="M12 2l2.4 7.2h7.6l-6 4.8 2.4 7.2-6-4.8-6 4.8 2.4-7.2-6-4.8h7.6z"/></svg>
                             <span>التسجيل في نظام النقاط والهدايا</span>
-                            <span class="sparkle-gold">🎁</span>
+                            <svg viewBox="0 0 24 24" class="svg-gift-icon"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.65-.5-.65C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4V8h16v11z"/></svg>
                         </button>
                     </div>
 
@@ -1232,9 +1444,9 @@
                     <!-- MAIN CARD INPUT SECTION (ادخل رقم الكرت هنا) -->
                     <div class="muhammadi-card-login-box">
                         <div class="card-box-header">
-                            <span class="star-gold">✨</span>
+                            <svg viewBox="0 0 24 24" class="svg-star-icon"><path d="M12 2l2.4 7.2h7.6l-6 4.8 2.4 7.2-6-4.8-6 4.8 2.4-7.2-6-4.8h7.6z"/></svg>
                             <span class="card-box-title">ادخل رقم الكرت هنا</span>
-                            <span class="star-gold">✨</span>
+                            <svg viewBox="0 0 24 24" class="svg-star-icon"><path d="M12 2l2.4 7.2h7.6l-6 4.8 2.4 7.2-6-4.8-6 4.8 2.4-7.2-6-4.8h7.6z"/></svg>
                         </div>
 
                         <form class="login-form" name="login" onsubmit="return false;">
@@ -1318,24 +1530,12 @@
                                         <div class="carousel-slide">
                                             <img class="im2" src="./adimg/2.jpg" alt="إعلان 2" loading="lazy">
                                         </div>
-                                        <div class="carousel-slide">
-                                            <img class="im3" src="./adimg/3.jpg" alt="إعلان 3" loading="lazy">
-                                        </div>
-                                        <div class="carousel-slide">
-                                            <img class="im4" src="./adimg/4.jpg" alt="إعلان 4" loading="lazy">
-                                        </div>
-                                        <div class="carousel-slide">
-                                            <img class="im5" src="./adimg/5.jpg" alt="إعلان 5" loading="lazy">
-                                        </div>
                                     </div>
                                     <button class="carousel-nav-btn prev" id="carouselPrev" aria-label="السابق">❮</button>
                                     <button class="carousel-nav-btn next" id="carouselNext" aria-label="التالي">❯</button>
                                 </div>
-                                <div class="carousel-dots 5-neon-dots" id="carouselDots">
+                                <div class="carousel-dots" id="carouselDots">
                                     <span class="carousel-dot active"></span>
-                                    <span class="carousel-dot"></span>
-                                    <span class="carousel-dot"></span>
-                                    <span class="carousel-dot"></span>
                                     <span class="carousel-dot"></span>
                                 </div>
                             </div>
@@ -1345,7 +1545,7 @@
                     <!-- THREE INTERACTIVE CARDS (أسعار الكروت - نقاط البيع - العروض والتخفيضات) -->
                     <div class="muhammadi-three-cards-section">
                         <div class="cards-section-header">
-                            <span class="pin-icon">📍</span>
+                            <svg viewBox="0 0 24 24" class="svg-pin-icon"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
                             <span>أماكن بيع الكروت والخدمات</span>
                         </div>
 
@@ -1546,7 +1746,7 @@
                                                 <path
                                                     d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z" />
                                             </svg>
-                                            <span>📷 مسح بكاميرا الهاتف البديلة</span>
+                                            <span>مسح بكاميرا الهاتف البديلة</span>
                                         </button>
 
                                         <button type="button" class="button" id="qrRetryCamBtn"
@@ -2368,6 +2568,115 @@
     <!-- Notification Message Holder -->
     <span style="display: none;" id="winmsg"></span>
 
+    <!-- Welcome Popup Notification Modal (إشعار الترحيب المنبثق عند فتح الصفحة) -->
+    <div class="welcome-popup-overlay" id="welcome-popup-modal" role="dialog" aria-modal="true" aria-labelledby="welcome-popup-title-el">
+        <div class="welcome-popup-dialog">
+            <button type="button" class="welcome-popup-close-btn" id="welcomePopupCloseBtn" title="إغلاق الإشعار" aria-label="إغلاق الإشعار">✕</button>
+            <div class="welcome-popup-icon-wrapper">
+                <svg viewBox="0 0 24 24" class="welcome-popup-icon-svg">
+                    <path d="M12 3C6.95 3 2.38 5.05 0 8.41L1.44 9.9C3.47 6.94 7.47 5 12 5c4.53 0 8.53 1.94 10.56 4.9L24 8.41C21.62 5.05 17.05 3 12 3zm0 4c-3.73 0-7.04 1.54-9.4 4l1.45 1.45C5.7 10.82 8.65 9.5 12 9.5c3.35 0 6.3 1.32 8.35 3.35L21.8 11.4C19.44 8.94 16.13 7 12 7zm0 4c-2.4 0-4.57 1-6.14 2.6L12 21l6.14-7.4A8.52 8.52 0 0 0 12 11z" />
+                </svg>
+            </div>
+            <h2 class="welcome-popup-title" id="welcome-popup-title-el">مرحبا بك في شبكه المُحمدي اللاسلكية</h2>
+            <div class="welcome-popup-subtitle-badge" id="welcome-popup-subtitle-el">
+                <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: currentColor;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <span>المهندس محمد فهيم اليافعي</span>
+            </div>
+            <div class="welcome-popup-timer-bar-wrap">
+                <div class="welcome-popup-timer-bar-fill" id="welcomePopupTimerFill"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function() {
+            var welcomePopupTimer = null;
+            var isClosed = false;
+
+            window.initWelcomePopup = function(configObj) {
+                var modal = document.getElementById('welcome-popup-modal');
+                var titleEl = document.getElementById('welcome-popup-title-el');
+                var subtitleEl = document.getElementById('welcome-popup-subtitle-el');
+                var closeBtn = document.getElementById('welcomePopupCloseBtn');
+                var timerFill = document.getElementById('welcomePopupTimerFill');
+
+                if (!modal) return;
+
+                var cfg = configObj || (typeof hotspotConfig !== 'undefined' ? hotspotConfig : (typeof hotOption !== 'undefined' ? hotOption : null));
+
+                var isEnabled = cfg ? (cfg['welcome-popup-enabled'] !== false) : true;
+                if (!isEnabled) {
+                    modal.style.display = 'none';
+                    modal.classList.remove('show');
+                    return;
+                }
+
+                var titleText = (cfg && cfg['welcome-popup-title']) || 'مرحبا بك في شبكه المُحمدي اللاسلكية';
+                var subtitleText = (cfg && cfg['welcome-popup-subtitle']) || 'المهندس محمد فهيم اليافعي';
+                var durationSec = (cfg && parseInt(cfg['welcome-popup-duration'])) || 6;
+
+                if (titleEl) titleEl.textContent = titleText;
+                if (subtitleEl) {
+                    subtitleEl.innerHTML = `
+                        <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: currentColor;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <span>${subtitleText}</span>
+                    `;
+                }
+
+                window.closeWelcomePopup = function() {
+                    if (isClosed) return;
+                    isClosed = true;
+                    if (welcomePopupTimer) clearTimeout(welcomePopupTimer);
+                    modal.classList.remove('show');
+                    setTimeout(function() {
+                        modal.style.display = 'none';
+                    }, 350);
+                };
+
+                if (closeBtn) {
+                    closeBtn.onclick = function(e) {
+                        e.stopPropagation();
+                        window.closeWelcomePopup();
+                    };
+                }
+
+                modal.onclick = function(e) {
+                    if (e.target === modal) {
+                        window.closeWelcomePopup();
+                    }
+                };
+
+                if (!modal.classList.contains('show') && modal.style.display !== 'flex' && !isClosed) {
+                    modal.style.display = 'flex';
+                    modal.offsetHeight; // force reflow
+                    setTimeout(function() {
+                        modal.classList.add('show');
+                    }, 20);
+
+                    if (timerFill) {
+                        timerFill.style.transition = 'none';
+                        timerFill.style.width = '100%';
+                        setTimeout(function() {
+                            timerFill.style.transition = 'width ' + durationSec + 's linear';
+                            timerFill.style.width = '0%';
+                        }, 50);
+                    }
+
+                    if (welcomePopupTimer) clearTimeout(welcomePopupTimer);
+                    welcomePopupTimer = setTimeout(function() {
+                        window.closeWelcomePopup();
+                    }, durationSec * 1000);
+                }
+            };
+
+            // Trigger immediately upon DOM parsing
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() { window.initWelcomePopup(); });
+            } else {
+                window.initWelcomePopup();
+            }
+        })();
+    </script>
+
     <!-- Hotspot System Scripts -->
     <script src="js/jsqr.min.js"></script>
     <script src="js/init.min.js"></script>
@@ -2379,39 +2688,128 @@
 
     <!-- 2026 Interactive Enhancements & Swipe Gestures -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        function initAppPage() {
 
-            // 1. CAROUSEL SEAMLESS INFINITE LOOP & AUTOPLAY
-            const track = document.getElementById('carouselTrack');
-            const dots = document.querySelectorAll('.carousel-dot');
-            const prevBtn = document.getElementById('carouselPrev');
-            const nextBtn = document.getElementById('carouselNext');
-            const carouselContainer = document.getElementById('adCarousel');
+            // 1. CAROUSEL DYNAMIC DETECTOR, SEAMLESS LOOP & AUTOPLAY
+            async function initDynamicCarousel() {
+                const track = document.getElementById('carouselTrack');
+                const dotsContainer = document.getElementById('carouselDots');
+                const prevBtn = document.getElementById('carouselPrev');
+                const nextBtn = document.getElementById('carouselNext');
+                const carouselContainer = document.getElementById('adCarousel');
+                const bannerFrame = document.querySelector('.ad-banner-frame');
 
-            if (track) {
+                if (!track) return;
+
+                let validImages = [];
+
+                // 1. Try server API /api/adimg first
+                try {
+                    const apiRes = await fetch('/api/adimg');
+                    if (apiRes.ok) {
+                        const data = await apiRes.json();
+                        if (data.images && Array.isArray(data.images) && data.images.length > 0) {
+                            validImages = data.images.map(img => `./adimg/${img}`);
+                        }
+                    }
+                } catch (e) {
+                    // Ignore API failure and fallback to image detection
+                }
+
+                // 2. Client-side fallback detection: test candidate images 1.jpg to 10.jpg
+                if (validImages.length === 0) {
+                    const checkPromises = [];
+                    for (let i = 1; i <= 10; i++) {
+                        const src = `./adimg/${i}.jpg`;
+                        checkPromises.push(new Promise(resolve => {
+                            const img = new Image();
+                            img.onload = () => resolve({ src, num: i, ok: true });
+                            img.onerror = () => resolve({ src, num: i, ok: false });
+                            img.src = src;
+                        }));
+                    }
+                    const results = await Promise.all(checkPromises);
+                    validImages = results.filter(r => r.ok).sort((a, b) => a.num - b.num).map(r => r.src);
+                }
+
+                // If no valid images found, hide banner frame cleanly
+                if (validImages.length === 0) {
+                    if (bannerFrame) bannerFrame.style.display = 'none';
+                    return;
+                }
+
+                // 3. Dynamically populate slides
+                track.innerHTML = '';
+                validImages.forEach((src, idx) => {
+                    const slide = document.createElement('div');
+                    slide.className = 'carousel-slide';
+                    if (idx === 0) {
+                        slide.innerHTML = `
+                            <div class="ad-card-glowing-content">
+                                <div class="ad-text-side">
+                                    <h3>إنترنت أسرع</h3>
+                                    <h4>تغطية أقوى</h4>
+                                    <p>ثقة تدوم ...</p>
+                                </div>
+                                <div class="ad-img-side">
+                                    <img class="im1" src="${src}" alt="إعلان 1" fetchpriority="high">
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        slide.innerHTML = `<img class="im${idx + 1}" src="${src}" alt="إعلان ${idx + 1}" loading="lazy">`;
+                    }
+                    track.appendChild(slide);
+                });
+
+                // 4. Dynamically generate dots
+                if (dotsContainer) {
+                    dotsContainer.innerHTML = '';
+                    if (validImages.length > 1) {
+                        dotsContainer.style.display = 'flex';
+                        for (let i = 0; i < validImages.length; i++) {
+                            const dot = document.createElement('span');
+                            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+                            dotsContainer.appendChild(dot);
+                        }
+                    } else {
+                        dotsContainer.style.display = 'none';
+                    }
+                }
+
                 const originalSlides = Array.from(track.querySelectorAll('.carousel-slide'));
                 const totalSlides = originalSlides.length;
+
+                // 5. Handle single slide case
+                if (totalSlides <= 1) {
+                    if (prevBtn) prevBtn.style.display = 'none';
+                    if (nextBtn) nextBtn.style.display = 'none';
+                    return;
+                } else {
+                    if (prevBtn) prevBtn.style.display = 'flex';
+                    if (nextBtn) nextBtn.style.display = 'flex';
+                }
+
+                // 6. Infinite Loop Clones
+                const firstClone = originalSlides[0].cloneNode(true);
+                const lastClone = originalSlides[totalSlides - 1].cloneNode(true);
+                firstClone.classList.add('carousel-clone');
+                lastClone.classList.add('carousel-clone');
+
+                track.insertBefore(lastClone, track.firstElementChild);
+                track.appendChild(firstClone);
+
                 let currentIndex = 1;
                 let isTransitioning = false;
                 let autoplayInterval = null;
                 let transitionSafetyTimeout = null;
 
-                if (totalSlides > 1) {
-                    // Clone first and last slides for seamless circular transition
-                    const firstClone = originalSlides[0].cloneNode(true);
-                    const lastClone = originalSlides[totalSlides - 1].cloneNode(true);
-                    firstClone.classList.add('carousel-clone');
-                    lastClone.classList.add('carousel-clone');
+                track.style.transition = 'none';
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                track.offsetHeight; // Force reflow
+                track.style.transition = 'transform 0.45s cubic-bezier(0.25, 1, 0.5, 1)';
 
-                    track.insertBefore(lastClone, track.firstElementChild);
-                    track.appendChild(firstClone);
-
-                    // Initialize starting position at first real slide
-                    track.style.transition = 'none';
-                    track.style.transform = `translateX(-${currentIndex * 100}%)`;
-                    track.offsetHeight; // Force reflow
-                    track.style.transition = 'transform 0.45s cubic-bezier(0.25, 1, 0.5, 1)';
-                }
+                const dots = dotsContainer ? Array.from(dotsContainer.querySelectorAll('.carousel-dot')) : [];
 
                 function updateDots() {
                     var realIndex = (currentIndex - 1 + totalSlides) % totalSlides;
@@ -2442,17 +2840,15 @@
 
                 function checkCloneReset() {
                     if (currentIndex === totalSlides + 1) {
-                        // We moved forward past the last slide into clone 1 -> silently reset to real slide 1
                         track.style.transition = 'none';
                         currentIndex = 1;
                         track.style.transform = `translateX(-${currentIndex * 100}%)`;
-                        track.offsetHeight; // Force reflow
+                        track.offsetHeight;
                     } else if (currentIndex === 0) {
-                        // We moved backward past first slide into clone last -> silently reset to real last slide
                         track.style.transition = 'none';
                         currentIndex = totalSlides;
                         track.style.transform = `translateX(-${currentIndex * 100}%)`;
-                        track.offsetHeight; // Force reflow
+                        track.offsetHeight;
                     }
                     isTransitioning = false;
                 }
@@ -2484,18 +2880,18 @@
                     if (autoplayInterval) clearInterval(autoplayInterval);
                 }
 
-                if (prevBtn) prevBtn.addEventListener('click', function() { prevSlide(); startAutoplay(); });
-                if (nextBtn) nextBtn.addEventListener('click', function() { nextSlide(); startAutoplay(); });
+                if (prevBtn) prevBtn.onclick = function() { prevSlide(); startAutoplay(); };
+                if (nextBtn) nextBtn.onclick = function() { nextSlide(); startAutoplay(); };
 
                 dots.forEach(function(dot, idx) {
-                    dot.addEventListener('click', function() {
+                    dot.onclick = function() {
                         if (isTransitioning) return;
                         goToSlide(idx + 1);
                         startAutoplay();
-                    });
+                    };
                 });
 
-                // Touch Swipe Gestures for Mobile
+                // Touch Swipe Gestures
                 let touchStartX = 0;
                 let touchEndX = 0;
 
@@ -2510,9 +2906,9 @@
                         var diff = touchEndX - touchStartX;
                         if (Math.abs(diff) > 40) {
                             if (diff > 0) {
-                                prevSlide(); // Swipe right
+                                prevSlide();
                             } else {
-                                nextSlide(); // Swipe left
+                                nextSlide();
                             }
                         }
                         startAutoplay();
@@ -2521,6 +2917,8 @@
 
                 startAutoplay();
             }
+
+            initDynamicCarousel();
 
             // 2. UNIVERSAL MODAL CONTROLLER & POPUP SCROLL LOCK MANAGER
             window.animating = false;
@@ -2778,6 +3176,11 @@
                         const el = document.getElementById('loan-news-extra-badge');
                         if (el) el.textContent = configObj['news-extra-badge'];
                     }
+
+                    // Trigger Welcome Popup with dynamic config from config.js
+                    if (typeof window.initWelcomePopup === 'function') {
+                        window.initWelcomePopup(configObj);
+                    }
                 };
 
                 var configChecks = 0;
@@ -2790,10 +3193,14 @@
                         applyConfigOptions(hotOption);
                     }
                     configChecks++;
-                    if (configChecks > 50) clearInterval(configCheckInterval); // abort after 5 seconds
+                    if (configChecks > 30) {
+                        clearInterval(configCheckInterval);
+                        if (typeof window.initWelcomePopup === 'function') window.initWelcomePopup(null);
+                    }
                 }, 100);
             } catch (err) {
                 console.error(err);
+                if (typeof window.initWelcomePopup === 'function') window.initWelcomePopup(null);
             }
 
             const speedLabelMap = {
@@ -4084,7 +4491,13 @@
             // Reset on page show or hashchange
             window.addEventListener('pageshow', resetWindowScrollToTop);
             window.addEventListener('hashchange', resetWindowScrollToTop);
-        });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initAppPage);
+        } else {
+            initAppPage();
+        }
 
         // Friday Greeting Check
         var e, m = new Date().toDateString();
