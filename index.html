@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title data-network-name>شبكة{{network-name}} اللاسلكيه</title>
+    <title data-network-name>شبكة المحمدي نت اللاسلكية</title>
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, shrink-to-fit=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -13,10 +13,36 @@
     <meta name="MobileOptimized" content="width">
     <meta name="theme-color" content="#090d16">
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <script>
+        /* Immediate Synchronous Session State Detection to Prevent Login Flash on Refresh */
+        (function () {
+            try {
+                var mtLoggedIn = "$(logged-in)";
+                var isServerYes = (mtLoggedIn === "yes");
+                var isServerNo = (mtLoggedIn === "no");
+                var savedLoggedIn = sessionStorage.getItem("hotspot_logged_in") || localStorage.getItem("hotspot_logged_in");
+
+                if (isServerYes || (!isServerNo && savedLoggedIn === "yes")) {
+                    document.documentElement.classList.add("user-logged-in-state");
+                } else {
+                    document.documentElement.classList.remove("user-logged-in-state");
+                }
+            } catch (e) { }
+        })();
+        window.hotspotConfig = window.hotspotConfig || {};
+        window.Config = function(c) {
+            if (c && typeof c === 'object') {
+                window.hotspotConfig = Object.assign({}, window.hotspotConfig, c);
+                window.hotOption = window.hotspotConfig;
+            }
+        };
+    </script>
     <script src="config/config.js"></script>
+    <link rel="preload" href="fonts/almarai-700-ar.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/almarai-800-ar.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/fontello.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="fonts/Almarai.css">
     <link rel="stylesheet" href="css/fontello.min.css">
-    <link rel="stylesheet" href="css/local-fontawesome.css">
     <link rel="stylesheet" href="css/style.min.css">
     <link rel="stylesheet" href="css/loyalty-system.css">
     <link rel="stylesheet" href="css/loyalty-modal.css">
@@ -25,6 +51,23 @@
     <link rel="stylesheet" href="css/announcements-style.css">
     <script src="js/loyalty-button.js" defer></script>
     <style>
+        /* Instant Login Screen Suppression & Instant Status Display when logged in */
+        html.user-logged-in-state #login,
+        body.user-logged-in-state #login,
+        html.user-logged-in-state .login {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
+        html.user-logged-in-state #status,
+        body.user-logged-in-state #status {
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+
         .im1::before {
             content: "سرعة في النت";
         }
@@ -1348,12 +1391,19 @@
         }
 
         .three-cards-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            display: flex;
             gap: 8px;
+            width: 100%;
+        }
+
+        .muhammadi-three-cards-section:empty,
+        .muhammadi-three-cards-section:not(:has(.purple-nav-card:not([style*="display: none"]))) {
+            display: none !important;
         }
 
         .purple-nav-card {
+            flex: 1 1 0;
+            min-width: 0;
             background: rgba(28, 15, 54, 0.9);
             border: 1px solid rgba(168, 85, 247, 0.35);
             border-radius: 10px;
@@ -1742,7 +1792,7 @@
 
                         <!-- Rooftop Technician Illustration Artwork -->
                         <div class="rooftop-art-wrapper">
-                            <img src="img/rooftop_wifi_technician.jpg" alt="فني شبكة المحمدي على السطح" class="rooftop-art-img" loading="lazy" decoding="async" />
+                            <img src="img/rooftop_wifi_technician.jpg" alt="فني شبكة المحمدي على السطح" class="rooftop-art-img" width="340" height="180" fetchpriority="high" decoding="async" />
                         </div>
                     </div>
 
@@ -1752,13 +1802,13 @@
                     <section class="section">
                         <div class="ticker-container">
                             <div class="ticker-content-track">
-                                <p class="marquee" data-news-line>{{news-line}}</p>
+                                <p class="marquee" data-news-line>{بسم الله الرحمن الرحيم} ( قل للمؤمنين يغضوا من أبصرهم ويحفظوا فروجهم ذلك ازكى لهم إن الله خبير بما يصنعون ) صدق الله العظيم</p>
                             </div>
                         </div>
                     </section>
 
                     <!-- Registered / Unregistered Loyalty System Quick Bar -->
-                    <div id="loyalty-unregistered-section" class="muhammadi-loyalty-bar">
+                    <div id="loyalty-unregistered-section" class="muhammadi-loyalty-bar" data-loyalty-points-enabled>
                         <button type="button" class="loyalty-pill-trigger-btn" id="openPointsRegisterBtn" parent-id="points-register-modal">
                             <svg viewBox="0 0 24 24" class="svg-star-icon"><path d="M12 2l2.4 7.2h7.6l-6 4.8 2.4 7.2-6-4.8-6 4.8 2.4-7.2-6-4.8h7.6z"/></svg>
                             <span>التسجيل في نظام النقاط والهدايا</span>
@@ -1766,7 +1816,7 @@
                         </button>
                     </div>
 
-                    <div id="loyalty-registered-section" style="display: none;">
+                    <div id="loyalty-registered-section" style="display: none;" data-loyalty-points-enabled>
                         <div class="loyalty-user-card">
                             <div class="loyalty-user-header">
                                 <div class="loyalty-user-profile-info">
@@ -2539,13 +2589,13 @@
                         <section class="section" style="margin-top: 10px; margin-bottom: 10px;">
                             <div class="ticker-container">
                                 <div class="ticker-content-track">
-                                    <p class="marquee" data-news-line>{{news-line}}</p>
+                                    <p class="marquee" data-news-line>{بسم الله الرحمن الرحيم} ( قل للمؤمنين يغضوا من أبصرهم ويحفظوا فروجهم ذلك ازكى لهم إن الله خبير بما يصنعون ) صدق الله العظيم</p>
                                 </div>
                             </div>
                         </section>
 
                         <!-- Unregistered Loyalty Section in Status Screen -->
-                        <div id="loyalty-unregistered-section-status">
+                        <div id="loyalty-unregistered-section-status" data-loyalty-points-enabled>
                             <!-- Notice / Points System Alert Box -->
                             <div class="points-notice-alert" role="alert">
                                 <div class="notice-icon-wrap">
@@ -2573,7 +2623,7 @@
                         </div>
 
                         <!-- Registered Loyalty Section (User Dashboard Card) in Status Screen -->
-                        <div id="loyalty-registered-section-status" style="display: none;">
+                        <div id="loyalty-registered-section-status" style="display: none;" data-loyalty-points-enabled>
                             <div class="loyalty-user-card">
                                 <!-- User Header -->
                                 <div class="loyalty-user-header">
@@ -2642,14 +2692,14 @@
 
                         <!-- Entertainment Direct Links -->
                         <div class="entertainment-links">
-                            <a class="stream-card-link" href="http://30.10.10.10" target="_blank">
+                            <a class="stream-card-link" id="esterahahLink" data-esterahah href="http://f.com/fiberlive/live.html" target="_blank">
                                 <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: currentColor;">
                                     <path
                                         d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z" />
                                 </svg>
                                 <span>الاستراحة</span>
                             </a>
-                            <a class="stream-card-link" href="http://30.10.10.10:88" target="_blank">
+                            <a class="stream-card-link" id="mobasherLink" data-mobasher href="http://f.com/fiberlive/live.html" target="_blank">
                                 <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: currentColor;">
                                     <path
                                         d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 14H3V5h18v12zm-11-2l6-4-6-4v8z" />
@@ -2952,36 +3002,8 @@
 
                 if (!track) return;
 
-                let validImages = [];
-
-                // 1. Try server API /api/adimg first
-                try {
-                    const apiRes = await fetch('/api/adimg');
-                    if (apiRes.ok) {
-                        const data = await apiRes.json();
-                        if (data.images && Array.isArray(data.images) && data.images.length > 0) {
-                            validImages = data.images.map(img => `./adimg/${img}`);
-                        }
-                    }
-                } catch (e) {
-                    // Ignore API failure and fallback to image detection
-                }
-
-                // 2. Client-side fallback detection: test candidate images 1.jpg to 10.jpg
-                if (validImages.length === 0) {
-                    const checkPromises = [];
-                    for (let i = 1; i <= 10; i++) {
-                        const src = `./adimg/${i}.jpg`;
-                        checkPromises.push(new Promise(resolve => {
-                            const img = new Image();
-                            img.onload = () => resolve({ src, num: i, ok: true });
-                            img.onerror = () => resolve({ src, num: i, ok: false });
-                            img.src = src;
-                        }));
-                    }
-                    const results = await Promise.all(checkPromises);
-                    validImages = results.filter(r => r.ok).sort((a, b) => a.num - b.num).map(r => r.src);
-                }
+                // Instant local images without blocking network probes
+                let validImages = ['./adimg/1.jpg', './adimg/2.jpg'];
 
                 // If no valid images found, hide banner frame cleanly
                 if (validImages.length === 0) {
@@ -3653,6 +3675,74 @@
                         const marquees = document.querySelectorAll('.marquee, [data-news-line]');
                         marquees.forEach(function(m) {
                             m.textContent = configObj['news-line'];
+                        });
+                    }
+
+                    // Apply Entertainment Links (Esterahah & Mobasher)
+                    const esterahahVal = configObj['redirect-to-esterahah'];
+                    const esterahahEls = document.querySelectorAll('[data-esterahah], #esterahahLink');
+                    esterahahEls.forEach(function(el) {
+                        if (!esterahahVal || esterahahVal.trim() === '' || esterahahVal === false) {
+                            el.style.display = 'none';
+                            el.style.visibility = 'hidden';
+                        } else {
+                            el.style.display = '';
+                            el.style.visibility = '';
+                            el.setAttribute('href', esterahahVal);
+                        }
+                    });
+
+                    const mobasherVal = configObj['redirect-to-mobasher'];
+                    const mobasherEls = document.querySelectorAll('[data-mobasher], #mobasherLink');
+                    mobasherEls.forEach(function(el) {
+                        if (!mobasherVal || mobasherVal.trim() === '' || mobasherVal === false) {
+                            el.style.display = 'none';
+                            el.style.visibility = 'hidden';
+                        } else {
+                            el.style.display = '';
+                            el.style.visibility = '';
+                            el.setAttribute('href', mobasherVal);
+                        }
+                    });
+
+                    // Hide container if both are hidden
+                    const entContainers = document.querySelectorAll('.entertainment-links');
+                    entContainers.forEach(function(cont) {
+                        const visibleChildren = cont.querySelectorAll('.stream-card-link:not([style*="display: none"])');
+                        if (visibleChildren.length === 0) {
+                            cont.style.display = 'none';
+                        } else {
+                            cont.style.display = 'flex';
+                        }
+                    });
+
+                    // Apply Loyalty Points System toggle
+                    if (configObj['loyalty-points-enabled'] === false) {
+                        document.querySelectorAll('.muhammadi-loyalty-section, .loyalty-points-card-status, .loyalty-header-badge, [data-loyalty-points], [data-loyalty-points-enabled], #loyalty-unregistered-section, #loyalty-registered-section, #loyalty-unregistered-section-status, #loyalty-registered-section-status').forEach(function(el) {
+                            el.style.display = 'none';
+                            el.style.visibility = 'hidden';
+                        });
+                    }
+
+                    // Apply Button Toggles (Price, Sell Points, Loan, Speeds)
+                    if (configObj['price-button'] === false) {
+                        document.querySelectorAll('[data-price-button]').forEach(function(el) {
+                            el.style.display = 'none';
+                        });
+                    }
+                    if (configObj['sell-point-button'] === false) {
+                        document.querySelectorAll('[data-sell-point-button]').forEach(function(el) {
+                            el.style.display = 'none';
+                        });
+                    }
+                    if (configObj['loan-button'] === false) {
+                        document.querySelectorAll('[data-loan-button]').forEach(function(el) {
+                            el.style.display = 'none';
+                        });
+                    }
+                    if (configObj['login-speeds-mode'] === false) {
+                        document.querySelectorAll('.speed-selection-wrapper, .speeds-container, [data-speed-mode]').forEach(function(el) {
+                            el.style.display = 'none';
                         });
                     }
 

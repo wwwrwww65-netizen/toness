@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import url('../fonts/Almarai.css');
 
 /* ==========================================================================
    2026 ROYAL MAROON & GOLD GLASSMORPHISM THEME FOR TUNIS-NET HOTSPOT
@@ -530,13 +529,13 @@ button#btn-whats-new .btn-icon {
   animation-play-state: paused;
 }
 
-/* حركة احتياطية في حال تعذر تشغيل الجافاسكربت */
+/* حركة شريط إخباري فورية وسلسة */
 @keyframes marqueeDynamic {
   0% {
-    transform: translate3d(-100vw, 0, 0);
+    transform: translate3d(-100%, 0, 0);
   }
   100% {
-    transform: translate3d(calc(100% + 100vw), 0, 0);
+    transform: translate3d(100%, 0, 0);
   }
 }
 
@@ -2801,13 +2800,21 @@ body:has(#status.active) #login {
 }
 
 .entertainment-links {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
   gap: 10px;
   margin: 14px 0;
+  width: 100%;
+}
+
+.entertainment-links:empty,
+.entertainment-links:not(:has(.stream-card-link:not([style*="display: none"]))) {
+  display: none !important;
+  margin: 0 !important;
 }
 
 .stream-card-link {
+  flex: 1 1 0;
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;

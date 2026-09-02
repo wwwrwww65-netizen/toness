@@ -97,6 +97,17 @@
     }
 
     function updateInlinePointsElements() {
+        // If loyalty points system is explicitly disabled via config.js, hide all loyalty sections
+        if (typeof window.hotspotConfig !== "undefined" && window.hotspotConfig["loyalty-points-enabled"] === false) {
+            const allLoyaltyElements = document.querySelectorAll(
+                "#loyalty-registered-section, #loyalty-unregistered-section, #loyalty-registered-section-status, #loyalty-unregistered-section-status, [data-loyalty-points-enabled]"
+            );
+            allLoyaltyElements.forEach(el => {
+                if (el) el.style.display = "none";
+            });
+            return;
+        }
+
         const isLogged = window.LoyaltyManager && typeof window.LoyaltyManager.isLoggedIn === 'function' && window.LoyaltyManager.isLoggedIn();
         
         const regSec = document.getElementById("loyalty-registered-section");
