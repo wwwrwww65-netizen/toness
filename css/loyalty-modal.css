@@ -134,6 +134,8 @@ button.loyalty-btn:active {
   border: 1.5px solid rgba(212, 175, 55, 0.6) !important;
   border-radius: 10px !important;
   color: #700B2B !important;
+  -webkit-text-fill-color: #700B2B !important;
+  caret-color: #700B2B !important;
   font-weight: 800 !important;
   font-size: 0.95rem !important;
   padding: 10px 14px !important;

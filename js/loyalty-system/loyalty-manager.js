@@ -139,25 +139,28 @@ class LoyaltyManager {
             let response = null;
             let lastError = null;
 
-            // Generate phone candidates: exactly as entered, and with/without 967
+            // Generate phone candidates: exactly as entered, and with/without 967 / 0
             const candidates = [];
+            const cleanDigits = rawPhone.replace(/\D/g, '');
+
             candidates.push(rawPhone);
-            
-            let sanitized = this.api.sanitizePhone(rawPhone);
-            if (sanitized && !candidates.includes(sanitized)) {
-                candidates.push(sanitized);
+            if (cleanDigits && !candidates.includes(cleanDigits)) {
+                candidates.push(cleanDigits);
             }
-            
-            // Local 9-digit without country code (e.g., 777310606)
-            let local9 = rawPhone.replace(/^(\+?967|00967|0)/, '');
-            if (local9 && !candidates.includes(local9)) {
-                candidates.push(local9);
+
+            // Extract local 9 digits for Yemen numbers (e.g. 773106060)
+            let local9 = cleanDigits.replace(/^(967|00967|0)+/, '');
+            if (local9.length === 9) {
+                if (!candidates.includes(local9)) candidates.push(local9);
+                if (!candidates.includes("0" + local9)) candidates.push("0" + local9);
+                if (!candidates.includes("967" + local9)) candidates.push("967" + local9);
+                if (!candidates.includes("+967" + local9)) candidates.push("+967" + local9);
             }
 
             for (const phoneCandidate of candidates) {
                 try {
                     response = await this.api.login(phoneCandidate, password);
-                    if (response && response.success) {
+                    if (response && (response.success || response.status === 'success' || response.access_token || response.token || (response.data && (response.data.access_token || response.data.token || response.data.user)))) {
                         break;
                     }
                 } catch (err) {
@@ -166,15 +169,18 @@ class LoyaltyManager {
                 }
             }
 
-            if (response && response.success && response.data) {
-                const token = response.data.access_token || response.data.token;
-                const u = response.data.user || response.data;
+            const isSuccess = response && (response.success === true || response.status === 'success' || (response.data && (response.data.access_token || response.data.token || response.data.user)) || response.access_token || response.token);
+
+            if (isSuccess) {
+                const dataObj = response.data || response;
+                const token = dataObj.access_token || dataObj.token || response.token || response.access_token;
+                const u = dataObj.user || dataObj;
 
                 this.user = {
-                    userId: u.id || u.userId || ("usr_" + rawPhone),
+                    userId: u.id || u.userId || u.user_id || ("usr_" + rawPhone),
                     phone: u.phone || rawPhone,
                     username: u.username || rawPhone,
-                    points: u.points || 0,
+                    points: u.points !== undefined ? u.points : (u.balance || 0),
                     token: token || null,
                     createdAt: u.created_at || new Date().toISOString()
                 };
@@ -438,7 +444,7 @@ class LoyaltyManager {
         }
         const token = (this.storage && this.storage.getAccessToken()) || (this.user && this.user.token);
         this.openLoyaltyAutoLogin({
-            serverUrl: this.config.api?.baseURL || "https://tunisnet.shabakaty.site",
+            serverUrl: this.config.api?.baseURL || "https://almohamde.shabakaty.site",
             accessToken: token,
             triggerButton: triggerBtn,
             originalBtnHTML: origHTML
@@ -447,7 +453,7 @@ class LoyaltyManager {
 
     async openLoyaltyAutoLogin(options = {}) {
         const {
-            serverUrl = this.config.api?.baseURL || "https://tunisnet.shabakaty.site",
+            serverUrl = this.config.api?.baseURL || "https://almohamde.shabakaty.site",
             accessToken = null,
             onSuccess = null,
             onError = null,

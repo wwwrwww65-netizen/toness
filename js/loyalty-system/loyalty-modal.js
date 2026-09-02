@@ -81,7 +81,7 @@ window.LoyaltyModal = {
         if (!this.contentContainer) return;
         const regUrl = (window.LoyaltyConfig && window.LoyaltyConfig.api && window.LoyaltyConfig.api.baseURL) 
             ? `${window.LoyaltyConfig.api.baseURL}/auth/register` 
-            : "https://tunisnet.shabakaty.site/auth/register";
+            : "https://almohamde.shabakaty.site/auth/register";
 
         this.contentContainer.innerHTML = `
             <div class="loyalty-modal-header">
@@ -114,7 +114,7 @@ window.LoyaltyModal = {
     go_to_registar_page() {
         const url = (window.LoyaltyConfig && window.LoyaltyConfig.api && window.LoyaltyConfig.api.baseURL)
             ? `${window.LoyaltyConfig.api.baseURL}/auth/register`
-            : "https://tunisnet.shabakaty.site/auth/register";
+            : "https://almohamde.shabakaty.site/auth/register";
         
         if (typeof window.showRedirectLoader === 'function') {
             window.showRedirectLoader({
@@ -130,7 +130,7 @@ window.LoyaltyModal = {
     go_to_home() {
         const url = (window.LoyaltyConfig && window.LoyaltyConfig.api && window.LoyaltyConfig.api.baseURL)
             ? `${window.LoyaltyConfig.api.baseURL}/home`
-            : "https://tunisnet.shabakaty.site/home";
+            : "https://almohamde.shabakaty.site/home";
         window.location.href = url;
     },
 

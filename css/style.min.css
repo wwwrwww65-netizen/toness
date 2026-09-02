@@ -980,13 +980,18 @@ h1 {
   padding: 4px 8px;
   text-align: right;
   direction: rtl;
+  color: #1e1b4b !important;
+  -webkit-text-fill-color: #1e1b4b !important;
+  caret-color: #6b21a8 !important;
+  font-weight: 700 !important;
 }
 
 .points-modal-body .login-input::placeholder {
   text-align: right;
   direction: rtl;
-  color: #ffffff !important;
-  opacity: 0.65;
+  color: #64748b !important;
+  -webkit-text-fill-color: #64748b !important;
+  opacity: 0.85;
   font-weight: 600;
   font-size: 0.85rem;
 }

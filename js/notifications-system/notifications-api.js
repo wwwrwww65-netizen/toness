@@ -11,7 +11,7 @@ window.NotificationsAPI = {
      */
     async fetchContent(options = {}) {
         const config = window.NotificationsConfig?.api || {};
-        const baseURL = typeof config.baseURL === 'function' ? config.baseURL() : (config.baseURL || 'https://tunisnet.shabakaty.site');
+        const baseURL = typeof config.baseURL === 'function' ? config.baseURL() : (config.baseURL || 'https://almohamde.shabakaty.site');
         const endpoint = config.endpoint || '/api/v1/public/content';
 
         // Build URL with query parameters

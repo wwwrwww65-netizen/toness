@@ -60,7 +60,9 @@ class LoyaltyAPI {
                     let serverMessage = response.statusText;
                     try {
                         errorData = await response.json();
-                        serverMessage = errorData.message || errorData.error || errorData.error_en || response.statusText;
+                        if (errorData) {
+                            serverMessage = errorData.message || errorData.error || errorData.msg || errorData.error_en || errorData.detail || (Array.isArray(errorData.errors) ? errorData.errors.join(', ') : (typeof errorData.errors === 'object' && errorData.errors !== null ? Object.values(errorData.errors).flat().join(', ') : null)) || response.statusText;
+                        }
                     } catch (e) {
                         this.log("Failed to parse error response body");
                     }
@@ -137,11 +139,12 @@ class LoyaltyAPI {
                 method: "POST",
                 body: JSON.stringify({
                     phone: formattedPhone,
+                    username: phone,
                     password: password
                 })
             });
         } catch (error) {
-            this.logError("Login failed", error);
+            this.log("Login request failed:", error.message || error);
             throw error;
         }
     }

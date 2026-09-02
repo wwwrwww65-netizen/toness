@@ -679,22 +679,43 @@
             display: block;
         }
 
-        /* Fix Input Text & Placeholder Color inside White Pill */
+        /* Fix Input Text & Placeholder Color inside White Pill and Points Modal */
         .card-input-white-pill input.main-card-input,
         .card-input-white-pill .login-input,
-        input.main-card-input {
+        input.main-card-input,
+        .points-modal-body input,
+        .points-modal-body .login-input,
+        .input-wrapper-glass input,
+        #pointsLoginPhone,
+        #pointsLoginPassword {
             color: #1e1b4b !important;
             -webkit-text-fill-color: #1e1b4b !important;
+            caret-color: #6b21a8 !important;
             font-weight: 800 !important;
         }
 
         .card-input-white-pill input.main-card-input::placeholder,
         .card-input-white-pill .login-input::placeholder,
-        input.main-card-input::placeholder {
-            color: #7e22ce !important;
-            -webkit-text-fill-color: #7e22ce !important;
+        input.main-card-input::placeholder,
+        .points-modal-body input::placeholder,
+        .points-modal-body .login-input::placeholder,
+        .input-wrapper-glass input::placeholder,
+        #pointsLoginPhone::placeholder,
+        #pointsLoginPassword::placeholder {
+            color: #64748b !important;
+            -webkit-text-fill-color: #64748b !important;
             opacity: 0.85 !important;
-            font-weight: 700 !important;
+            font-weight: 600 !important;
+        }
+
+        /* Fix WebKit Autofill in points modal inputs */
+        .points-modal-body input:-webkit-autofill,
+        .points-modal-body input:-webkit-autofill:hover,
+        .points-modal-body input:-webkit-autofill:focus,
+        .input-wrapper-glass input:-webkit-autofill {
+            -webkit-text-fill-color: #1e1b4b !important;
+            -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+            transition: background-color 5000s ease-in-out 0s;
         }
 
         /* Fix News Ticker Container (White Background) & Marquee Text (Dark Purple) */
@@ -2261,7 +2282,7 @@
 
                                     <div class="points-switch-prompt" style="margin-top: 18px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px;">
                                         <span style="color: #cbd5e1; font-size: 0.85rem;">ليس لديك حساب في نظام النقاط؟</span>
-                                        <a href="https://tunisnet.shabakaty.site/auth/register" class="points-signup-glow-btn" id="goToSignupTabBtn">
+                                        <a href="https://almohamde.shabakaty.site/auth/register" class="points-signup-glow-btn" id="goToSignupTabBtn">
                                             <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: #ffd700;">
                                                 <path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                                             </svg>
@@ -3299,9 +3320,10 @@
 
                 const closeSingleModal = function(m) {
                     if (!m) return;
+                    m.classList.remove('active');
                     m.classList.add('closing');
                     setTimeout(function() {
-                        m.classList.remove('active', 'closing');
+                        m.classList.remove('closing');
                         m.style.display = 'none';
                         if (m.id === 'qr-scanner-modal' && typeof window.stopCamera === 'function') {
                             window.stopCamera();
@@ -3319,19 +3341,27 @@
                     });
                 }
 
-                const isStatusActive = document.getElementById('status')?.classList.contains('active');
+                const statusEl = document.getElementById('status');
+                const isStatusActive = statusEl && statusEl.classList.contains('active');
                 const loginEl = document.getElementById('login');
                 if (!isStatusActive && loginEl) {
                     loginEl.style.display = 'block';
                     loginEl.style.visibility = 'visible';
                     loginEl.classList.remove('inactive');
+                    loginEl.classList.add('active');
+                    loginEl.style.filter = '';
+                    loginEl.style.webkitFilter = '';
+                    loginEl.style.pointerEvents = '';
                 }
 
                 // Unlock background scroll
                 if (window.ModalScrollLock) {
-                    window.ModalScrollLock.unlock();
+                    window.ModalScrollLock.unlock(true);
                 } else {
                     document.body.style.overflow = '';
+                    document.documentElement.style.overflow = '';
+                    document.body.classList.remove('modal-scroll-locked');
+                    document.documentElement.classList.remove('modal-scroll-locked');
                 }
             }
 
@@ -3720,7 +3750,7 @@
 
             // Global modern redirect loader function
             window.showRedirectLoader = function (options = {}) {
-                const url = options.url || 'https://tunisnet.shabakaty.site/auth/register';
+                const url = options.url || 'https://almohamde.shabakaty.site/auth/register';
                 const title = options.title || 'جاري الانتقال لصفحة إنشاء الحساب...';
                 const subtitle = options.subtitle || 'يتم تحويلك إلى بوابة التسجيل في شبكتي لنظام النقاط والمكافآت';
                 const delay = options.delay || 950;
@@ -3802,7 +3832,7 @@
                         </span>
                     `;
                     window.showRedirectLoader({
-                        url: 'https://tunisnet.shabakaty.site/auth/register',
+                        url: 'https://almohamde.shabakaty.site/auth/register',
                         title: 'جاري الانتقال لصفحة إنشاء الحساب...',
                         subtitle: 'يتم تحويلك إلى بوابة التسجيل في شبكتي لنظام النقاط والمكافآت',
                         delay: 950
