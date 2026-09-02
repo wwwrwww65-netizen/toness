@@ -948,16 +948,18 @@
         }
 
         .status-grid-metrics .metric-card-glass {
-            background: rgba(255, 255, 255, 0.04) !important;
-            border: 1px solid rgba(168, 85, 247, 0.3) !important;
+            background: linear-gradient(135deg, rgba(76, 29, 149, 0.95) 0%, rgba(45, 15, 84, 0.98) 100%) !important;
+            border: 1.5px solid #c084fc !important;
             border-radius: 14px !important;
             padding: 12px !important;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), 0 0 14px rgba(168, 85, 247, 0.25) !important;
             transition: all 0.2s ease !important;
         }
 
         .status-grid-metrics .metric-card-glass:hover {
-            border-color: #c084fc !important;
-            background: rgba(147, 51, 234, 0.3) !important;
+            border-color: #e9d5ff !important;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.95) 0%, rgba(91, 33, 182, 0.98) 100%) !important;
+            box-shadow: 0 0 20px rgba(192, 132, 252, 0.5) !important;
         }
 
         /* 6. QR Code Scanner Window (#qr-scanner-modal) */
@@ -2293,9 +2295,9 @@
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th scope="col">الفئة / السعر</th>
+                                            <th scope="col">الفئة</th>
                                             <th scope="col">الوقت</th>
-                                            <th scope="col">التحميل</th>
+                                            <th scope="col">الرصيد</th>
                                             <th scope="col">الصلاحية</th>
                                         </tr>
                                     </thead>
@@ -2381,23 +2383,8 @@
                                 <div class="loan-body" id="loan-news-container">
                                     <p id="loan-news-title"
                                         style="font-weight: 800; font-size: 1.1rem; color: #fde047; margin-bottom: 8px;">
-                                        زبائننا الكرام</p>
-                                    <p id="loan-news-content">صارت كروت شبكة تونس نت متوفرة عبر <strong>محفظة
-                                            جيب</strong></p>
-                                    <div id="loan-news-code" class="loan-highlight-badge">رقم كود الشبكة: (21124)</div>
-                                    <br id="loan-news-break"><br id="loan-news-break-2">
-                                    <div id="loan-news-extra-header"
-                                        style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
-                                        <svg viewBox="0 0 24 24"
-                                            style="width: 18px; height: 18px; fill: var(--accent-cyan);">
-                                            <path
-                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
-                                        </svg>
-                                        <strong id="loan-news-extra-title">البث المباشر والمباريات:</strong>
-                                    </div>
-                                    <p id="loan-news-extra-content">استمتع بمشاهدة الاستراحة والبث المباشر للمباريات
-                                        والدوريات العالمية مجاناً عبر الرابط:</p>
-                                    <div id="loan-news-extra-badge" class="loan-highlight-badge">t.com</div>
+                                        جديدنا والعروض</p>
+                                    <p id="loan-news-content">التطوير مستمر - انترنت سريع - خدمات افضل<br><br>المهندس محمد فهيم اليافعي</p>
                                 </div>
                                 <!-- ========================================================================= -->
 
@@ -3385,27 +3372,197 @@
                 }, true);
             });
 
-            // 3. SPEED SELECTOR & MODAL POPUP SYNC (LOGIN SCREEN)
-            const speedSelect = document.getElementById('speed');
-            const speedCards = document.querySelectorAll('#speed-modal .speed-card-option');
-            const selectedSpeedDisplay = document.getElementById('selectedSpeedDisplay');
+            // 3. DYNAMIC SPEED SELECTOR & MODAL POPUP GENERATION FROM CONFIG.JS
+            var renderDynamicSpeeds = function(configObj) {
+                if (!configObj) return;
 
-            // Apply Ultra Speed Option visibility and News dynamically from config.js
+                var loginSpeedWrap = document.querySelector('.login-speed-selector-wrap');
+                var statusSpeedWrap = document.querySelector('[parent-id="status-speed-modal"]');
+                var speedsMode = configObj['login-speeds-mode'];
+
+                // Show/Hide speed trigger elements based on login-speeds-mode
+                if (loginSpeedWrap) {
+                    loginSpeedWrap.style.display = (speedsMode === false) ? 'none' : '';
+                }
+                if (statusSpeedWrap) {
+                    var parentTrigger = statusSpeedWrap.closest('.quick-action-item, .status-card') || statusSpeedWrap;
+                    parentTrigger.style.display = (speedsMode === false) ? 'none' : '';
+                }
+
+                // Determine speed options list from config.js or fallback defaults
+                var speedsList = (Array.isArray(configObj.speeds) && configObj.speeds.length > 0)
+                    ? configObj.speeds
+                    : [
+                        { title: "سرعة أقتصادية", value: "256k/1M", enabled: true },
+                        { title: "سرعة عادية", value: "512k/2M", enabled: true, active: true },
+                        { title: "سرعة متوسطة", value: "512k/4M", enabled: true },
+                        { title: "سرعة عالية", value: "1M/6M", enabled: true },
+                        { title: "سرعة فائقة", value: "1M/8M", enabled: configObj['enable-ultra-speed'] !== false }
+                    ];
+
+                // Filter active/enabled speeds
+                var enabledSpeeds = speedsList.filter(function(s) { return s.enabled !== false; });
+                if (enabledSpeeds.length === 0) enabledSpeeds = speedsList;
+
+                var defaultActive = enabledSpeeds.find(function(s) { return s.active; }) || enabledSpeeds[0];
+
+                // Build dynamic speedLabelMap
+                var dynamicSpeedLabelMap = {};
+                enabledSpeeds.forEach(function(s) {
+                    dynamicSpeedLabelMap[s.value] = s.title;
+                });
+
+                // 1. Render Login Speed Modal Cards (#speedModalList)
+                var speedModalList = document.getElementById('speedModalList');
+                if (speedModalList) {
+                    speedModalList.innerHTML = enabledSpeeds.map(function(item) {
+                        var isActive = (defaultActive && item.value === defaultActive.value) ? ' active' : '';
+                        return '<div class="speed-card-option' + isActive + '" data-speed="' + item.value + '" data-speed-title="' + item.title + '">' +
+                            '<div class="speed-card-indicator"><div class="speed-radio-dot"></div></div>' +
+                            '<div class="speed-card-info"><span class="speed-card-name">' + item.title + '</span></div>' +
+                            '</div>';
+                    }).join('');
+                }
+
+                // 2. Render Login Hidden Speed Select (#speed)
+                var speedSelect = document.getElementById('speed');
+                if (speedSelect) {
+                    speedSelect.innerHTML = '<option value="" disabled hidden>أختيار سرعة الإنترنت</option>' +
+                        enabledSpeeds.map(function(item) {
+                            var isSelected = (defaultActive && item.value === defaultActive.value) ? ' selected' : '';
+                            return '<option value="' + item.value + '"' + isSelected + '>' + item.title + '</option>';
+                        }).join('');
+                }
+
+                // 3. Render Status Speed Modal Cards (#statusSpeedModalList)
+                var statusSpeedModalList = document.getElementById('statusSpeedModalList');
+                if (statusSpeedModalList) {
+                    statusSpeedModalList.innerHTML = enabledSpeeds.map(function(item) {
+                        var isActive = (defaultActive && item.value === defaultActive.value) ? ' active' : '';
+                        return '<div class="speed-card-option' + isActive + '" data-status-speed="' + item.value + '" data-speed-title="' + item.title + '">' +
+                            '<div class="speed-card-indicator"><div class="speed-radio-dot"></div></div>' +
+                            '<div class="speed-card-info"><span class="speed-card-name">' + item.title + '</span></div>' +
+                            '</div>';
+                    }).join('');
+                }
+
+                // 4. Render Status Hidden Speed Select (#speedchange)
+                var speedchangeSelect = document.getElementById('speedchange');
+                if (speedchangeSelect) {
+                    speedchangeSelect.innerHTML = '<option value="ns" disabled hidden selected>أضغط هنا لتغيير سرعة الإنترنت</option>' +
+                        enabledSpeeds.map(function(item) {
+                            return '<option value="' + item.value + '">' + item.title + '</option>';
+                        }).join('');
+                }
+
+                // Update Trigger Displays Text
+                var selectedSpeedDisplay = document.getElementById('selectedSpeedDisplay');
+                var statusSpeedTriggerText = document.getElementById('statusSpeedTriggerText');
+                if (selectedSpeedDisplay && defaultActive) {
+                    selectedSpeedDisplay.textContent = defaultActive.title;
+                }
+                if (statusSpeedTriggerText && defaultActive) {
+                    statusSpeedTriggerText.textContent = defaultActive.title;
+                }
+
+                // Bind Click Events for Login Speed Cards
+                var newSpeedCards = document.querySelectorAll('#speed-modal .speed-card-option');
+                newSpeedCards.forEach(function(card) {
+                    card.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        var val = this.getAttribute('data-speed');
+                        var speedTitle = this.getAttribute('data-speed-title') || dynamicSpeedLabelMap[val] || val;
+
+                        if (speedSelect) {
+                            speedSelect.value = val;
+                            speedSelect.dispatchEvent(new Event('change', { bubbles: true }));
+                        }
+                        if (selectedSpeedDisplay) {
+                            selectedSpeedDisplay.textContent = speedTitle;
+                        }
+                        newSpeedCards.forEach(function(c) {
+                            c.classList.toggle('active', c.getAttribute('data-speed') === val);
+                        });
+
+                        setTimeout(function() {
+                            closeAppModal('speed-modal');
+                        }, 180);
+                    });
+                });
+
+                // Bind Click Events for Status Speed Cards
+                var newStatusSpeedCards = document.querySelectorAll('#status-speed-modal .speed-card-option');
+                newStatusSpeedCards.forEach(function(card) {
+                    card.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        var val = this.getAttribute('data-status-speed');
+                        var speedTitle = this.getAttribute('data-speed-title') || dynamicSpeedLabelMap[val] || val;
+
+                        newStatusSpeedCards.forEach(function(c) {
+                            c.classList.toggle('active', c === card);
+                        });
+                        if (statusSpeedTriggerText && speedTitle) {
+                            statusSpeedTriggerText.textContent = speedTitle;
+                        }
+                        if (speedchangeSelect) {
+                            speedchangeSelect.value = val;
+                            speedchangeSelect.dispatchEvent(new Event('change', { bubbles: true }));
+                        }
+
+                        setTimeout(function() {
+                            closeAppModal('status-speed-modal');
+                        }, 180);
+                    });
+                });
+
+                // Observe MikroTik Speed Updates (#sspeed)
+                var sspeedSpan = document.getElementById('sspeed');
+                if (sspeedSpan && !window._speedObserverInitialized) {
+                    window._speedObserverInitialized = true;
+                    var normalizeAr = function(s) { return (s || '').replace(/[أإآ]/g, 'ا').trim(); };
+                    var syncSpeedFromMikrotik = function() {
+                        var txt = (sspeedSpan.innerText || sspeedSpan.textContent || '').trim();
+                        if (txt && txt !== 'سرعة الكرت') {
+                            if (statusSpeedTriggerText) {
+                                statusSpeedTriggerText.textContent = txt;
+                            }
+                            var cleanTxt = normalizeAr(txt);
+                            var matchedCard = null;
+                            var currentStatusCards = document.querySelectorAll('#status-speed-modal .speed-card-option');
+                            currentStatusCards.forEach(function(card) {
+                                var cardTitle = normalizeAr(card.getAttribute('data-speed-title'));
+                                var speedVal = (card.getAttribute('data-status-speed') || '').trim();
+                                if (cardTitle && (cardTitle === cleanTxt || speedVal === txt || speedVal === cleanTxt)) {
+                                    matchedCard = card;
+                                }
+                            });
+                            if (!matchedCard) {
+                                var longestMatchLen = 0;
+                                currentStatusCards.forEach(function(card) {
+                                    var cardTitle = normalizeAr(card.getAttribute('data-speed-title'));
+                                    if (cardTitle && cleanTxt.includes(cardTitle) && cardTitle.length > longestMatchLen) {
+                                        longestMatchLen = cardTitle.length;
+                                        matchedCard = card;
+                                    }
+                                });
+                            }
+                            currentStatusCards.forEach(function(card) {
+                                card.classList.toggle('active', card === matchedCard);
+                            });
+                        }
+                    };
+                    var speedObserver = new MutationObserver(syncSpeedFromMikrotik);
+                    speedObserver.observe(sspeedSpan, { childList: true, characterData: true, subtree: true });
+                    syncSpeedFromMikrotik();
+                }
+            };
+
+            // Apply Config Options dynamically from config.js
             try {
                 var applyConfigOptions = function(configObj) {
-                    var optUltra = document.getElementById('opt-speed-ultra');
-                    var cardUltra = document.getElementById('card-speed-ultra');
-                    var cardStatusUltra = document.getElementById('card-status-speed-ultra');
-                    
-                    if (configObj['enable-ultra-speed']) {
-                        if (optUltra) { optUltra.style.display = ''; optUltra.removeAttribute('disabled'); }
-                        if (cardUltra) cardUltra.style.display = '';
-                        if (cardStatusUltra) cardStatusUltra.style.display = '';
-                    } else {
-                        if (optUltra) { optUltra.style.display = 'none'; optUltra.setAttribute('disabled', 'disabled'); }
-                        if (cardUltra) cardUltra.style.display = 'none';
-                        if (cardStatusUltra) cardStatusUltra.style.display = 'none';
-                    }
+                    renderDynamicSpeeds(configObj);
 
                     // Apply News and Offers configuration dynamically
                     if (configObj['news-title']) {
@@ -3416,21 +3573,48 @@
                         const el = document.getElementById('loan-news-content');
                         if (el) el.innerHTML = configObj['news-content'];
                     }
-                    if (configObj['news-code']) {
-                        const el = document.getElementById('loan-news-code');
-                        if (el) el.textContent = configObj['news-code'];
+
+                    const codeEl = document.getElementById('loan-news-code');
+                    if (codeEl) {
+                        if (configObj['news-code'] && configObj['news-code'].trim() !== '') {
+                            codeEl.textContent = configObj['news-code'];
+                            codeEl.style.display = '';
+                        } else {
+                            codeEl.style.display = 'none';
+                        }
                     }
-                    if (configObj['news-extra-title']) {
-                        const el = document.getElementById('loan-news-extra-title');
-                        if (el) el.textContent = configObj['news-extra-title'];
-                    }
-                    if (configObj['news-extra-content']) {
-                        const el = document.getElementById('loan-news-extra-content');
-                        if (el) el.textContent = configObj['news-extra-content'];
-                    }
-                    if (configObj['news-extra-badge']) {
-                        const el = document.getElementById('loan-news-extra-badge');
-                        if (el) el.textContent = configObj['news-extra-badge'];
+
+                    const br1 = document.getElementById('loan-news-break');
+                    const br2 = document.getElementById('loan-news-break-2');
+                    const extraHeader = document.getElementById('loan-news-extra-header');
+                    const extraContent = document.getElementById('loan-news-extra-content');
+                    const extraBadge = document.getElementById('loan-news-extra-badge');
+
+                    var hasExtra = (configObj['news-extra-title'] && configObj['news-extra-title'].trim() !== '') ||
+                                   (configObj['news-extra-content'] && configObj['news-extra-content'].trim() !== '') ||
+                                   (configObj['news-extra-badge'] && configObj['news-extra-badge'].trim() !== '');
+
+                    if (hasExtra) {
+                        if (br1) br1.style.display = '';
+                        if (br2) br2.style.display = '';
+                        if (extraHeader) extraHeader.style.display = 'flex';
+                        if (extraContent) extraContent.style.display = '';
+                        if (extraBadge) extraBadge.style.display = '';
+                        if (configObj['news-extra-title'] && document.getElementById('loan-news-extra-title')) {
+                            document.getElementById('loan-news-extra-title').textContent = configObj['news-extra-title'];
+                        }
+                        if (configObj['news-extra-content'] && extraContent) {
+                            extraContent.textContent = configObj['news-extra-content'];
+                        }
+                        if (configObj['news-extra-badge'] && extraBadge) {
+                            extraBadge.textContent = configObj['news-extra-badge'];
+                        }
+                    } else {
+                        if (br1) br1.style.display = 'none';
+                        if (br2) br2.style.display = 'none';
+                        if (extraHeader) extraHeader.style.display = 'none';
+                        if (extraContent) extraContent.style.display = 'none';
+                        if (extraBadge) extraBadge.style.display = 'none';
                     }
 
                     // Apply Marquee Ticker (Quran verse / News) dynamically
@@ -3467,149 +3651,7 @@
                 if (typeof window.initWelcomePopup === 'function') window.initWelcomePopup(null);
             }
 
-            const speedLabelMap = {
-                '128k/512k': 'سرعة اقتصادية',
-                '256k/700k': 'سرعة عادية',
-                '256k/1M': 'سرعة متوسطة',
-                '512M/3M': 'سرعة عالية',
-                '1M/8M': 'سرعة عالية جدا'
-            };
-
-            function updateSpeedSelection(val) {
-                if (speedSelect) {
-                    speedSelect.value = val;
-                    const event = new Event('change', { bubbles: true });
-                    speedSelect.dispatchEvent(event);
-                }
-                if (selectedSpeedDisplay && speedLabelMap[val]) {
-                    selectedSpeedDisplay.textContent = speedLabelMap[val];
-                }
-                speedCards.forEach(card => {
-                    card.classList.toggle('active', card.getAttribute('data-speed') === val);
-                });
-            }
-
-            if (speedCards.length > 0) {
-                speedCards.forEach(card => {
-                    card.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        const val = this.getAttribute('data-speed');
-                        const speedTitle = this.getAttribute('data-speed-title') || speedLabelMap[val] || val;
-
-                        updateSpeedSelection(val);
-                        if (selectedSpeedDisplay) {
-                            selectedSpeedDisplay.textContent = speedTitle;
-                        }
-
-                        // Close speed modal and return smoothly to login view
-                        setTimeout(() => {
-                            closeAppModal('speed-modal');
-                        }, 180);
-                    });
-                });
-
-                if (speedSelect) {
-                    speedSelect.addEventListener('change', function () {
-                        const val = speedSelect.value;
-                        if (selectedSpeedDisplay && speedLabelMap[val]) {
-                            selectedSpeedDisplay.textContent = speedLabelMap[val];
-                        }
-                        speedCards.forEach(card => {
-                            card.classList.toggle('active', card.getAttribute('data-speed') === val);
-                        });
-                    });
-                }
-            }
-
             // 4. UPDATES BLOCKER TOGGLE STATUS TEXT (LOGIN SCREEN)
-            var chUpdate = document.getElementById('chupdate');
-            var updateStatusText = document.getElementById('updateStatusText');
-            if (chUpdate && updateStatusText) {
-                var updateToggleState = function() {
-                    if (chUpdate.checked) {
-                        updateStatusText.textContent = 'مفعل';
-                        updateStatusText.classList.add('active');
-                    } else {
-                        updateStatusText.textContent = 'متوقف';
-                        updateStatusText.classList.remove('active');
-                    }
-                };
-                chUpdate.addEventListener('change', updateToggleState);
-                updateToggleState();
-            }
-
-            // 5. STATUS SCREEN: SPEED MODAL HANDLER (LIVE CONNECTION SPEED CHANGE)
-            const statusSpeedCards = document.querySelectorAll('#status-speed-modal .speed-card-option');
-            const statusSpeedTriggerText = document.getElementById('statusSpeedTriggerText');
-            const sspeedSpan = document.getElementById('sspeed');
-
-            if (statusSpeedCards.length > 0) {
-                statusSpeedCards.forEach(card => {
-                    card.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        const val = this.getAttribute('data-status-speed');
-                        const speedTitle = this.getAttribute('data-speed-title');
-                        const speedchange = document.getElementById('speedchange');
-
-                        statusSpeedCards.forEach(c => c.classList.toggle('active', c === this));
-
-                        if (statusSpeedTriggerText && speedTitle) {
-                            statusSpeedTriggerText.textContent = speedTitle;
-                        }
-                        if (speedchange) {
-                            speedchange.value = val;
-                            const ev = new Event('change', { bubbles: true });
-                            speedchange.dispatchEvent(ev);
-                        }
-
-                        setTimeout(() => {
-                            closeAppModal('status-speed-modal');
-                        }, 180);
-                    });
-                });
-
-                // Synchronize trigger text and active speed card when sspeed updates from MikroTik
-                if (sspeedSpan) {
-                    const normalizeAr = s => (s || '').replace(/[أإآ]/g, 'ا').trim();
-                    const syncSpeedFromMikrotik = () => {
-                        const txt = (sspeedSpan.innerText || sspeedSpan.textContent || '').trim();
-                        if (txt && txt !== 'سرعة الكرت') {
-                            if (statusSpeedTriggerText) {
-                                statusSpeedTriggerText.textContent = txt;
-                            }
-                            const cleanTxt = normalizeAr(txt);
-                            let matchedCard = null;
-                            statusSpeedCards.forEach(card => {
-                                const cardTitle = normalizeAr(card.getAttribute('data-speed-title'));
-                                const speedVal = (card.getAttribute('data-status-speed') || '').trim();
-                                if (cardTitle && (cardTitle === cleanTxt || speedVal === txt || speedVal === cleanTxt)) {
-                                    matchedCard = card;
-                                }
-                            });
-                            if (!matchedCard) {
-                                let longestMatchLen = 0;
-                                statusSpeedCards.forEach(card => {
-                                    const cardTitle = normalizeAr(card.getAttribute('data-speed-title'));
-                                    if (cardTitle && cleanTxt.includes(cardTitle) && cardTitle.length > longestMatchLen) {
-                                        longestMatchLen = cardTitle.length;
-                                        matchedCard = card;
-                                    }
-                                });
-                            }
-                            statusSpeedCards.forEach(card => {
-                                card.classList.toggle('active', card === matchedCard);
-                            });
-                        }
-                    };
-                    const speedObserver = new MutationObserver(syncSpeedFromMikrotik);
-                    speedObserver.observe(sspeedSpan, { childList: true, characterData: true, subtree: true });
-                    syncSpeedFromMikrotik();
-                }
-            }
-
-            // 6. STATUS SCREEN: UPDATES BLOCKER TOGGLE (Identical to Login Screen)
             const statusChupdate = document.getElementById('statusChupdate');
             const statusUpdateStatusText = document.getElementById('statusUpdateStatusText');
             const updatechange = document.getElementById('updatechange');
