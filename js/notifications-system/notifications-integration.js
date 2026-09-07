@@ -14,12 +14,6 @@
      * @returns {Promise<boolean>}
      */
     async function loadNotificationsSystem() {
-        // If loyalty points system is explicitly disabled, do not load notifications system
-        if (typeof window.hotspotConfig !== "undefined" && window.hotspotConfig["loyalty-points-enabled"] === false) {
-            console.log('[NotificationsIntegration] Loyalty points system disabled via config, skipping notifications.');
-            return false;
-        }
-
         if (systemLoaded) {
             return true;
         }
