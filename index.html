@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title data-network-name>شبكة تونس نت اللاسلكية</title>
+    <title data-network-name>شبكة ستار نت اللاسلكية</title>
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, shrink-to-fit=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -25,6 +25,10 @@
         function Config(a) {
             hotspotConfig = a || {};
             hotOption = a || {};
+            if (a && a['network-name']) {
+                var netName = String(a['network-name']).trim();
+                document.title = 'شبكة ' + netName + ' اللاسلكية';
+            }
         }
     </script>
     <script src="config/config.js"></script>

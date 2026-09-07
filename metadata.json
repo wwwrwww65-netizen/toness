@@ -1,6 +1,6 @@
 {
-  "name": "تونس نت - MikroTik Hotspot",
-  "description": "بوابة تسجيل الدخول لشبكة تونس نت اللاسلكية بنظام ميكروتك (MikroTik Hotspot Portal) مع فحص الكروت، والأسعار، وتنبيهات الشبكة",
+  "name": "ستار نت - MikroTik Hotspot",
+  "description": "بوابة تسجيل الدخول لشبكة ستار نت اللاسلكية بنظام ميكروتك (MikroTik Hotspot Portal) مع فحص الكروت، والأسعار، وتنبيهات الشبكة",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
