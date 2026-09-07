@@ -1,0 +1,334 @@
+﻿<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#15213b">
+    <title>شبكة ستار نت</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(0,247,255,0.3); }
+      70% { box-shadow: 0 0 0 10px rgba(0,247,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(0,247,255,0); }
+    }
+    .pulse-effect { animation: pulse 2s infinite; border-radius: 8px; }
+
+    /* أزرار رئيسية */
+    .main-btn {
+        background: rgba(5,25,55,0.8);
+        border: 2px solid #00f7ff;
+        border-radius: 15px;
+        padding: 15px 5px;
+        color: #00f7ff;
+        font-weight: bold;
+        font-family: 'Cairo', sans-serif;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 20px rgba(0,247,255,0.2);
+        width: 90%;
+        margin: 8px auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 90px;
+        position: relative;
+        overflow: hidden;
+    }
+    .main-btn::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(to bottom right, rgba(0,247,255,0.1), rgba(0,247,255,0.05), transparent); transform: rotate(30deg); transition: all 0.5s ease; }
+    .main-btn:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,247,255,0.4); background: rgba(10,35,55,0.9); }
+    .main-btn .btn-icon { font-size: 24px; margin-bottom: 8px; color: #00f7ff; text-shadow: 0 0 10px rgba(0,247,255,0.7); transition: all 0.3s ease; }
+    .main-btn .btn-text { font-size: 13px; transition: all 0.3s ease; }
+    .main-btn:hover .btn-icon { transform: scale(1.1); }
+    .main-btn:hover .btn-text { text-shadow: 0 0 8px rgba(0,247,255,0.5); }
+
+    .btns table { width:100%; border-collapse: separate; border-spacing: 8px; }
+    .btns td { text-align:center; padding:0; }
+
+    .btn-price .btn-icon { color:#4CAF50; }
+    .btn-status .btn-icon { color:#2196F3; }
+    .btn-info .btn-icon { color:#FFC107; }
+    .btn-support .btn-icon { color:#F44336; }
+
+    .nettitle { margin-top:60px; text-align:center; }
+    .nettitle p, .nettitle h1 { display:inline-block; margin:0; }
+
+    .support-link {
+        text-decoration:none;
+        color:#44b4e4;
+        padding:6px 10px;
+        border:1px solid rgba(68,180,228,0.3);
+        border-radius:6px;
+        display:inline-block;
+        font-size:13px;
+        background:rgba(10,35,55,0.35);
+    }
+
+    /* إعدادات الشبكة والمربعات (معدلة: ارتفاع أقل + عمودين فقط) */
+    :root {
+        --box-width: 240px;  /* عرض المربع الأقصى */
+        --box-height: 80px;  /* ارتفاع المربع مصغر: 80px */
+        --box-percent: 95%;   /* النسبة داخل العمود — 95% كما طلبت */
+    }
+
+    .status-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* عمودان دائمًا (للتقليل) */
+        gap: 6px;               /* فجوة صغيرة بين الأعمدة بحيث المربعات تتقارب لكن لا تتداخل */
+        justify-items: center;
+        align-items: center;
+        margin-top: 14px;
+        padding: 0 6px;
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    /* المربعات: عرض 95% من العمود وارتفاع أصغر */
+    .status-grid .small-box {
+        width: var(--box-percent);       /* 95% من عرض العمود */
+        max-width: var(--box-width);
+        height: var(--box-height);
+        border-radius: 10px;
+        background: linear-gradient(180deg, rgba(0,0,0,0.14), rgba(0,0,0,0.22));
+        border: 1px solid rgba(0,247,255,0.08);
+        display: flex;
+        flex-direction: row; /* صفي لعناصر داخل المربع يكون مناسب للمساحة القصيرة */
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 12px;
+        text-align: right;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.28);
+        color: #dbefff;
+        box-sizing: border-box;
+        gap: 8px;
+    }
+
+    /* داخل المربع: أيقونة على اليسار، نص على اليمين */
+    .status-grid .small-box .icon { font-size: 20px; color:#00f7ff; text-shadow:0 0 6px rgba(0,247,255,0.6); margin-left:8px; flex-shrink:0; }
+    .status-grid .small-box .label { font-size: 13px; font-weight:700; color:#bfefff; line-height:1; }
+    .status-grid .small-box .value { font-size: 14px; font-weight:700; color:#eaf7ff; direction:ltr; }
+
+    /* دعم ومعلومة يرثان نفس النمط */
+    .status-grid .small-box.support { }
+    .status-grid .small-box.info { }
+
+    /* على الجوال: أيضاً عمودان، وحجم أصغر قليلاً */
+    @media (max-width: 520px) {
+        :root { --box-width: 160px; --box-height: 76px; --box-percent: 95%; }
+        .status-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; padding: 0 6px; }
+        .status-grid .small-box { width: var(--box-percent); max-width: var(--box-width); height: var(--box-height); }
+        .status-grid .small-box .icon { font-size: 18px; }
+        .status-grid .small-box .label { font-size: 12px; }
+        .status-grid .small-box .value { font-size: 13px; }
+    }
+
+    /* شاشات كبيرة جدا: نبقي عمودين لكن نسمح بعرض أكبر قليلاً */
+    @media (min-width: 1400px) {
+        :root { --box-width: 320px; --box-height: 90px; --box-percent: 95%; }
+        .status-grid .small-box { max-width: var(--box-width); height: var(--box-height); }
+    }
+
+    /* تباعد زر الخروج */
+    .app-submit.logout-submit { margin-top: 12px; padding: 10px 16px; display:block; }
+    </style>
+</head>
+<body translate="no">
+    <div class="container">
+        <div class="screen">
+            <div class="bk bk1"></div>
+            <div class="bk bk2"></div>
+            <div class="bk bk3"></div>
+            <div class="logo"></div>
+            <div class="screen-content">
+                <div class="login">
+                    <section class="section"><p class="marquee"></p></section>
+                    <div class="nettitle">
+                        <h1 class="pulse-effect" style="font-size:0px; font-weight:bold; font-family:'Arabic Typesetting','Scheherazade',serif; color:#00f7ff; text-shadow:0 0 8px #0ff,0 0 10px #007f7f;">
+سـتــار نــت الــلاسـلـكـيـة ⚡✨
+                        </h1>
+                        <p style="font-size:0px; font-family:'Cairo',sans-serif; color:#ccc; margin-top:5px;">📡 ترحب بكم بكل فخر</p>
+                    </div>
+
+                    <div class="login-form">
+                        <br><br>
+                        <form name="login" onsubmit="return onLoginSubmitted()">
+                            <input type="hidden" name="dst" value="$(link-orig)" />
+                            <p class="error" style="margin-top:5px;" id="error"></p>
+                            <input type="hidden" name="popup" value="true" />
+                            <div class="login-field">
+                                <img class="login-icon" src="img/user.svg" alt="#" />
+                                <input class="login-input" name="username" type="text" value="" placeholder="أدخل رقم الكرت هنا" required autocomplete="off" username-field rm-white-spaces improve-input to-arabic-numbers />
+                            </div>
+                            <label><input name="password" type="hidden" placeholder="كلمة المرور" /></label>
+                            <select id="se" name=""></select>
+                            <button type="button" class="login-submit" enable-hot-cookie>تسجيل الدخول</button>
+                        </form>
+
+                        <div class="btns">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <button type="button" parent-id="price" class="main-btn btn-price">
+                                            <i class="fas fa-tags btn-icon"></i>
+                                            <span class="btn-text">الأسعار والباقات</span>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="button" onclick="window.location.href='status.html'" class="main-btn btn-status">
+                                            <i class="fas fa-chart-line btn-icon"></i>
+                                            <span class="btn-text">متابعة الاستهلاك</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button type="button" parent-id="info" class="main-btn btn-info">
+                                            <i class="fas fa-info-circle btn-icon"></i>
+                                            <span class="btn-text">تعليمات الاستخدام</span>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <a href="support.html" style="text-decoration:none;">
+                                            <button type="button" class="main-btn btn-support">
+                                                <i class="fas fa-headset btn-icon"></i>
+                                                <span class="btn-text">الدعم الفني</span>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- باقي المحتوى (الأسعار، نقاط البيع، تعليمات) -->
+                <div class="app" id="price">
+                    <p class="title">الاسعار</p>
+                    <div class="app-bot">
+                        <table>
+                            <thead><tr><th>الفئة</th><th>الرصيد</th><th>الصلاحية</th></tr></thead>
+                            <tbody>
+                                <tr><td>100 ريال</td><td>600 ميجا</td><td>5 ايام</td></tr>
+                                <tr><td>200 ريال</td><td>1200 ميجا</td><td>2 ايام</td></tr>
+                                <tr><td>500 ريال</td><td>2500 ميجا</td><td>اسبوع</td></tr>
+                                <tr><td>1000 ريال</td><td>5 جيجا</td><td>15 ايام</td></tr>
+                                <tr><td>2500 ريال</td><td>14 جيجا</td><td>30 ايام</td></tr>
+                                <tr><td> 5000 ريال</td><td> 25 جيجا</td><td>30 ايام</td></tr>
+         
+                            </tbody>
+                        </table>
+                        <div class="app-logout app-submit">رجوع</div>
+                    </div>
+                </div>
+
+                <div class="app" id="sell-point">
+                    <p class="title">نقاط البيع</p>
+                    <div class="app-bot"><table><tbody><tr><td>جميع البقالات في اماكن التغطية</td></tr></tbody></table><div class="app-logout app-submit">رجوع</div></div>
+                </div>
+
+                <div class="app" id="info">
+                    <p class="title">تعليمات</p>
+                    <div class="app-bot">
+                        <p>1- ننصح باختيار تعطيل التحديثات التلقائية من المتجر لتجنب استهلاك البيانات.</p>
+                        <p>2- تطبيق <strong style="color:#1b7bf8">Facebook</strong> يستهلك بيانات كبيرة؛ لمن يريد أقل استخدم <strong>Facebook Lite</strong>.</p>
+                        <p>3- يوتيوب يغير جودة الفيديو تلقائياً مما يزيد استهلاك الرصيد — ضبط الجودة إلى 360 لتقليل الاستهلاك.</p>
+                        <p>4- تأكد من إغلاق التحميل التلقائي في التطبيقات مثل Google Play, Whatsapp, Facebook, Telegram.</p>
+                        <div class="app-logout app-submit">رجوع</div>
+                    </div>
+                </div>
+
+                <!-- صفحة الحالة -->
+                <div class="app" id="status">
+                    <div class="app-top"><p class="title">تم تسجيل الدخول بنجاح</p></div>
+                    <div class="app-bot">
+                        <p><a style="text-decoration:none;color:#44b4e4;padding:5px;border:1px solid;border-radius:10px;" href="status.html">إذا لم يتم الأتصال تلقائيا أضغط هنا</a></p>
+
+                        <div class="status-grid">
+                            <div class="small-box">
+                                <div style="display:flex;align-items:center;justify-content:flex-end;width:100%;">
+                                    <div class="icon"><i class="fas fa-user"></i></div>
+                                    <div style="text-align:right">
+                                        <div class="label">اسم المستخدم</div>
+                                        <div class="value" style="direction:ltr">$(username)</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="small-box">
+                                <div style="display:flex;align-items:center;justify-content:flex-end;width:100%;">
+                                    <div class="icon"><i class="fas fa-clock"></i></div>
+                                    <div style="text-align:right">
+                                        <div class="label">الوقت المتبقي</div>
+                                        <div class="value" id="session_time_left">غير محدود</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="small-box">
+                                <div style="display:flex;align-items:center;justify-content:flex-end;width:100%;">
+                                    <div class="icon"><i class="fas fa-download"></i></div>
+                                    <div style="text-align:right">
+                                        <div class="label">التحميل المتبقي</div>
+                                        <div class="value" id="remain_bytes_total">غير محدود</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="small-box">
+                                <div style="display:flex;align-items:center;justify-content:flex-end;width:100%;">
+                                    <div class="icon"><i class="fas fa-chart-line"></i></div>
+                                    <div style="text-align:right">
+                                        <div class="label">الاستهلاك</div>
+                                        <div class="value" id="bytes_in">0</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="small-box support">
+                                <div style="display:flex;align-items:center;justify-content:flex-end;width:100%;">
+                                    <div class="icon"><i class="fas fa-headset"></i></div>
+                                    <div style="text-align:right">
+                                        <div class="label">الدعم الفني</div>
+                                        <div class="value"><a href="support.html" class="support-link" style="padding:4px 6px;">اذهب</a></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="small-box info">
+                                <div style="display:flex;align-items:center;justify-content:flex-end;width:100%;">
+                                    <div class="icon"><i class="fas fa-info-circle"></i></div>
+                                    <div style="text-align:right">
+                                        <div class="label">معلومات</div>
+                                        <div class="value"><a href="#info" class="support-link" style="padding:4px 6px;">عرض</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="app-submit logout-submit" erase-cookie clear-hot-cookie>تسجيل الخروج</button>
+                    </div>
+                </div>
+
+                <div class="app" id="block">
+                    <div class="app-top"><p class="title">انت محظور</p></div>
+                    <div class="app-bot">
+                        <div style="padding:25px;">
+                            <p class="contact-text">لقد تم حظرك بسبب محاولات تسجيل الدخول الكثيرة الخاطئة</p>
+                            <div class="app-user"><span>بقي على فك الحظر: </span><span count-down-span></span></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <script src="js/hotInImprover.min.js"></script>
+        <script src="js/hotCookie.min.js"></script>
+        <script src="js/hotBlocker.min.js" enable-hot-blocker try-count="10" block-time="1"></script>
+        <script src="js/main.min.js" link-login-only="$(link-login-only)"></script>
+    </div>
+</body>
+</html>

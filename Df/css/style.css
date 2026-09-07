@@ -1,0 +1,497 @@
+@import url(../fonts/Almarai.css);
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+  font-family: Almarai, sans-serif;
+}
+
+body, html {
+  height: 100%;
+  direction: rtl;
+  background: linear-gradient(135deg, #0b0c2a 0%, #1b1f3a 30%, #2c2d4f 60%, #3a2a2a 90%);
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.container {
+  height: 100%;
+  overflow: scroll;
+}
+
+.app-bot {
+  padding: 10px;
+}
+
+.screen {
+  margin: 0 auto;
+  position: relative;
+  min-width: 320px;
+  max-width: 500px;
+  width: 100%;
+  min-height: auto; /* تم التعديل من 100dvh */
+  background-size: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.screen-content {
+  height: 100%;
+  z-index: 1;
+  position: relative;
+}
+
+.nettitle {
+  margin-top: 80px; /* تم التعديل من 150px */
+}
+
+.logo {
+  height: 150px;
+  margin-top: 0;
+  width: 100%;
+  position: absolute;
+  margin: 0 auto;
+  background: url(../img/logo.png) no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.login-form {
+  width: 100%;
+  margin-top: 50px;
+  padding: 0;
+}
+
+.login-field {
+  width: 75%;
+  margin: 10px auto 5px auto;
+  position: relative;
+}
+
+.login-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border: 2px solid #fff;
+  padding: 4px;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+}
+
+#se {
+  display: block;
+  margin: 15px auto;
+  width: 150px;
+  border: 0;
+  outline: 0;
+  appearance: none;
+  padding-bottom: 5px;
+  background: url(../img/se.svg) no-repeat;
+  background-size: 100% 100%;
+  height: 25px;
+}
+
+option {
+  color: #1d9cce;
+}
+
+/* تصميم الحقول */
+.login-input {
+  font-weight: 800;
+  width: 100%;
+  height: 50px;
+  padding: 0 20px;
+  margin-bottom: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 40px;
+  backdrop-filter: blur(5px);
+  transition: border 0.3s, box-shadow 0.3s;
+
+  background: transparent !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  border: 2px solid #ffffff !important;
+}
+
+.username-input:focus {
+  border-color: #28a745 !important;
+  box-shadow: 0 0 10px #28a745;
+  outline: none;
+}
+
+.login-input:focus {
+  outline: none;
+}
+
+::placeholder {
+  color: rgba(255, 255, 255, 0.796);
+}
+
+.app-submit, .login-submit {
+  position: relative;
+  width: 170px;
+  border-radius: 40px;
+  font-size: 20px;
+  height: 40px;
+  margin: 15px auto 0;
+  border: 0;
+  color: #fff;
+  background: #28a745;
+  box-shadow: 0 0 10px #28a745;
+}
+
+.app-submit {
+  padding: 5px;
+}
+
+.app-submit:active,
+.app-submit:focus,
+.app-submit:hover,
+.login-submit:active,
+.login-submit:focus,
+.login-submit:hover {
+  outline: 0;
+}
+
+.login tr, .login td, #status tr, #status td { border: 0; }
+.btns button { background: 0; border: 0; }
+.a-icon { width: 25px; height: 25px; top: 2px; }
+.btns2 a {
+  font-size: 16px;
+  width: 100px;
+  padding-top: 5px;
+  color: #fff;
+  border-radius: 25px;
+  background: #1d9cce;
+  text-decoration: none;
+  height: 30px;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+}
+.d { background: url(../img/d.svg) no-repeat; }
+.l { background: url(../img/l.svg) no-repeat; }
+.i { background: url(../img/i.svg) no-repeat; }
+
+.rbtn {
+  transform: rotate(-45deg);
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(70px, #40b4e2, #193b5b);
+  border-radius: 15px;
+  margin: 12px;
+}
+
+.btnicon {
+  transform: rotate(45deg);
+  width: 60px;
+  height: 60px;
+  background-size: 100% 80%;
+  background-position: 0 35%;
+}
+
+.app-logout {
+  width: 40%;
+  display: block;
+  margin: 10px auto;
+  cursor: pointer;
+  transform: scale(0);
+  transition: transform 0.4s 0.2s, opacity 0.1s 0.7s;
+}
+
+.app.active .app-logout { transform: scale(1); }
+
+.password-field { display: none; }
+
+#login.inactive, .app {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+#login {
+  transition: opacity 0.1s, transform 0.3s;
+}
+
+.app {
+  display: none;
+  transition: opacity 0.1s, transform 0.3s cubic-bezier(0.68, -0.45, 0.465, 1.25);
+}
+
+#login, .app.active { opacity: 1; }
+
+::-webkit-scrollbar { display: none; }
+
+table {
+  border-collapse: collapse;
+  width: 90%;
+  margin: 10px auto;
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.as {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 0 15px;
+}
+
+.sd {
+  background: #1d9cce;
+  border: 0;
+  outline: 0;
+  height: 42px;
+  box-shadow: 0 0 4px #000;
+  margin: -12px 4px;
+  border-radius: 5px;
+  color: #fff;
+  appearance: none;
+}
+
+.as a {
+  text-decoration: none;
+  font-weight: 900;
+  height: 30px;
+  background: linear-gradient(60deg, #1be2f7, #1d9cce, #0f3393);
+  border-radius: 20px;
+  padding: 6px;
+  width: 100%;
+  color: #fff;
+}
+
+tr { border-bottom: 2px solid #1d9cce; }
+
+td, th {
+  padding: 7px 5px;
+}
+
+th {
+  background: #1d9cce;
+  color: #fff;
+}
+
+tr td {
+  border-right: 1px solid #1d9cce;
+}
+
+tr td:nth-child(1) {
+  border-right: 0;
+}
+
+.data span { color: #fff; }
+
+.data {
+  margin: 22px 5px;
+  display: flex;
+  height: 35px;
+  font-size: 14px;
+  padding: 5px;
+  color: #fff;
+  box-shadow: 0 0 5px #fff;
+  justify-content: space-between;
+  border-radius: 8px;
+}
+
+.title {
+  border-radius: 40px;
+  padding: 10px;
+  width: 80%;
+  font-weight: 900;
+  font-size: 20px;
+  color: #fff;
+  background: #1d9cce;
+  margin: 0 auto;
+  margin-top: 80px; /* تم التعديل من 150px */
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(100% + 300px)); }
+}
+
+.section {
+  padding-right: 100%;
+  width: 100%;
+  top: 120px;
+  position: absolute;
+  overflow: hidden;
+}
+
+.section .marquee {
+  animation: marquee 20s linear infinite;
+  display: inline-block;
+  white-space: nowrap;
+  height: 30px;
+  font-size: 18px;
+  font-weight: 1000;
+  color: #fff;
+}
+
+.section .marquee:hover {
+  animation-play-state: paused;
+}
+
+#error { color: rgb(255, 66, 66); }
+
+.app-submit:after, .login-submit:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -1.3rem;
+  margin-top: -1.2rem;
+  width: 38px;
+  height: 38px;
+  border: 2px dotted #1d9cce;
+  border-radius: 50%;
+  border-left: none;
+  border-bottom: none;
+  transition: opacity 0.1s 0.2s;
+  opacity: 0;
+}
+
+.app-submit.processing, .login-submit.processing {
+  opacity: 0.8;
+  border: 0;
+  font-size: 0 !important;
+}
+
+.app-submit.processing:after, .login-submit.processing:after {
+  opacity: 1;
+  animation: rotate 0.5s 0.4s infinite linear;
+}
+
+.app-submit.success:after, .login-submit.success:after {
+  transition: opacity 0.1s 0s;
+  opacity: 0;
+  animation: none;
+}
+
+.app-submit.success, .login-submit.success {
+  transition: transform 1s ease-out, opacity 0.1s 0.3s, background-color 50ms;
+  transform: scale(100);
+  opacity: 1;
+  z-index: 2;
+}
+
+a {
+  height: 80px;
+  text-decoration: none;
+}
+/* تصميم جديد لمربعات الحالة */
+.data-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 95%;
+    margin: 15px auto;
+}
+
+.data-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.data-box {
+    background: rgba(5, 25, 55, 0.8);
+    border: 2px solid #00f7ff;
+    border-radius: 12px;
+    padding: 12px;
+    width: 48%;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 247, 255, 0.2);
+    min-height: 80px;
+}
+
+.data-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 247, 255, 0.4);
+}
+
+.data-box .icon {
+    font-size: 22px;
+    margin-left: 10px;
+    color: #00f7ff;
+    text-shadow: 0 0 8px rgba(0, 247, 255, 0.5);
+}
+
+.data-info {
+    flex: 1;
+    text-align: right;
+}
+
+.data-title {
+    display: block;
+    font-size: 12px;
+    color: #00f7ff;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.data-value {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.support-box {
+    width: 100%;
+    cursor: pointer;
+}
+
+.support-box:hover {
+    background: rgba(10, 35, 70, 0.9);
+}
+
+/* زر تسجيل الخروج */
+.logout-btn {
+    background: rgba(255, 50, 50, 0.2);
+    border: 2px solid #ff4b4b;
+    color: #ff4b4b;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    font-size: 16px;
+    width: 90%;
+    display: block;
+    margin: 20px auto;
+}
+
+.logout-btn:hover {
+    background: rgba(255, 50, 50, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 75, 75, 0.4);
+}
+
+/* تحسينات للروابط */
+.manual-link {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #44b4e4;
+    padding: 8px;
+    border: 1px solid #44b4e4;
+    border-radius: 10px;
+    margin: 10px auto;
+    width: 90%;
+    transition: all 0.3s ease;
+}
+
+.manual-link:hover {
+    background: rgba(68, 180, 228, 0.1);
+    transform: translateY(-2px);
+}
