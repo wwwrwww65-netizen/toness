@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -160,8 +161,30 @@ app.get('/api/v1/public/content', (req, res) => {
   });
 });
 
+// Endpoint to list available banner images dynamically from adimg folder
+app.get('/api/banners', (req, res) => {
+  try {
+    const adDir = path.join(__dirname, 'adimg');
+    if (fs.existsSync(adDir)) {
+      const files = fs.readdirSync(adDir)
+        .filter(f => /\.(jpe?g|png|webp|gif|svg)$/i.test(f))
+        .sort((a, b) => {
+          const numA = parseInt(a.replace(/\D/g, ''), 10) || 0;
+          const numB = parseInt(b.replace(/\D/g, ''), 10) || 0;
+          return numA - numB;
+        });
+      return res.json({ success: true, images: files.map(f => `./adimg/${f}`) });
+    }
+  } catch (e) {
+    console.error('Error reading adimg folder:', e);
+  }
+  res.json({ success: true, images: ['./adimg/1.jpg', './adimg/2.jpg'] });
+});
+
 app.use('/fonts', express.static(path.join(__dirname, 'fonts')));
-app.use('/adimg', express.static(path.join(__dirname, 'adimg')));
+app.use('/adimg', express.static(path.join(__dirname, 'adimg')), (req, res) => {
+  res.status(404).send('Image not found');
+});
 app.use('/img', express.static(path.join(__dirname, 'img')));
 app.use('/css', express.static(path.join(__dirname, 'css')));
 app.use('/js', express.static(path.join(__dirname, 'js')));
