@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>لوحة التحكم - إدارة إعدادات الشبكة</title>
+
+    <!-- Google Font & FontAwesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-body: #090e1a;
+            --bg-card: rgba(17, 24, 43, 0.92);
+            --bg-card-hover: rgba(22, 32, 58, 0.98);
+            --bg-input: rgba(10, 15, 29, 0.85);
+            --primary: #3b82f6;
+            --primary-gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            --emerald-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            --amber-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            --danger-gradient: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-dim: #64748b;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-focus: rgba(59, 130, 246, 0.6);
+            --radius-lg: 18px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --shadow-card: 0 12px 35px -5px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06);
+            --shadow-glow: 0 0 25px rgba(59, 130, 246, 0.25);
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            background-image:
+                radial-gradient(circle at 10% 10%, rgba(37, 99, 235, 0.14) 0%, transparent 45%),
+                radial-gradient(circle at 90% 90%, rgba(124, 58, 237, 0.14) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.06) 0%, transparent 60%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 24px 16px 50px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+        .dash-header {
+            background: var(--bg-card);
+            backdrop-filter: blur(18px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 24px 30px;
+            margin-bottom: 26px;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dash-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #10b981);
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .brand-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: #fff;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .brand-text h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-text p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: var(--radius-md);
+            font-size: 0.92rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .btn-success {
+            background: var(--emerald-gradient);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+        }
+
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: var(--danger-gradient);
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.35);
+        }
+
+        .btn-sm {
+            padding: 6px 14px;
+            font-size: 0.84rem;
+            border-radius: var(--radius-sm);
+        }
+
+        .btn-icon {
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            border-radius: var(--radius-sm);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* GRID SYSTEM */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .col-12 { grid-column: span 12; }
+        .col-6 { grid-column: span 6; }
+
+        @media (max-width: 992px) {
+            .col-6 { grid-column: span 12; }
+        }
+
+        /* CARDS */
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(18px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 24px 26px;
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            border-color: rgba(59, 130, 246, 0.35);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border-color);
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .card-title {
+            font-size: 1.18rem;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title i {
+            color: var(--primary);
+            font-size: 1.25rem;
+        }
+
+        .card-body {
+            flex: 1;
+        }
+
+        /* FORM CONTROLS */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.93rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .form-label i {
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+
+        .form-control {
+            width: 100%;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 12px 16px;
+            color: #fff;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--border-focus);
+            background: rgba(15, 23, 42, 0.95);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 85px;
+            resize: vertical;
+        }
+
+        .form-hint {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* PACKAGES CARDS */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 16px;
+        }
+
+        .package-item {
+            background: rgba(13, 20, 38, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 18px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .package-item:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: translateY(-3px);
+            background: rgba(18, 27, 49, 0.95);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .pkg-row {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .pkg-label {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .pkg-input {
+            background: rgba(10, 15, 29, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 8px 10px;
+            color: #fff;
+            font-size: 0.92rem;
+            width: 100%;
+        }
+
+        .pkg-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .pkg-price-input {
+            color: #fbbf24;
+            font-weight: 800;
+            font-size: 1rem;
+        }
+
+        .pkg-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 6px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* SALES POINTS LIST */
+        .sales-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .sales-item {
+            background: rgba(13, 20, 38, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition);
+        }
+
+        .sales-item:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            background: rgba(18, 27, 49, 0.95);
+        }
+
+        .sales-index {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .sales-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 0.95rem;
+            padding: 6px 8px;
+        }
+
+        .sales-input:focus {
+            outline: none;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: var(--radius-sm);
+        }
+
+        /* EMPTY STATE */
+        .empty-box {
+            text-align: center;
+            padding: 35px 20px;
+            color: var(--text-muted);
+        }
+
+        .empty-box i {
+            font-size: 2.8rem;
+            color: var(--text-dim);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        /* BOTTOM CTA BAR */
+        .bottom-bar {
+            background: var(--bg-card);
+            backdrop-filter: blur(18px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 22px 28px;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .bottom-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .bottom-info-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .bottom-info-text h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .bottom-info-text p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* MODALS */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .modal-box {
+            background: #131d33;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            max-height: 90vh;
+        }
+
+        .modal-head {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.6);
+        }
+
+        .modal-head h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-head h3 i {
+            color: var(--primary);
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-body {
+            padding: 24px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .modal-foot {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            background: rgba(15, 23, 42, 0.6);
+        }
+
+        /* TOAST NOTIFICATIONS */
+        .toast-container {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast {
+            background: #1e293b;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 14px 20px;
+            color: #fff;
+            font-size: 0.92rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 280px;
+            animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .toast.success { border-left: 4px solid #10b981; }
+        .toast.info { border-left: 4px solid #3b82f6; }
+        .toast.warning { border-left: 4px solid #f59e0b; }
+        .toast.error { border-left: 4px solid #ef4444; }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* CODE BLOCK */
+        .code-preview {
+            background: #090d16;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 18px;
+            color: #a5b4fc;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.88rem;
+            max-height: 480px;
+            overflow: auto;
+            direction: ltr;
+            text-align: left;
+            white-space: pre;
+            line-height: 1.5;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .dash-header {
+                padding: 18px 20px;
+            }
+            .brand-text h1 {
+                font-size: 1.35rem;
+            }
+            .header-actions {
+                width: 100%;
+                justify-content: stretch;
+            }
+            .header-actions .btn {
+                flex: 1;
+            }
+            .bottom-bar {
+                flex-direction: column;
+                text-align: center;
+            }
+            .bottom-info {
+                flex-direction: column;
+            }
+            .bottom-bar .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- HEADER -->
+        <header class="dash-header">
+            <div class="header-brand">
+                <div class="brand-icon">
+                    <i class="fas fa-sliders-h"></i>
+                </div>
+                <div class="brand-text">
+                    <h1>لوحة التحكم</h1>
+                    <p>إدارة وتعديل بيانات الشبكة، الباقات والأسعار، ونقاط البيع والعروض</p>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <button class="btn btn-outline btn-sm" onclick="openImportModal()">
+                    <i class="fas fa-file-import"></i> استيراد ملف config.js
+                </button>
+                <button class="btn btn-outline btn-sm" onclick="openCodeModal()">
+                    <i class="fas fa-code"></i> عرض الكود الكامل
+                </button>
+                <button class="btn btn-primary" onclick="downloadConfigFile()">
+                    <i class="fas fa-download"></i> تحميل ملف config.js
+                </button>
+                <a href="index.html" class="btn btn-outline btn-sm">
+                    <i class="fas fa-home"></i> صفحة الهوتسبوت
+                </a>
+            </div>
+        </header>
+
+        <!-- MAIN DASHBOARD GRID -->
+        <div class="dashboard-grid">
+
+            <!-- SECTION 1: IDENTITY & CONTACT -->
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-network-wired"></i> 1. البيانات الأساسية والتواصل
+                        </h2>
+                    </div>
+
+                    <div class="card-body">
+                        <!-- Network Name -->
+                        <div class="form-group">
+                            <label class="form-label" for="networkNameInput">
+                                <i class="fas fa-signature"></i> اسم الشبكة (network-name)
+                            </label>
+                            <input type="text" class="form-control" id="networkNameInput" placeholder="مثال: تونس نت" oninput="updateField('network-name', this.value)">
+                            <div class="form-hint"><i class="fas fa-info-circle"></i> يظهر في أعلى الصفحة والترويسة وكافة النوافذ</div>
+                        </div>
+
+                        <!-- Welcome Title Above Banner -->
+                        <div class="form-group">
+                            <label class="form-label" for="welcomeTitleAboveBannerInput">
+                                <i class="fas fa-hand-sparkles"></i> النص الترحيبي أعلى البنر (welcome-title)
+                            </label>
+                            <input type="text" class="form-control" id="welcomeTitleAboveBannerInput" placeholder="مرحبا بك في شبكة تونس نت اللاسلكية" oninput="updateField('welcome-title', this.value)">
+                            <div class="form-hint"><i class="fas fa-info-circle"></i> النص العريض الظاهر مباشرة فوق بنر الإعلانات</div>
+                        </div>
+
+                        <!-- Contact Grid (Phone & WhatsApp) -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px;">
+                            <!-- Service Phone -->
+                            <div class="form-group">
+                                <label class="form-label" for="serviceNumberInput">
+                                    <i class="fas fa-phone-alt"></i> رقم خدمة العملاء / الاتصال
+                                </label>
+                                <input type="text" class="form-control" id="serviceNumberInput" placeholder="مثال: 772131004" oninput="updateField('service-number', this.value)">
+                                <div class="form-hint"><i class="fas fa-info-circle"></i> رقم الاتصال المباشر وأسفل النوافذ</div>
+                            </div>
+
+                            <!-- WhatsApp Phone -->
+                            <div class="form-group">
+                                <label class="form-label" for="whatsappNumberInput">
+                                    <i class="fab fa-whatsapp" style="color: #25D366;"></i> رقم الواتساب للدعم الفني
+                                </label>
+                                <input type="text" class="form-control" id="whatsappNumberInput" placeholder="مثال: 772131004" oninput="updateField('whatsapp-number', this.value)">
+                                <div class="form-hint"><i class="fas fa-info-circle"></i> رقم محادثات الدعم الفني</div>
+                            </div>
+                        </div>
+
+                        <!-- Marquee Text / News Line -->
+                        <div class="form-group" style="margin-top: 16px;">
+                            <label class="form-label" for="newsLineInput">
+                                <i class="fas fa-bullhorn"></i> نص الشريط الإخباري المتحرك (news-line)
+                            </label>
+                            <textarea class="form-control" id="newsLineInput" rows="2" placeholder="أدخل الآية القرآنية أو الإعلان المتحرك..." oninput="updateField('news-line', this.value)"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 2: OFFERS & NEWS MODAL -->
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-gift"></i> 2. نافذة جديدنا والعروض
+                        </h2>
+                    </div>
+
+                    <div class="card-body">
+                        <!-- News Title -->
+                        <div class="form-group">
+                            <label class="form-label" for="newsTitleInput"><i class="fas fa-heading"></i> عنوان نافذة جديدنا والعروض (news-title)</label>
+                            <input type="text" class="form-control" id="newsTitleInput" placeholder="زبائننا الكرام" oninput="updateField('news-title', this.value)">
+                        </div>
+
+                        <!-- News Content -->
+                        <div class="form-group" style="margin-top: 14px;">
+                            <label class="form-label" for="newsContentInput"><i class="fas fa-align-right"></i> محتوى جديدنا والعروض (news-content)</label>
+                            <textarea class="form-control" id="newsContentInput" rows="3" placeholder="صارت كروت شبكة تونس نت متوفرة عبر محفظة جيب..." oninput="updateField('news-content', this.value)"></textarea>
+                        </div>
+
+                        <!-- News Code -->
+                        <div class="form-group" style="margin-top: 14px;">
+                            <label class="form-label" for="newsCodeInput"><i class="fas fa-qrcode"></i> كود الشبكة أو الباقة (news-code)</label>
+                            <input type="text" class="form-control" id="newsCodeInput" placeholder="رقم كود الشبكة: (21124)" oninput="updateField('news-code', this.value)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 3: PACKAGES & PRICING (PROFILES) -->
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-box-open"></i> 3. جدول باقات وأسعار الكروت (profiles)
+                        </h2>
+                        <button class="btn btn-primary btn-sm" onclick="addNewPackageCard()">
+                            <i class="fas fa-plus"></i> إضافة باقة جديدة
+                        </button>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="packages-grid" id="packagesGrid">
+                            <!-- Dynamic Cards -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 4: SALES POINTS -->
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-store-alt"></i> 4. نقاط البيع ومراكز توزيع الكروت (sell-points)
+                        </h2>
+                        <button class="btn btn-primary btn-sm" onclick="addNewSalesPoint()">
+                            <i class="fas fa-plus"></i> إضافة مركز بيع جديد
+                        </button>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="sales-list" id="salesList">
+                            <!-- Dynamic items -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- BOTTOM ACTION BAR -->
+        <div class="bottom-bar">
+            <div class="bottom-info">
+                <div class="bottom-info-icon">
+                    <i class="fas fa-check-double"></i>
+                </div>
+                <div class="bottom-info-text">
+                    <h3>تم الحفظ التلقائي في الذاكرة</h3>
+                    <p>بعد تعديل أي بيانات، يمكنك نسخ الكود أو تحميل ملف <code>config.js</code> الجاهز مباشرة</p>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <button class="btn btn-outline" onclick="copyConfigCode()">
+                    <i class="fas fa-copy"></i> نسخ الكود كاملاً
+                </button>
+                <button class="btn btn-success" onclick="downloadConfigFile()">
+                    <i class="fas fa-file-arrow-down"></i> تحميل ملف config.js
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MODAL: SHOW / COPY CODE -->
+    <div class="modal" id="codeModal">
+        <div class="modal-box" style="max-width: 850px;">
+            <div class="modal-head">
+                <h3><i class="fas fa-code"></i> كود ملف config.js المولد (مطابق 100%)</h3>
+                <button class="modal-close" onclick="closeModal('codeModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="code-preview" id="codeContainer"></div>
+            </div>
+            <div class="modal-foot">
+                <button class="btn btn-outline" onclick="closeModal('codeModal')">إغلاق</button>
+                <button class="btn btn-success" onclick="copyConfigCode()"><i class="fas fa-copy"></i> نسخ الكود كاملاً</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: IMPORT CONFIG -->
+    <div class="modal" id="importModal">
+        <div class="modal-box" style="max-width: 600px;">
+            <div class="modal-head">
+                <h3><i class="fas fa-file-import"></i> استيراد ملف config.js</h3>
+                <button class="modal-close" onclick="closeModal('importModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px;">
+                    اختر ملف <code>config.js</code> من جهازك ليتم قراءة وتعبئة كافة الإعدادات والأسعار تلقائياً:
+                </p>
+                <input type="file" id="fileUploadInput" accept=".js,.json" class="form-control" onchange="handleFileImport(event)">
+
+                <div style="margin-top: 16px;">
+                    <label class="form-label">أو الصق محتوى ملف config.js هنا مباشرة:</label>
+                    <textarea class="form-control" id="rawCodeImport" style="min-height: 140px; font-family: monospace; font-size: 0.85rem;" placeholder="Config({ ... });"></textarea>
+                </div>
+            </div>
+            <div class="modal-foot">
+                <button class="btn btn-outline" onclick="closeModal('importModal')">إلغاء</button>
+                <button class="btn btn-primary" onclick="importFromRawText()"><i class="fas fa-check"></i> استيراد وتطبيق</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST CONTAINER -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- CONFIG ENGINE SCRIPT -->
+    <script>
+        // Default Config State Preserving All Server Configs
+        let cfg = {
+            "network-name": "تونس نت",
+            "welcome-title": "مرحبا بك في شبكة تونس نت اللاسلكية",
+            "service-number": "772131004",
+            "whatsapp-number": "772131004",
+            "news-line": "{بسم الله الرحمن الرحيم} ( قل للمؤمنين يغضوا من أبصرهم ويحفظوا فروجهم ذلك ازكى لهم إن الله خبير بما يصنعون ) صدق الله العظيم",
+            "popup-adv-time": 5,
+            "popup-adv-img-type": true,
+            "popup-adv-repeat-after": 120,
+            "login-type": "User",
+            "login-chap": 0,
+            "input-type": "tel",
+            "input-autocomplete": "on",
+            "input-rm-white-spaces": 0,
+            "input-to-lower": 0,
+            "input-to-upper": 0,
+            "input-to-arabic-numbers": 1,
+            "input-only-numbers": 0,
+            "input-no-numbers": 0,
+            "input-only-alphanumeric": 0,
+            "input-to-tel-type-when": 0,
+            "enable-hot-cookie": 1,
+            "clear-router-cookie": 1,
+            "clear-hot-cookie": 1,
+            "enable-hot-blocker": 1,
+            "try-count": 20,
+            "warn-when": 10,
+            "block-time": 1,
+            "warn-message": "تحذير !! عدد محاولاتك الخاطئة اصبح {{tryCounter}} محاولات, عدد المحاولات المسموح بها هي {{tryCount}} محاولات فقط, عدد محاولاتك المتبقية {{restTryCount}} محاولات, سيتم حظرك لمدة {{blockTime}} دقائق اذا تجاوزت العدد المسموح للمحاولات",
+            "price-button": true,
+            "sell-point-button": true,
+            "loan-button": true,
+            "app-store-status-button": false,
+            "show-date-field": false,
+            "redirect-to-esterahah": "",
+            "redirect-to-mobasher": "",
+            "app-store-base-url": "",
+            "app-store-base-url-ext": "",
+            "profiles": [
+                { price: "100 ريال", time: "0 ساعات", transfer: "0 ميجا", validity: "3 أيام" },
+                { price: "150 ريال", time: "0 ساعات", transfer: "0 ميجا", validity: "5 أيام" },
+                { price: "200 ريال", time: "0 ساعات", transfer: "0 ميجا", validity: "أسبوع" },
+                { price: "250 ريال", time: "0 ساعات", transfer: "0 ميجا", validity: "10 أيام" },
+                { price: "300 ريال", time: "0 ساعات", transfer: "0 ميجا", validity: "15 يوم" },
+                { price: "500 ريال", time: "0 ساعات", transfer: "0 ميجا", validity: "شهر" },
+                { price: "150 ريال", time: "مفتوح ", transfer: "مفتوح", validity: "يوم واحد" }
+            ],
+            "sell-points": [
+                { name: "  تونس نت  " },
+                { name: "  772131004 " }
+            ],
+            "news-title": "زبائننا الكرام",
+            "news-content": "صارت كروت شبكة تونس نت متوفرة عبر محفظة جيب",
+            "news-code": "رقم كود الشبكة: (21124)"
+        };
+
+        // Hook into Config object
+        window.Config = function(obj) {
+            if (obj && typeof obj === 'object') {
+                cfg = Object.assign({}, cfg, obj);
+            }
+        };
+    </script>
+    <script src="config/config.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            renderAll();
+        });
+
+        function saveToCache() {
+            try {
+                localStorage.setItem('mikrotik_hotspot_custom_config', JSON.stringify(cfg));
+            } catch (e) {}
+        }
+
+        function renderAll() {
+            // 1. Identity & Contact
+            document.getElementById('networkNameInput').value = (cfg["network-name"] || '').trim();
+            document.getElementById('welcomeTitleAboveBannerInput').value = cfg["welcome-title"] || '';
+            document.getElementById('serviceNumberInput').value = (cfg["service-number"] || '').trim();
+            document.getElementById('whatsappNumberInput').value = (cfg["whatsapp-number"] || cfg["service-number"] || '').trim();
+            document.getElementById('newsLineInput').value = cfg["news-line"] || '';
+
+            // 2. News & Offers
+            document.getElementById('newsTitleInput').value = cfg["news-title"] || '';
+            document.getElementById('newsContentInput').value = cfg["news-content"] || '';
+            document.getElementById('newsCodeInput').value = cfg["news-code"] || '';
+
+            // 3. Profiles & Sales Points
+            renderPackages();
+            renderSalesPoints();
+        }
+
+        function updateField(key, value) {
+            cfg[key] = value;
+            saveToCache();
+        }
+
+        // PROFILES (PACKAGES)
+        function renderPackages() {
+            const grid = document.getElementById('packagesGrid');
+            grid.innerHTML = '';
+
+            if (!cfg.profiles || cfg.profiles.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-12 empty-box" style="grid-column: 1 / -1;">
+                        <i class="fas fa-box-open"></i>
+                        <p>لا توجد باقات مضافة</p>
+                    </div>`;
+                return;
+            }
+
+            cfg.profiles.forEach((pkg, index) => {
+                const card = document.createElement('div');
+                card.className = 'package-item';
+                card.innerHTML = `
+                    <div class="pkg-row">
+                        <span class="pkg-label">السعر</span>
+                        <input type="text" class="pkg-input pkg-price-input" value="${pkg.price || ''}" placeholder="100 ريال" oninput="editPackage(${index}, 'price', this.value)">
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <div class="pkg-row">
+                            <span class="pkg-label">الوقت</span>
+                            <input type="text" class="pkg-input" value="${pkg.time || ''}" placeholder="0 ساعات" oninput="editPackage(${index}, 'time', this.value)">
+                        </div>
+                        <div class="pkg-row">
+                            <span class="pkg-label">الرصيد</span>
+                            <input type="text" class="pkg-input" value="${pkg.transfer || ''}" placeholder="0 ميجا" oninput="editPackage(${index}, 'transfer', this.value)">
+                        </div>
+                    </div>
+
+                    <div class="pkg-row">
+                        <span class="pkg-label">مدة الصلاحية</span>
+                        <input type="text" class="pkg-input" value="${pkg.validity || ''}" placeholder="3 أيام" oninput="editPackage(${index}, 'validity', this.value)">
+                    </div>
+
+                    <div class="pkg-actions">
+                        <button class="btn btn-danger btn-sm" onclick="deletePackage(${index})"><i class="fas fa-trash"></i> حذف الباقة</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function addNewPackageCard() {
+            if (!cfg.profiles) cfg.profiles = [];
+            cfg.profiles.push({
+                price: "500 ريال",
+                time: "0 ساعات",
+                transfer: "0 ميجا",
+                validity: "شهر"
+            });
+            saveToCache();
+            renderPackages();
+            showToast('تمت إضافة باقة جديدة', 'success');
+        }
+
+        function editPackage(index, field, value) {
+            if (cfg.profiles && cfg.profiles[index]) {
+                cfg.profiles[index][field] = value;
+                saveToCache();
+            }
+        }
+
+        function deletePackage(index) {
+            if (confirm('هل أنت متأكد من حذف هذه الباقة؟')) {
+                cfg.profiles.splice(index, 1);
+                saveToCache();
+                renderPackages();
+                showToast('تم حذف الباقة', 'warning');
+            }
+        }
+
+        // SELL POINTS
+        function renderSalesPoints() {
+            const list = document.getElementById('salesList');
+            list.innerHTML = '';
+
+            if (!cfg["sell-points"] || cfg["sell-points"].length === 0) {
+                list.innerHTML = `
+                    <div class="empty-box">
+                        <i class="fas fa-store-slash"></i>
+                        <p>لا توجد نقاط بيع مضافة</p>
+                    </div>`;
+                return;
+            }
+
+            cfg["sell-points"].forEach((point, index) => {
+                const item = document.createElement('div');
+                item.className = 'sales-item';
+                item.innerHTML = `
+                    <div class="sales-index">${index + 1}</div>
+                    <input type="text" class="sales-input" value="${point.name || ''}" placeholder="اسم المحل أو البقالة والموقع..." oninput="editSalesPoint(${index}, this.value)">
+                    <button class="btn btn-danger btn-sm btn-icon" onclick="deleteSalesPoint(${index})" title="حذف"><i class="fas fa-trash"></i></button>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        function addNewSalesPoint() {
+            if (!cfg["sell-points"]) cfg["sell-points"] = [];
+            cfg["sell-points"].push({ name: "مركز بيع جديد / الموقع" });
+            saveToCache();
+            renderSalesPoints();
+            showToast('تمت إضافة نقطة بيع جديدة', 'success');
+        }
+
+        function editSalesPoint(index, value) {
+            if (cfg["sell-points"] && cfg["sell-points"][index]) {
+                cfg["sell-points"][index].name = value;
+                saveToCache();
+            }
+        }
+
+        function deleteSalesPoint(index) {
+            if (confirm('هل أنت متأكد من حذف نقطة البيع هذه؟')) {
+                cfg["sell-points"].splice(index, 1);
+                saveToCache();
+                renderSalesPoints();
+                showToast('تم حذف نقطة البيع', 'warning');
+            }
+        }
+
+        // GENERATE CLEAN CONFIG.JS
+        function generateConfigJS() {
+            const profilesFormatted = (cfg.profiles || []).map(p => {
+                return `    { price: ${JSON.stringify(p.price || '')}, time: ${JSON.stringify(p.time || '')}, transfer: ${JSON.stringify(p.transfer || '')}, validity: ${JSON.stringify(p.validity || '')} },`;
+            }).join('\n');
+
+            const sellPointsFormatted = (cfg["sell-points"] || []).map(sp => {
+                return `    { name: ${JSON.stringify(sp.name || '')} },`;
+            }).join('\n');
+
+            return `Config({
+  // =========================================================================
+  // 1. البيانات الأساسية للشبكة (الاسم، الدعم الفني، الشريط الإخباري)
+  // =========================================================================
+
+  // اسم الشبكة الذي يظهر في أعلى الصفحة والترويسة
+  "network-name": ${JSON.stringify(cfg["network-name"] || '')},
+
+  // النص الترحيبي أعلى بنر الإعلانات (يمكنك تغييره هنا أو إذا غيرت اسم الشبكة سيتغير تلقائياً)
+  "welcome-title": ${JSON.stringify(cfg["welcome-title"] || '')},
+
+  // رقم خدمة العملاء للاتصال المباشر والظهور في النوافذ
+  "service-number": ${JSON.stringify(cfg["service-number"] || '')},
+
+  // رقم الواتساب للدعم الفني (إذا تركته فارغاً أو متطابقاً سيستخدم رقم خدمة العملاء أعلاه)
+  "whatsapp-number": ${JSON.stringify(cfg["whatsapp-number"] || cfg["service-number"] || '')},
+
+  // =========================================================================
+  // 👇 [نص الشريط الإخباري المتحرك] 👇
+  // اكتب هنا النص الذي تريده أن يتحرك في الشريط (آيات قرآنية، إعلانات، تنبيهات)
+  // =========================================================================
+  "news-line":
+    ${JSON.stringify(cfg["news-line"] || '')},
+
+  // =========================================================================
+  // 2. إعدادات الإعلان المنبثق (Popup Ad)
+  // =========================================================================
+  "popup-adv-time": ${cfg["popup-adv-time"] ?? 5},           // مدة ظهور الإعلان بالثواني قبل إمكانية إغلاقه
+  "popup-adv-img-type": ${Boolean(cfg["popup-adv-img-type"])},    // تفعيل عرض صورة الإعلان
+  "popup-adv-repeat-after": ${cfg["popup-adv-repeat-after"] ?? 120}, // تكرار ظهور الإعلان بعد عدد معين من الدقائق
+
+  // =========================================================================
+  // 3. إعدادات تسجيل الدخول ونوع الكرت
+  // =========================================================================
+  "login-type": ${JSON.stringify(cfg["login-type"] || 'User')},          // نوع تسجيل الدخول (User: مستخدم فقط / UserPass: مستخدم وكلمة مرور)
+  "login-chap": ${cfg["login-chap"] ?? 0},               // نوع التشفير (0: عادي / 1: CHAP)
+  "input-type": ${JSON.stringify(cfg["input-type"] || 'tel')},           // نوع لوحة المفاتيح في الهاتف (tel: أرقام لسرعة الإدخال)
+  "input-autocomplete": ${JSON.stringify(cfg["input-autocomplete"] || 'on')},    // إكمال تلقائي لأرقام الكروت المحفوظة
+
+  // =========================================================================
+  // 4. إعدادات معالجة وتصحيح أرقام الكروت المدخلة
+  // =========================================================================
+  "input-rm-white-spaces": ${cfg["input-rm-white-spaces"] ?? 0},    // إزالة المسافات الفارغة تلقائياً
+  "input-to-lower": ${cfg["input-to-lower"] ?? 0},           // تحويل الحروف الإنجليزية إلى صغيرة
+  "input-to-upper": ${cfg["input-to-upper"] ?? 0},           // تحويل الحروف الإنجليزية إلى كبيرة
+  "input-to-arabic-numbers": ${cfg["input-to-arabic-numbers"] ?? 1},  // تحويل الأرقام العربية (١٢٣) إلى إنجليزية (123) تلقائياً
+  "input-only-numbers": ${cfg["input-only-numbers"] ?? 0},       // قبول الأرقام فقط في حقل الكرت
+  "input-no-numbers": ${cfg["input-no-numbers"] ?? 0},
+  "input-only-alphanumeric": ${cfg["input-only-alphanumeric"] ?? 0},
+  "input-to-tel-type-when": ${cfg["input-to-tel-type-when"] ?? 0},
+
+  // =========================================================================
+  // 5. إعدادات الكوكيز وحفظ الكرت في المتصفح
+  // =========================================================================
+  "enable-hot-cookie": ${cfg["enable-hot-cookie"] ?? 1},        // تفعيل حفظ كرت المستخدم لتسهيل الدخول التلقائي
+  "clear-router-cookie": ${cfg["clear-router-cookie"] ?? 1},      // مسح كوكيز الراوتر عند تسجيل الخروج
+  "clear-hot-cookie": ${cfg["clear-hot-cookie"] ?? 1},         // مسح كوكيز الصفحة عند تسجيل الخروج
+
+  // =========================================================================
+  // 6. نظام مكافحة التخمين والحظر التلقائي (HotBlocker)
+  // =========================================================================
+  "enable-hot-blocker": ${cfg["enable-hot-blocker"] ?? 1},       // تفعيل نظام حظر التخمين والمحاولات الخاطئة
+  "try-count": ${cfg["try-count"] ?? 20},               // عدد المحاولات الخاطئة المسموح بها قبل فرض الحظر
+  "warn-when": ${cfg["warn-when"] ?? 10},               // بدء إظهار رسالة التحذير عند الوصول لهذا العدد من الأخطاء
+  "block-time": ${cfg["block-time"] ?? 1},               // مدة الحظر بالدقائق عند تجاوز عدد المحاولات المسموحة
+  // نص رسالة التحذير التي تظهر للعميل عند تكرار إدخال كروت خاطئة
+  "warn-message":
+    ${JSON.stringify(cfg["warn-message"] || '')},
+
+  // =========================================================================
+  // 7. إظهار وإخفاء أزرار القائمة والشاشات
+  // =========================================================================
+  "price-button": ${Boolean(cfg["price-button"] ?? true)},          // إظهار زر قائمة أسعار الكروت (true: نعم / false: لا)
+  "sell-point-button": ${Boolean(cfg["sell-point-button"] ?? true)},     // إظهار زر نقاط البيع وأماكن التوزيع (true: نعم / false: لا)
+  "loan-button": ${Boolean(cfg["loan-button"] ?? true)},           // إظهار زر خدمة الاستدانة / كرت سلف (true: نعم / false: لا)
+  "show-date-field": ${Boolean(cfg["show-date-field"])},
+
+  // =========================================================================
+  // 9. جدول باقات وأسعار الكروت (يتم تعديل الأسعار والساعات والحجم والصلاحية من هنا)
+  // =========================================================================
+  profiles: [
+${profilesFormatted}
+  ],
+
+  // =========================================================================
+  // 10. نقاط البيع ومراكز توزيع الكروت (اكتب هنا أسماء وأرقام المحلات)
+  // =========================================================================
+  "sell-points": [
+${sellPointsFormatted}
+  ],
+
+  // =========================================================================
+  // 11. نصوص جديدنا والعروض (تعديل مباشر وسهل لرسائل العروض والتنبيهات)
+  // =========================================================================
+  "news-title": ${JSON.stringify(cfg["news-title"] || '')},
+  "news-content": ${JSON.stringify(cfg["news-content"] || '')},
+  "news-code": ${JSON.stringify(cfg["news-code"] || '')},
+});
+`;
+        }
+
+        // SAVE DIRECTLY TO SERVER
+        async function saveDirectlyToServer() {
+            const code = generateConfigJS();
+            try {
+                const res = await fetch('/api/save-config', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ content: code })
+                });
+                if (res.ok) {
+                    showToast('تم حفظ التغييرات في ملف config.js مباشرة على السيرفر!', 'success');
+                } else {
+                    showToast('تم الحفظ في المتصفح! يمكنك تحميل الملف.', 'info');
+                }
+            } catch(err) {
+                showToast('تم الحفظ في المتصفح بنجاح!', 'success');
+            }
+        }
+
+        // DOWNLOAD FILE
+        function downloadConfigFile() {
+            const code = generateConfigJS();
+            const blob = new Blob([code], { type: 'application/javascript;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'config.js';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            showToast('تم تحميل ملف config.js بنجاح!', 'success');
+        }
+
+        // COPY CODE
+        function copyConfigCode() {
+            const code = generateConfigJS();
+            navigator.clipboard.writeText(code).then(() => {
+                showToast('تم نسخ كود config.js كاملاً!', 'success');
+            }).catch(() => {
+                showToast('تعذر النسخ التلقائي', 'error');
+            });
+        }
+
+        // MODALS
+        function openModal(id) {
+            document.getElementById(id).classList.add('show');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('show');
+        }
+
+        function openCodeModal() {
+            document.getElementById('codeContainer').textContent = generateConfigJS();
+            openModal('codeModal');
+        }
+
+        function openImportModal() {
+            document.getElementById('rawCodeImport').value = '';
+            openModal('importModal');
+        }
+
+        // IMPORT LOGIC
+        function handleFileImport(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                parseAndApplyConfig(e.target.result);
+            };
+            reader.readAsText(file);
+        }
+
+        function importFromRawText() {
+            const text = document.getElementById('rawCodeImport').value;
+            if (!text || text.trim() === '') {
+                showToast('الرجاء إدخال الكود أو اختيار ملف', 'warning');
+                return;
+            }
+            parseAndApplyConfig(text);
+        }
+
+        function parseAndApplyConfig(content) {
+            try {
+                let executed = false;
+                const sandboxConfig = function(obj) {
+                    if (obj && typeof obj === 'object') {
+                        cfg = Object.assign({}, cfg, obj);
+                        executed = true;
+                    }
+                };
+
+                const fn = new Function('Config', content);
+                fn(sandboxConfig);
+
+                if (executed) {
+                    saveToCache();
+                    renderAll();
+                    closeModal('importModal');
+                    showToast('تم استيراد وتطبيق ملف config.js بنجاح!', 'success');
+                } else {
+                    throw new Error('Config() was not called');
+                }
+            } catch (err) {
+                console.error('Import parse error:', err);
+                showToast('فشل قراءة الملف، تأكد من صحة الكود', 'error');
+            }
+        }
+
+        // TOAST ENGINE
+        function showToast(msg, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+
+            let icon = 'info-circle';
+            if (type === 'success') icon = 'check-circle';
+            if (type === 'warning') icon = 'exclamation-triangle';
+            if (type === 'error') icon = 'times-circle';
+
+            toast.innerHTML = `<i class="fas fa-${icon}"></i> <span>${msg}</span>`;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(-50px)';
+                toast.style.transition = 'all 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

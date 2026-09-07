@@ -181,6 +181,22 @@ app.get('/api/banners', (req, res) => {
   res.json({ success: true, images: ['./adimg/1.jpg', './adimg/2.jpg'] });
 });
 
+// Endpoint to save config.js directly from the admin dashboard
+app.post('/api/save-config', (req, res) => {
+  try {
+    const { content } = req.body;
+    if (typeof content !== 'string' || !content.trim()) {
+      return res.status(400).json({ success: false, error: 'Invalid content' });
+    }
+    const configPath = path.join(__dirname, 'config', 'config.js');
+    fs.writeFileSync(configPath, content, 'utf-8');
+    return res.json({ success: true, message: 'Config updated successfully' });
+  } catch (err: any) {
+    console.error('Error saving config.js:', err);
+    return res.status(500).json({ success: false, error: err.message || 'Server error' });
+  }
+});
+
 app.use('/fonts', express.static(path.join(__dirname, 'fonts')));
 app.use('/adimg', express.static(path.join(__dirname, 'adimg')), (req, res) => {
   res.status(404).send('Image not found');
