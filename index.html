@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title data-network-name>شبكة{{network-name}} اللاسلكيه</title>
+    <title data-network-name>شبكة تونس نت اللاسلكية</title>
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, shrink-to-fit=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="css/notifications-system.css">
     <!-- Announcements System CSS -->
     <link rel="stylesheet" href="css/announcements-style.css">
+    <script src="config/config.js"></script>
     <style>
         .im1::before {
             content: "سرعة في النت";
@@ -55,6 +56,18 @@
             -webkit-touch-callout: none;
         }
 
+        /* Immediate Zero-Flicker Logged-in Preload Rules */
+        html.is-logged-in-preload #login {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        html.is-logged-in-preload #status {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+        }
+
         /* Ensure all inputs and editable fields remain fully accessible and easy to type into */
         input,
         textarea,
@@ -70,6 +83,17 @@
             -webkit-user-drag: none;
         }
     </style>
+    <script>
+        (function() {
+            try {
+                var isLogged = localStorage.getItem('hotspot_is_logged_in') === 'yes' || 
+                               sessionStorage.getItem('hotspot_is_logged_in') === 'yes';
+                if (isLogged) {
+                    document.documentElement.classList.add('is-logged-in-preload');
+                }
+            } catch(e) {}
+        })();
+    </script>
     <script src="js/security.min.js"></script>
 </head>
 
@@ -223,7 +247,7 @@
                                 </svg>
                             </div>
                             <div class="brand-info">
-                                <span class="brand-name" data-network-name>{{network-name}}</span>
+                                <span class="brand-name" data-network-name>تونس نت</span>
                             </div>
                         </div>
 
@@ -245,7 +269,7 @@
                     <section class="section">
                         <div class="ticker-container">
                             <div class="ticker-content-track">
-                                <p class="marquee" data-news-line>{{news-line}}</p>
+                                <p class="marquee" data-news-line>{بسم الله الرحمن الرحيم} ( قل للمؤمنين يغضوا من أبصرهم ويحفظوا فروجهم ذلك ازكى لهم إن الله خبير بما يصنعون ) صدق الله العظيم</p>
                             </div>
                         </div>
                     </section>
@@ -405,7 +429,7 @@
                                         <path
                                             d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 00-1.02.24l-2.2 2.2a15.045 15.045 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z" />
                                     </svg>
-                                    <span class="contact" data-service-number>خدمة العملاء: {{service-number}}</span>
+                                    <span class="contact" data-service-number>خدمة العملاء: 772131004</span>
                                 </a>
                             </div>
                         </div>
@@ -441,7 +465,7 @@
                                         <path
                                             d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 00-1.02.24l-2.2 2.2a15.045 15.045 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z" />
                                     </svg>
-                                    <span class="contact" data-service-number>خدمة العملاء: {{service-number}}</span>
+                                    <span class="contact" data-service-number>خدمة العملاء: 772131004</span>
                                 </a>
                             </div>
                         </div>
@@ -455,7 +479,7 @@
                             <span class="title">
                                 <svg viewBox="0 0 24 24" class="modal-title-icon">
                                     <path
-                                        d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.1 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.1 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z" />
+                                        d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.1 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.1 0 2-.89 2-2V8c0-1.1-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z" />
                                 </svg>
                                 <span>جديدنا والعروض</span>
                             </span>
@@ -487,7 +511,7 @@
                                         <path
                                             d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 00-1.02.24l-2.2 2.2a15.045 15.045 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z" />
                                     </svg>
-                                    <span class="contact" data-service-number>خدمة العملاء: {{service-number}}</span>
+                                    <span class="contact" data-service-number>خدمة العملاء: 772131004</span>
                                 </a>
                             </div>
                         </div>
@@ -530,7 +554,7 @@
                         <section class="section" style="margin-top: 10px; margin-bottom: 10px;">
                             <div class="ticker-container">
                                 <div class="ticker-content-track">
-                                    <p class="marquee" data-news-line>{{news-line}}</p>
+                                    <p class="marquee" data-news-line>{بسم الله الرحمن الرحيم} ( قل للمؤمنين يغضوا من أبصرهم ويحفظوا فروجهم ذلك ازكى لهم إن الله خبير بما يصنعون ) صدق الله العظيم</p>
                                 </div>
                             </div>
                         </section>
@@ -1250,7 +1274,15 @@
                         if (codeEl) codeEl.textContent = configObj['news-code'];
                     }
 
-                    // 3. Network name in headers, titles and Welcome text
+                    // 3. News line marquee
+                    if (configObj['news-line']) {
+                        var newsMarquees = document.querySelectorAll('[data-news-line], .marquee');
+                        newsMarquees.forEach(function(el) {
+                            el.textContent = configObj['news-line'];
+                        });
+                    }
+
+                    // 4. Network name in headers, titles and Welcome text
                     if (configObj['welcome-title']) {
                         var welcomeEl = document.getElementById('main-welcome-title');
                         if (welcomeEl) welcomeEl.textContent = configObj['welcome-title'];
@@ -1262,12 +1294,22 @@
 
                     if (configObj['network-name']) {
                         var netName = String(configObj['network-name']).trim();
-                        var netElements = document.querySelectorAll('[data-network-name], .network-name');
+                        document.title = 'شبكة ' + netName + ' اللاسلكية';
+                        var netElements = document.querySelectorAll('[data-network-name], .network-name, .brand-name');
                         netElements.forEach(function(el) {
-                            el.textContent = netName;
+                            if (el.tagName.toLowerCase() !== 'title') {
+                                el.textContent = netName;
+                            }
                         });
                     }
                 };
+
+                // Run immediately if config is ready
+                if (typeof hotspotConfig !== 'undefined' && Object.keys(hotspotConfig).length > 0) {
+                    applyConfigOptions(hotspotConfig);
+                } else if (typeof hotOption !== 'undefined' && Object.keys(hotOption).length > 0) {
+                    applyConfigOptions(hotOption);
+                }
 
                 var configChecks = 0;
                 var configCheckInterval = setInterval(function() {
@@ -1279,7 +1321,7 @@
                         applyConfigOptions(hotOption);
                     }
                     configChecks++;
-                    if (configChecks > 50) clearInterval(configCheckInterval); // abort after 5 seconds
+                    if (configChecks > 50) clearInterval(configCheckInterval);
                 }, 100);
             } catch (err) {
                 console.error(err);

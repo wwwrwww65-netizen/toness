@@ -1981,7 +1981,7 @@ body.keyboard-open .bottom-nav-bar,
 .customer-support-section {
   margin-top: 14px;
   margin-bottom: 6px;
-  padding: 14px 16px;
+  padding: 14px 14px;
   background: rgba(65, 12, 22, 0.28);
   border: 1px solid var(--border-glass);
   border-radius: var(--radius-xl);
@@ -1991,8 +1991,10 @@ body.keyboard-open .bottom-nav-bar,
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   text-align: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .support-header {
@@ -2018,14 +2020,23 @@ body.keyboard-open .bottom-nav-bar,
 
 .support-actions-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
   width: 100%;
+  box-sizing: border-box;
 }
 
-@media (max-width: 360px) {
+@media (max-width: 420px) {
+  .support-actions-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+}
+
+@media (max-width: 340px) {
   .support-actions-grid {
     grid-template-columns: 1fr;
+    gap: 8px;
   }
 }
 
@@ -2033,16 +2044,21 @@ body.keyboard-open .bottom-nav-bar,
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 11px 14px;
+  gap: 6px;
+  padding: 10px 8px;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
   border-radius: var(--radius-lg);
   font-family: var(--font-main);
-  font-size: 0.86rem;
+  font-size: 0.82rem;
   font-weight: 800;
   text-decoration: none;
   transition: var(--transition-smooth);
   cursor: pointer;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .support-btn-icon {
@@ -2464,11 +2480,12 @@ tbody td:last-child {
   position: static !important;
   width: 100% !important;
   height: auto !important;
-  min-height: 100% !important;
+  min-height: auto !important;
   background: transparent !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
-  padding: 0 0 95px 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
   z-index: 10 !important;
   overflow-y: visible !important;
   touch-action: pan-y !important;
@@ -2497,15 +2514,15 @@ tbody td:last-child {
   max-width: 100% !important;
   max-height: none !important;
   overflow: visible !important;
-  background: rgba(80, 20, 25, 0.25) !important;
+  background: rgba(65, 12, 22, 0.28) !important;
   border: 1px solid var(--border-glass) !important;
   border-radius: var(--radius-xl) !important;
-  padding: 18px 16px !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  box-shadow: var(--shadow-lg), inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
+  padding: 16px 14px 14px 14px !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  box-shadow: var(--shadow-lg), inset 0 1px 1px rgba(255, 255, 255, 0.18) !important;
   animation: none !important;
-  margin: 0 0 16px 0 !important;
+  margin: 0 0 6px 0 !important;
 }
 
 /* When #status (Status dashboard screen) is active, ensure #login is hidden */
@@ -2515,15 +2532,15 @@ body:has(#status.active) #login {
 }
 
 .status-header-card {
-  background: linear-gradient(135deg, rgba(136, 19, 55, 0.45) 0%, rgba(212, 175, 55, 0.22) 100%);
+  background: linear-gradient(135deg, rgba(136, 19, 55, 0.35) 0%, rgba(212, 175, 55, 0.18) 100%);
   border: 1px solid rgba(212, 175, 55, 0.45);
   border-radius: var(--radius-lg);
   padding: 16px;
   margin-bottom: 14px;
   text-align: center;
   box-shadow: var(--shadow-sm);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .status-badge-live {
@@ -2653,7 +2670,7 @@ body:has(#status.active) #login {
 }
 
 .metric-card-glass {
-  background: rgba(80, 20, 25, 0.25);
+  background: rgba(65, 12, 22, 0.22);
   border: 1px solid var(--border-glass);
   border-radius: var(--radius-md);
   padding: 12px;
@@ -2664,13 +2681,13 @@ body:has(#status.active) #login {
   text-align: center;
   gap: 6px;
   transition: var(--transition-smooth);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .metric-card-glass:hover {
   border-color: var(--accent-gold);
-  background: rgba(100, 25, 32, 0.45);
+  background: rgba(100, 25, 32, 0.35);
 }
 
 .metric-card-glass.full-width {
@@ -2849,13 +2866,17 @@ body:has(#status.active) #login {
   display: flex;
   gap: 12px;
   margin-top: 16px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .status-actions-row button,
 .btn-danger-glass,
 .btn-secondary-glass {
   flex: 1;
-  padding: 11px 16px;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 11px 12px;
   min-height: 46px;
   border-radius: 12px;
   background: linear-gradient(135deg, #E6C27A 0%, #D4AF37 50%, #B8860B 100%) !important;
