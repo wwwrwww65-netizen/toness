@@ -297,23 +297,18 @@
                                 <div class="carousel-slide">
                                     <img class="im1" src="./adimg/1.jpg" alt="إعلان 1" fetchpriority="high" decoding="async">
                                 </div>
-                                <div class="carousel-slide">
-                                    <img class="im2" src="./adimg/2.jpg" alt="إعلان 2" loading="lazy" decoding="async">
-                                </div>
                             </div>
                             <button class="carousel-nav-btn prev" id="carouselPrev" aria-label="السابق">❮</button>
                             <button class="carousel-nav-btn next" id="carouselNext" aria-label="التالي">❯</button>
                         </div>
                         <div class="carousel-dots" id="carouselDots">
                             <span class="carousel-dot active" data-index="0"></span>
-                            <span class="carousel-dot" data-index="1"></span>
                         </div>
 
                         <!-- Preserving legacy .ads .box for any legacy script checks -->
                         <div class="ads" style="display: none;">
                             <div class="box" id="legacyAdBox">
                                 <span style="--i:1"><img class="im1" src="./adimg/1.jpg"></span>
-                                <span style="--i:2"><img class="im2" src="./adimg/2.jpg"></span>
                             </div>
                         </div>
                     </div>
@@ -826,9 +821,9 @@
                     // Static / offline fallback
                 }
 
-                // 2. Client-side probe fallback if API is unreachable
+                // 2. Client-side probe fallback if API is unreachable (Supports up to 20 images dynamically)
                 if (imageList.length === 0) {
-                    const candidateIndices = [1, 2, 3, 4, 5, 6, 7];
+                    const candidateIndices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
                     const probePromises = candidateIndices.map(function(idx) {
                         return new Promise(function(resolve) {
                             const img = new Image();
@@ -855,7 +850,7 @@
                                     settled = true;
                                     resolve({ idx: idx, src: './adimg/' + idx + '.jpg', exists: false });
                                 }
-                            }, 3000);
+                            }, 1800);
                         });
                     });
 
@@ -863,9 +858,9 @@
                     imageList = probeResults.filter(function(r) { return r.exists; }).map(function(r) { return r.src; });
                 }
 
-                // Default safety fallback to the 2 existing images if list is empty
+                // Default safety fallback
                 if (imageList.length === 0) {
-                    imageList = ['./adimg/1.jpg', './adimg/2.jpg'];
+                    imageList = ['./adimg/1.jpg'];
                 }
 
                 if (wrapper) wrapper.style.display = 'block';

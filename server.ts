@@ -178,7 +178,7 @@ app.get('/api/banners', (req, res) => {
   } catch (e) {
     console.error('Error reading adimg folder:', e);
   }
-  res.json({ success: true, images: ['./adimg/1.jpg', './adimg/2.jpg'] });
+  res.json({ success: true, images: ['./adimg/1.jpg'] });
 });
 
 // Endpoint to save config.js directly from the admin dashboard
