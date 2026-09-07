@@ -19,6 +19,14 @@
     <link rel="stylesheet" href="css/notifications-system.css">
     <!-- Announcements System CSS -->
     <link rel="stylesheet" href="css/announcements-style.css">
+    <script>
+        var hotspotConfig = {};
+        var hotOption = {};
+        function Config(a) {
+            hotspotConfig = a || {};
+            hotOption = a || {};
+        }
+    </script>
     <script src="config/config.js"></script>
     <style>
         .im1::before {
@@ -416,7 +424,15 @@
                                             <th scope="col">الصلاحية</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="profiles"></tbody>
+                                    <tbody id="profiles">
+                                        <tr><td>100 ريال</td><td>0 ساعات</td><td>0 ميجا</td><td>3 أيام</td></tr>
+                                        <tr><td>150 ريال</td><td>0 ساعات</td><td>0 ميجا</td><td>5 أيام</td></tr>
+                                        <tr><td>200 ريال</td><td>0 ساعات</td><td>0 ميجا</td><td>أسبوع</td></tr>
+                                        <tr><td>250 ريال</td><td>0 ساعات</td><td>0 ميجا</td><td>10 أيام</td></tr>
+                                        <tr><td>300 ريال</td><td>0 ساعات</td><td>0 ميجا</td><td>15 يوم</td></tr>
+                                        <tr><td>500 ريال</td><td>0 ساعات</td><td>0 ميجا</td><td>شهر</td></tr>
+                                        <tr><td>150 ريال</td><td>مفتوح</td><td>مفتوح</td><td>يوم واحد</td></tr>
+                                    </tbody>
                                 </table>
                                 <button class="button app-submit modal-cancel-btn" type="button">
                                     <svg viewBox="0 0 24 24" class="btn-icon">
@@ -452,7 +468,10 @@
                         <div class="sell-point-div">
                             <div class="wrapper">
                                 <table>
-                                    <tbody class="sell-point" id="sell-points"></tbody>
+                                    <tbody class="sell-point" id="sell-points">
+                                        <tr><td>البقالات الموجودة في اماكن التغطية</td></tr>
+                                        <tr><td>772131004</td></tr>
+                                    </tbody>
                                 </table>
                                 <button class="button app-submit modal-cancel-btn" type="button">
                                     <svg viewBox="0 0 24 24" class="btn-icon">
@@ -1146,6 +1165,17 @@
                     loginEl.classList.add('inactive');
                 }
 
+                // Render dynamic tables for profiles and sell points if opening them
+                try {
+                    if (typeof applyConfigOptions === 'function') {
+                        if (typeof hotspotConfig !== 'undefined') applyConfigOptions(hotspotConfig);
+                        else if (typeof window.hotspotConfig !== 'undefined') applyConfigOptions(window.hotspotConfig);
+                    }
+                    if (typeof renderHotspotTables === 'function') {
+                        renderHotspotTables();
+                    }
+                } catch (e) {}
+
                 modal.style.display = 'block';
                 // Trigger reflow for CSS transition
                 void modal.offsetWidth;
@@ -1260,6 +1290,38 @@
                         });
                     }
 
+                    // 1b. WhatsApp Support Link
+                    var waNum = (configObj['whatsapp-number'] || configObj['service-number'] || '772131004').toString().trim();
+                    var cleanWa = waNum.replace(/[^0-9]/g, '');
+                    if (cleanWa.length === 9 && cleanWa.startsWith('7')) {
+                        cleanWa = '967' + cleanWa;
+                    }
+                    var currentNetName = (configObj['network-name'] || 'تونس نت').toString().trim();
+                    var waLinks = document.querySelectorAll('a[href*="whatsapp"]');
+                    waLinks.forEach(function(el) {
+                        el.setAttribute('href', 'whatsapp://send?phone=' + cleanWa + '&text=' + encodeURIComponent('مرحبا خدمة عملاء شبكة ' + currentNetName + ' اللاسلكية'));
+                    });
+
+                    // 1c. Visibility of Action Buttons
+                    if (typeof configObj['price-button'] !== 'undefined') {
+                        document.querySelectorAll('[data-price-button], [parent-id="price"], .price-icon').forEach(function(el) {
+                            if (!configObj['price-button']) el.style.setProperty('display', 'none', 'important');
+                            else el.style.display = '';
+                        });
+                    }
+                    if (typeof configObj['sell-point-button'] !== 'undefined') {
+                        document.querySelectorAll('[data-sell-point-button], [parent-id="sell-point"], .sellpoint').forEach(function(el) {
+                            if (!configObj['sell-point-button']) el.style.setProperty('display', 'none', 'important');
+                            else el.style.display = '';
+                        });
+                    }
+                    if (typeof configObj['loan-button'] !== 'undefined') {
+                        document.querySelectorAll('[parent-id="loan"]').forEach(function(el) {
+                            if (!configObj['loan-button']) el.style.setProperty('display', 'none', 'important');
+                            else el.style.display = '';
+                        });
+                    }
+
                     // 2. News & Offers window configuration
                     if (configObj['news-title']) {
                         var titleEl = document.getElementById('loan-news-title');
@@ -1301,6 +1363,37 @@
                                 el.textContent = netName;
                             }
                         });
+                    }
+
+                    // 5. Render Profiles (Pricing Table)
+                    if (Array.isArray(configObj.profiles) && configObj.profiles.length > 0) {
+                        var tbodyProfiles = document.getElementById('profiles');
+                        if (tbodyProfiles) {
+                            var profHtml = '';
+                            configObj.profiles.forEach(function(item) {
+                                profHtml += '<tr>' +
+                                    '<td>' + (item.price || '-') + '</td>' +
+                                    '<td>' + (item.time || '-') + '</td>' +
+                                    '<td>' + (item.transfer || '-') + '</td>' +
+                                    '<td>' + (item.validity || '-') + '</td>' +
+                                    '</tr>';
+                            });
+                            tbodyProfiles.innerHTML = profHtml;
+                        }
+                    }
+
+                    // 6. Render Points of Sale (Sell Points)
+                    if (Array.isArray(configObj['sell-points']) && configObj['sell-points'].length > 0) {
+                        var tbodySellPoints = document.getElementById('sell-points');
+                        if (tbodySellPoints) {
+                            var spHtml = '';
+                            configObj['sell-points'].forEach(function(item) {
+                                spHtml += '<tr>' +
+                                    '<td>' + (item.name || '-') + '</td>' +
+                                    '</tr>';
+                            });
+                            tbodySellPoints.innerHTML = spHtml;
+                        }
                     }
                 };
 
